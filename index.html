@@ -231,6 +231,13 @@
   .car-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .car-photo { position: relative; aspect-ratio: 4/3; background: var(--steel); overflow: hidden; }
   .car-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .car-slider { display: flex; height: 100%; width: 100%; transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); will-change: transform; touch-action: pan-y; }
+  .car-slider img { flex-shrink: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.48); border: none; color: #fff; font-size: 24px; line-height: 1; width: 34px; height: 52px; cursor: pointer; z-index: 4; display: flex; align-items: center; justify-content: center; transition: background 0.2s; padding: 0; }
+  .slider-btn:hover, .slider-btn:focus { background: rgba(0,0,0,0.72); outline: none; }
+  .slider-prev { left: 0; border-radius: 0 4px 4px 0; }
+  .slider-next { right: 0; border-radius: 4px 0 0 4px; }
+  .slider-count { position: absolute; bottom: 10px; right: 10px; background: rgba(0,0,0,0.58); color: rgba(255,255,255,0.92); font-size: 11px; padding: 2px 8px; border-radius: 999px; z-index: 4; letter-spacing: 0.03em; font-variant-numeric: tabular-nums; }
   .car-photo-placeholder {
     width: 100%; height: 100%;
     display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -560,7 +567,23 @@
       <!-- Card 1: 2025 RAM ProMaster 3500 -->
       <div class="car-card fade-up">
         <div class="car-photo">
-          <img src="images/ram-promaster.jpg" alt="2025 RAM ProMaster 3500 High Roof" loading="lazy">
+          <div class="car-slider">
+            <img src="images/ram-promaster/01.jpg" alt="2025 RAM ProMaster 3500" loading="eager">
+            <img src="images/ram-promaster/02.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/03.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/04.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/05.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/06.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/07.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/08.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/09.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/10.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/11.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+            <img src="images/ram-promaster/12.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
+          </div>
+          <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
+          <div class="slider-count">1 / 12</div>
           <div class="car-photo-scrim"></div>
           <div class="car-badge-instock" data-i18n="inv.badge"></div>
         </div>
@@ -576,7 +599,30 @@
       <!-- Card 2: 2025 Toyota Corolla LE Hybrid -->
       <div class="car-card fade-up">
         <div class="car-photo">
-          <img src="images/toyota-corolla.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+          <div class="car-slider">
+            <img src="images/toyota-corolla/01.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="eager">
+            <img src="images/toyota-corolla/02.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/03.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/04.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/05.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/06.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/07.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/08.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/09.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/10.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/11.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/12.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/13.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/14.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/15.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/16.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/17.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/18.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+            <img src="images/toyota-corolla/19.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
+          </div>
+          <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
+          <div class="slider-count">1 / 19</div>
           <div class="car-photo-scrim"></div>
           <div class="car-badge-instock" data-i18n="inv.badge"></div>
         </div>
@@ -592,7 +638,26 @@
       <!-- Card 3: 2023 BMW 3 Series 330e -->
       <div class="car-card fade-up">
         <div class="car-photo">
-          <img src="images/bmw-330e.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+          <div class="car-slider">
+            <img src="images/bmw-330e/01.jpg" alt="2023 BMW 3 Series 330e" loading="eager">
+            <img src="images/bmw-330e/02.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/03.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/04.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/05.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/06.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/07.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/08.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/09.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/10.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/11.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/12.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/13.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/14.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+            <img src="images/bmw-330e/15.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
+          </div>
+          <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
+          <div class="slider-count">1 / 15</div>
           <div class="car-photo-scrim"></div>
           <div class="car-badge-instock" data-i18n="inv.badge"></div>
         </div>
@@ -608,7 +673,31 @@
       <!-- Card 4: 2022 Tesla Model Y Performance AWD -->
       <div class="car-card fade-up">
         <div class="car-photo">
-          <img src="images/tesla-model-y.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+          <div class="car-slider">
+            <img src="images/tesla-model-y/01.jpg" alt="2022 Tesla Model Y Performance AWD" loading="eager">
+            <img src="images/tesla-model-y/02.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/03.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/04.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/05.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/06.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/07.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/08.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/09.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/10.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/11.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/12.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/13.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/14.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/15.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/16.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/17.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/18.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/19.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+            <img src="images/tesla-model-y/20.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
+          </div>
+          <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
+          <div class="slider-count">1 / 20</div>
           <div class="car-photo-scrim"></div>
           <div class="car-badge-instock" data-i18n="inv.badge"></div>
         </div>
@@ -1230,6 +1319,45 @@ function checkTrustBar() {
 }
 checkTrustBar();
 window.addEventListener('resize', checkTrustBar, { passive: true });
+
+// Photo slider with touch swipe support
+document.querySelectorAll('.car-photo').forEach(function(photo) {
+  var slider = photo.querySelector('.car-slider');
+  if (!slider) return;
+  var imgs = slider.querySelectorAll('img');
+  var total = imgs.length;
+  if (total <= 1) return;
+  var countEl = photo.querySelector('.slider-count');
+  var idx = 0;
+  var startX = 0;
+  var isDragging = false;
+
+  function goTo(n) {
+    idx = (n % total + total) % total;
+    slider.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    if (countEl) countEl.textContent = (idx + 1) + ' / ' + total;
+  }
+
+  var prevBtn = photo.querySelector('.slider-prev');
+  var nextBtn = photo.querySelector('.slider-next');
+  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx - 1); });
+  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); goTo(idx + 1); });
+
+  slider.addEventListener('touchstart', function(e) {
+    startX = e.touches[0].clientX;
+    isDragging = false;
+  }, { passive: true });
+
+  slider.addEventListener('touchmove', function(e) {
+    if (Math.abs(e.touches[0].clientX - startX) > 8) isDragging = true;
+  }, { passive: true });
+
+  slider.addEventListener('touchend', function(e) {
+    if (!isDragging) return;
+    var dx = e.changedTouches[0].clientX - startX;
+    if (Math.abs(dx) > 40) goTo(idx + (dx < 0 ? 1 : -1));
+  }, { passive: true });
+});
 </script>
 </body>
 </html>
