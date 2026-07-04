@@ -1313,6 +1313,21 @@ if (stampEl) stampObserver.observe(stampEl);
 // ── FORM SUBMIT ───────────────────────────────────────────────────────────────
 function handleForm(e) {
   e.preventDefault();
+  var name  = (document.getElementById('f-name').value  || '').trim();
+  var phone = (document.getElementById('f-phone').value || '').trim();
+  var car   = (document.getElementById('f-car').value   || '').trim();
+  var lang2 = document.getElementById('f-lang').value;
+  var langLabel = { en: 'English', mn: 'Монгол', ko: '한국어', zh: '中文' }[lang2] || lang2;
+
+  var msg = '🚗 *Pre-Approval Request*\n'
+    + '━━━━━━━━━━━━━━\n'
+    + '👤 Name: ' + name + '\n'
+    + '📞 Phone: ' + phone + '\n'
+    + (car ? '🚘 Car interested in: ' + car + '\n' : '')
+    + '🌐 Language: ' + langLabel;
+
+  window.open('https://wa.me/14243353285?text=' + encodeURIComponent(msg), '_blank');
+
   var btn = document.getElementById('form-submit');
   btn.textContent = t[lang]['fin.success'];
   btn.style.background = 'var(--success)';
