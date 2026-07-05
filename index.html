@@ -254,6 +254,45 @@
   .car-monthly { font-size: 12px; color: var(--ash); margin-bottom: 14px; }
   .inventory-footer { text-align: center; margin-top: 40px; }
 
+  /* DEAL BUILDER */
+  #deal { background: var(--carbon); }
+  .deal-card { display: grid; grid-template-columns: 1fr; background: var(--onyx); border: 1px solid var(--steel); border-radius: 12px; overflow: hidden; }
+  @media (min-width: 900px) { .deal-card { grid-template-columns: 1.15fr 1fr; } }
+  .deal-left { padding: 28px 24px; border-bottom: 1px solid var(--steel); }
+  @media (min-width: 900px) { .deal-left { padding: 40px 36px; border-bottom: none; border-right: 1px solid var(--steel); } }
+  .deal-label { font-family: 'Inter', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ash); margin-bottom: 14px; }
+  .deal-cars { display: grid; grid-template-columns: 1fr; gap: 10px; margin-bottom: 32px; }
+  @media (min-width: 480px) { .deal-cars { grid-template-columns: repeat(2, 1fr); } }
+  .deal-car { display: flex; align-items: center; gap: 12px; background: var(--carbon); border: 1px solid var(--steel); border-radius: 8px; padding: 10px 12px; cursor: pointer; text-align: left; font-family: 'Inter', sans-serif; transition: border-color 0.15s, background 0.15s; }
+  .deal-car:hover { border-color: var(--gold); }
+  .deal-car:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .deal-car.active { border-color: var(--gold); background: rgba(201,162,75,0.08); }
+  .deal-car img { width: 58px; height: 44px; object-fit: cover; border-radius: 4px; flex-shrink: 0; }
+  .deal-car-name { font-size: 12px; font-weight: 600; color: var(--bone); line-height: 1.35; }
+  .deal-car-price { font-size: 11px; color: var(--ash); margin-top: 2px; font-variant-numeric: tabular-nums; }
+  .deal-slider-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 12px; }
+  .deal-down-val { font-family: 'Saira', sans-serif; font-size: 24px; font-weight: 700; color: var(--gold-bright); font-variant-numeric: tabular-nums; }
+  .deal-range { -webkit-appearance: none; appearance: none; width: 100%; height: 6px; border-radius: 3px; background: var(--steel); outline: none; margin-bottom: 34px; cursor: pointer; }
+  .deal-range::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 28px; height: 28px; border-radius: 50%; background: var(--gold); border: 4px solid var(--onyx); box-shadow: 0 0 0 1.5px var(--gold); cursor: grab; }
+  .deal-range::-webkit-slider-thumb:active { cursor: grabbing; }
+  .deal-range::-moz-range-thumb { width: 20px; height: 20px; border-radius: 50%; background: var(--gold); border: 4px solid var(--onyx); box-shadow: 0 0 0 1.5px var(--gold); cursor: grab; }
+  .deal-range:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .deal-terms { display: flex; gap: 8px; }
+  .deal-term { flex: 1; height: 46px; border-radius: 8px; border: 1px solid var(--steel); background: transparent; color: var(--ash); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; cursor: pointer; transition: border-color 0.15s, color 0.15s, background 0.15s; }
+  .deal-term:hover { border-color: var(--gold); }
+  .deal-term:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+  .deal-term.active { border-color: var(--gold); color: var(--gold-bright); background: rgba(201,162,75,0.08); }
+  .deal-right { padding: 32px 24px; display: flex; flex-direction: column; justify-content: center; text-align: center; background: radial-gradient(ellipse 90% 70% at 50% 15%, rgba(201,162,75,0.09), transparent); }
+  @media (min-width: 900px) { .deal-right { padding: 40px 36px; } }
+  .deal-monthly { font-family: 'Saira', sans-serif; font-size: 60px; font-weight: 800; color: var(--gold-bright); line-height: 1; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+  @media (min-width: 900px) { .deal-monthly { font-size: 72px; } }
+  .deal-mo-label { font-size: 13px; color: var(--ash); margin-top: 8px; margin-bottom: 26px; }
+  .deal-breakdown { border-top: 1px solid var(--steel); border-bottom: 1px solid var(--steel); padding: 16px 0; margin-bottom: 26px; display: flex; flex-direction: column; gap: 9px; text-align: left; }
+  .deal-line { display: flex; justify-content: space-between; font-size: 13px; color: var(--ash); }
+  .deal-line b { color: var(--bone); font-weight: 600; font-variant-numeric: tabular-nums; }
+  .deal-ctas { display: flex; flex-direction: column; gap: 10px; }
+  .deal-note { font-size: 11px; color: var(--ash); margin-top: 16px; line-height: 1.6; }
+
   /* FINANCING */
   #financing { background: var(--carbon); position: relative; overflow: hidden; }
   .financing-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
@@ -441,6 +480,7 @@
   </div>
   <ul class="mobile-menu-links">
     <li><a href="#inventory" onclick="closeMenu()" data-i18n="nav.inventory"></a></li>
+    <li><a href="#deal" onclick="closeMenu()" data-i18n="nav.deal"></a></li>
     <li><a href="#financing" onclick="closeMenu()" data-i18n="nav.financing"></a></li>
     <li><a href="#sell" onclick="closeMenu()" data-i18n="nav.sell"></a></li>
     <li><a href="#shipping" onclick="closeMenu()" data-i18n="nav.shipping"></a></li>
@@ -718,6 +758,73 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         <span data-i18n="inv.cta"></span>
       </a>
+    </div>
+  </div>
+</section>
+
+<!-- DEAL BUILDER -->
+<section id="deal">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow" data-i18n="deal.eyebrow"></p>
+      <h2 data-i18n-html="deal.headline"></h2>
+      <div class="gold-line"></div>
+      <p style="margin-top:12px;" data-i18n="deal.sub"></p>
+    </div>
+    <div class="deal-card fade-up">
+      <div class="deal-left">
+        <div class="deal-label" data-i18n="deal.pickCar"></div>
+        <div class="deal-cars" id="deal-cars">
+          <button type="button" class="deal-car active" data-idx="0">
+            <img src="images/ram-promaster/01.jpg" alt="2025 RAM ProMaster 3500">
+            <span><span class="deal-car-name">2025 RAM ProMaster 3500</span><br><span class="deal-car-price">$38,000</span></span>
+          </button>
+          <button type="button" class="deal-car" data-idx="1">
+            <img src="images/toyota-corolla/01.jpg" alt="2025 Toyota Corolla LE Hybrid">
+            <span><span class="deal-car-name">2025 Toyota Corolla LE Hybrid</span><br><span class="deal-car-price">$22,900</span></span>
+          </button>
+          <button type="button" class="deal-car" data-idx="2">
+            <img src="images/bmw-330e/01.jpg" alt="2023 BMW 3 Series 330e">
+            <span><span class="deal-car-name">2023 BMW 3 Series 330e</span><br><span class="deal-car-price">$34,000</span></span>
+          </button>
+          <button type="button" class="deal-car" data-idx="3">
+            <img src="images/tesla-model-y/01.jpg" alt="2022 Tesla Model Y Performance">
+            <span><span class="deal-car-name">2022 Tesla Model Y Performance</span><br><span class="deal-car-price">$35,800</span></span>
+          </button>
+        </div>
+        <div class="deal-slider-row">
+          <div class="deal-label" style="margin-bottom:0;" data-i18n="deal.down"></div>
+          <div class="deal-down-val" id="deal-down-val">$3,000</div>
+        </div>
+        <input type="range" class="deal-range" id="deal-range" min="1000" max="10000" step="250" value="3000" aria-label="Down payment">
+        <div class="deal-label" data-i18n="deal.term"></div>
+        <div class="deal-terms" id="deal-terms">
+          <button type="button" class="deal-term" data-term="36">36</button>
+          <button type="button" class="deal-term" data-term="48">48</button>
+          <button type="button" class="deal-term active" data-term="60">60</button>
+        </div>
+      </div>
+      <div class="deal-right">
+        <div class="deal-monthly" id="deal-monthly">$0</div>
+        <div class="deal-mo-label" data-i18n="deal.perMo"></div>
+        <div class="deal-breakdown">
+          <div class="deal-line"><span data-i18n="deal.linePrice"></span><b id="deal-line-price"></b></div>
+          <div class="deal-line"><span data-i18n="deal.lineDown"></span><b id="deal-line-down"></b></div>
+          <div class="deal-line"><span data-i18n="deal.lineFinanced"></span><b id="deal-line-financed"></b></div>
+          <div class="deal-line"><span data-i18n="deal.lineTerm"></span><b id="deal-line-term"></b></div>
+        </div>
+        <div class="deal-ctas">
+          <a href="#" id="deal-wa" class="btn btn-primary btn-full" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-i18n="deal.send"></span>
+          </a>
+          <a href="tel:+12133528955" class="btn btn-secondary btn-full">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+            <span data-i18n="deal.call"></span>
+          </a>
+        </div>
+        <p class="deal-note" data-i18n="deal.note"></p>
+      </div>
     </div>
   </div>
 </section>
@@ -1046,6 +1153,23 @@ const t = {
     'inv.details':          'See Details',
     'inv.cta':              'Call to See Full Inventory',
 
+    // DEAL BUILDER
+    'nav.deal':          'Deal Builder',
+    'deal.eyebrow':      'Deal Builder',
+    'deal.headline':     'See your monthly payment —<br><span class="gold-text">right now.</span>',
+    'deal.sub':          'Pick a car, set your down payment. No SSN, no forms, no waiting.',
+    'deal.pickCar':      'Choose your car',
+    'deal.down':         'Down payment',
+    'deal.term':         'Loan term (months)',
+    'deal.perMo':        'estimated per month',
+    'deal.linePrice':    'Vehicle price',
+    'deal.lineDown':     'Down payment',
+    'deal.lineFinanced': 'Amount financed',
+    'deal.lineTerm':     'Term',
+    'deal.send':         'Send This Deal to WhatsApp',
+    'deal.call':         'Call About This Deal',
+    'deal.note':         'Example estimate at 12.9% APR. Final terms depend on approval — no SSN required to apply.',
+
     // FINANCING
     'fin.eyebrow':   'Financing',
     'fin.headline':  'No credit? No SSN?<br><span class="gold-text">Still approved.</span>',
@@ -1160,6 +1284,23 @@ const t = {
     'inv.details':          'Дэлгэрэнгүй',
     'inv.cta':              'Бүх машинаа харах',
 
+    // DEAL BUILDER
+    'nav.deal':          'Тооцоолуур',
+    'deal.eyebrow':      'Тооцоолуур',
+    'deal.headline':     'Сарын төлбөрөө —<br><span class="gold-text">яг одоо тооцоол.</span>',
+    'deal.sub':          'Машинаа сонгоод урьдчилгаагаа тохируул. SSN, маягт шаардлагагүй.',
+    'deal.pickCar':      'Машинаа сонго',
+    'deal.down':         'Урьдчилгаа',
+    'deal.term':         'Зээлийн хугацаа (сар)',
+    'deal.perMo':        'сарын тооцоолсон төлбөр',
+    'deal.linePrice':    'Машины үнэ',
+    'deal.lineDown':     'Урьдчилгаа',
+    'deal.lineFinanced': 'Санхүүжилтийн дүн',
+    'deal.lineTerm':     'Хугацаа',
+    'deal.send':         'WhatsApp-аар илгээх',
+    'deal.call':         'Залгаж ярих',
+    'deal.note':         'Жишээ тооцоо (12.9% хүү). Эцсийн нөхцөл зөвшөөрлөөс хамаарна — SSN шаардлагагүй.',
+
     // FINANCING
     'fin.eyebrow':   'Санхүүжилт',
     'fin.headline':  'Зээлгүй юу? SSN-гүй юу?<br><span class="gold-text">Бид зөвшөөрнө.</span>',
@@ -1254,6 +1395,8 @@ function applyLang(l) {
 
   document.getElementById('lang-en').classList.toggle('active', l === 'en');
   document.getElementById('lang-mn').classList.toggle('active', l === 'mn');
+
+  if (typeof deal === 'object' && deal) dealUpdate();
 
   try { localStorage.setItem('mng-lang', l); } catch(e) {}
 }
@@ -1383,6 +1526,93 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
     if (Math.abs(dx) > 40) goTo(idx + (dx < 0 ? 1 : -1));
   }, { passive: true });
 });
+
+// ── DEAL BUILDER ─────────────────────────────────────────────────────────────
+var dealCars = [
+  { name: '2025 RAM ProMaster 3500',        price: 38000 },
+  { name: '2025 Toyota Corolla LE Hybrid',  price: 22900 },
+  { name: '2023 BMW 3 Series 330e',         price: 34000 },
+  { name: '2022 Tesla Model Y Performance', price: 35800 }
+];
+var deal = { car: 0, down: 3000, term: 60 };
+var dealShown = 0;
+var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function fmtUSD(n) { return '$' + n.toLocaleString('en-US'); }
+
+function dealMonthly() {
+  var principal = dealCars[deal.car].price - deal.down;
+  var r = 0.129 / 12, n = deal.term;
+  return Math.round(principal * r / (1 - Math.pow(1 + r, -n)));
+}
+
+function animateMonthly(to) {
+  var el = document.getElementById('deal-monthly');
+  if (reduceMotion || dealShown === 0) {
+    el.textContent = fmtUSD(to);
+    dealShown = to;
+    return;
+  }
+  var from = dealShown, start = performance.now(), dur = 320;
+  dealShown = to;
+  function tick(now) {
+    var p = Math.min((now - start) / dur, 1);
+    var eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = fmtUSD(Math.round(from + (to - from) * eased));
+    if (p < 1 && dealShown === to) requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+}
+
+function dealUpdate() {
+  var monthlyEl = document.getElementById('deal-monthly');
+  if (!monthlyEl) return;
+  var c = dealCars[deal.car];
+  var m = dealMonthly();
+  var mnUnit = lang === 'mn' ? ' сар' : ' months';
+
+  document.getElementById('deal-down-val').textContent = fmtUSD(deal.down);
+  document.getElementById('deal-line-price').textContent = fmtUSD(c.price);
+  document.getElementById('deal-line-down').textContent = fmtUSD(deal.down);
+  document.getElementById('deal-line-financed').textContent = fmtUSD(c.price - deal.down);
+  document.getElementById('deal-line-term').textContent = deal.term + mnUnit;
+  animateMonthly(m);
+
+  var msg = lang === 'mn'
+    ? 'Сайн байна уу! Миний тооцоолсон deal: ' + c.name + ' — үнэ ' + fmtUSD(c.price) + ', урьдчилгаа ' + fmtUSD(deal.down) + ', ' + deal.term + ' сар ≈ ' + fmtUSD(m) + '/сар. Боломжтой юу?'
+    : 'Hi! My deal: ' + c.name + ' — ' + fmtUSD(c.price) + ', down ' + fmtUSD(deal.down) + ', ' + deal.term + ' mo ≈ ' + fmtUSD(m) + '/mo. Can we talk?';
+  document.getElementById('deal-wa').href = 'https://wa.me/14243353285?text=' + encodeURIComponent(msg);
+}
+
+(function initDeal() {
+  var carsWrap = document.getElementById('deal-cars');
+  if (!carsWrap) return;
+
+  carsWrap.querySelectorAll('.deal-car').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      carsWrap.querySelector('.deal-car.active').classList.remove('active');
+      btn.classList.add('active');
+      deal.car = +btn.dataset.idx;
+      dealUpdate();
+    });
+  });
+
+  document.getElementById('deal-range').addEventListener('input', function() {
+    deal.down = +this.value;
+    dealUpdate();
+  });
+
+  document.querySelectorAll('#deal-terms .deal-term').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelector('#deal-terms .deal-term.active').classList.remove('active');
+      btn.classList.add('active');
+      deal.term = +btn.dataset.term;
+      dealUpdate();
+    });
+  });
+
+  dealUpdate();
+})();
 </script>
 </body>
 </html>
