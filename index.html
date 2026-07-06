@@ -241,13 +241,14 @@
   }
   .car-photo-placeholder svg { opacity: 0.25; color: var(--ash); }
   .car-photo-placeholder span { font-size: 11px; color: var(--ash); opacity: 0.5; letter-spacing: 0.04em; }
-  .car-photo-scrim { position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(transparent, rgba(11,11,13,0.8)); }
+  .car-photo-scrim { position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: linear-gradient(transparent, rgba(11,11,13,0.8)); pointer-events: none; }
   .car-badge-instock {
     position: absolute; top: 12px; left: 12px;
     background: var(--success); color: #fff;
     font-size: 11px; font-weight: 600;
     padding: 3px 10px; border-radius: 999px;
     letter-spacing: 0.04em; text-transform: uppercase;
+    pointer-events: none;
   }
   .car-body { padding: 16px; }
   .car-title { font-family: 'Saira', sans-serif; font-size: 18px; font-weight: 600; color: var(--bone); margin-bottom: 6px; }
@@ -1524,15 +1525,15 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
   var startX = 0, startY = 0;
 
   // TEMP INSTRUMENTATION — remove after mobile swipe diagnosis (sets tab title on touch)
-  slider.addEventListener('touchstart', function() { document.title = 'TOUCH OK'; }, { passive: true });
+  photo.addEventListener('touchstart', function() { document.title = 'TOUCH OK'; }, { passive: true });
 
-  slider.addEventListener('touchstart', function(e) {
+  photo.addEventListener('touchstart', function(e) {
     if (e.touches.length !== 1) return;
     startX = e.touches[0].clientX;
     startY = e.touches[0].clientY;
   }, { passive: true });
 
-  slider.addEventListener('touchend', function(e) {
+  photo.addEventListener('touchend', function(e) {
     var dx = e.changedTouches[0].clientX - startX;
     var dy = e.changedTouches[0].clientY - startY;
     if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
