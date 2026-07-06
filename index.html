@@ -225,7 +225,7 @@
   .car-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .car-photo { position: relative; aspect-ratio: 4/3; background: var(--steel); overflow: hidden; }
   .car-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .car-slider { display: flex; height: 100%; width: 100%; will-change: transform; touch-action: pan-y; }
+  .car-slider { display: flex; height: 100%; width: 100%; will-change: transform; touch-action: none; user-select: none; }
   .car-slider img { flex-shrink: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
   .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.48); border: none; color: #fff; font-size: 24px; line-height: 1; width: 34px; height: 52px; cursor: pointer; z-index: 4; display: flex; align-items: center; justify-content: center; transition: background 0.2s; padding: 0; }
   .slider-btn:hover, .slider-btn:focus { background: rgba(0,0,0,0.72); outline: none; }
@@ -1501,20 +1501,20 @@ function checkTrustBar() {
 checkTrustBar();
 window.addEventListener('resize', checkTrustBar, { passive: true });
 
-// Photo slider — live drag with velocity flick (Instagram-style)
+// Photo slider — Instagram-style swipe (touch-action:none gives full control)
 document.querySelectorAll('.car-photo').forEach(function(photo) {
   var slider = photo.querySelector('.car-slider');
   if (!slider) return;
   var total = slider.querySelectorAll('img').length;
   if (total <= 1) return;
   var countEl = photo.querySelector('.slider-count');
-  var idx = 0, startX = 0, startY = 0, startT = 0, dragX = 0, isHoriz = null;
+  var idx = 0, startX = 0, startT = 0, dragX = 0, active = false;
 
-  function w() { return photo.offsetWidth; }
+  function w() { return photo.offsetWidth || slider.offsetWidth; }
 
   function snapTo(n, animate) {
     idx = Math.max(0, Math.min(total - 1, n));
-    slider.style.transition = animate ? 'transform 0.28s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
+    slider.style.transition = animate ? 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
     slider.style.transform = 'translateX(' + (-idx * w()) + 'px)';
     if (countEl) countEl.textContent = (idx + 1) + ' / ' + total;
   }
@@ -1525,37 +1525,38 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
   if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx + 1, true); });
 
   slider.addEventListener('touchstart', function(e) {
+    if (e.touches.length !== 1) return;
+    active = true;
     startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
     startT = Date.now();
     dragX = -idx * w();
-    isHoriz = null;
     slider.style.transition = 'none';
   }, { passive: true });
 
   slider.addEventListener('touchmove', function(e) {
+    if (!active || e.touches.length !== 1) return;
     var dx = e.touches[0].clientX - startX;
-    var dy = e.touches[0].clientY - startY;
-    if (isHoriz === null && (Math.abs(dx) > 4 || Math.abs(dy) > 4)) {
-      isHoriz = Math.abs(dx) > Math.abs(dy);
-    }
-    if (!isHoriz) return;
-    e.preventDefault();
     var newX = dragX + dx;
-    // rubber-band resistance at edges
-    if ((idx === 0 && dx > 0) || (idx === total - 1 && dx < 0)) newX = dragX + dx * 0.2;
+    // rubber-band at edges
+    if (idx === 0 && dx > 0)           newX = dx * 0.25;
+    if (idx === total-1 && dx < 0)     newX = dragX + dx * 0.25;
     slider.style.transform = 'translateX(' + newX + 'px)';
-  }, { passive: false });
+  }, { passive: true });
 
   slider.addEventListener('touchend', function(e) {
-    if (!isHoriz) return;
+    if (!active) return;
+    active = false;
     var dx = e.changedTouches[0].clientX - startX;
-    var velocity = Math.abs(dx) / (Date.now() - startT); // px/ms
-    if (Math.abs(dx) > w() * 0.2 || velocity > 0.25) {
+    var vel = Math.abs(dx) / Math.max(1, Date.now() - startT);
+    if (Math.abs(dx) > w() * 0.18 || vel > 0.3) {
       snapTo(idx + (dx < 0 ? 1 : -1), true);
     } else {
       snapTo(idx, true);
     }
+  }, { passive: true });
+
+  slider.addEventListener('touchcancel', function() {
+    active = false; snapTo(idx, true);
   }, { passive: true });
 });
 
