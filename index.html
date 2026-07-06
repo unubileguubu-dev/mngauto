@@ -1502,101 +1502,38 @@ function checkTrustBar() {
 checkTrustBar();
 window.addEventListener('resize', checkTrustBar, { passive: true });
 
-// Photo slider — pointer events (desktop mouse) + touch events (iOS fallback)
+// Photo slider
 document.querySelectorAll('.car-photo').forEach(function(photo) {
   var slider = photo.querySelector('.car-slider');
   if (!slider) return;
   var total = slider.querySelectorAll('img').length;
   if (total <= 1) return;
   var countEl = photo.querySelector('.slider-count');
-  var idx = 0, startX = 0, startY = 0, startT = 0, dragX = 0, active = false, isHoriz = null;
+  var idx = 0;
 
-  function w() { return photo.offsetWidth || slider.offsetWidth; }
-
-  function snapTo(n, animate) {
+  function snapTo(n) {
     idx = Math.max(0, Math.min(total - 1, n));
-    slider.style.transition = animate ? 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)' : 'none';
-    slider.style.transform = 'translateX(' + (-idx * w()) + 'px)';
+    slider.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
+    slider.style.transform = 'translateX(' + (-idx * photo.offsetWidth) + 'px)';
     if (countEl) countEl.textContent = (idx + 1) + ' / ' + total;
   }
 
-  function onStart(x, y) {
-    active = true; isHoriz = null;
-    startX = x; startY = y;
-    startT = Date.now();
-    dragX = -idx * w();
-    slider.style.transition = 'none';
-    console.log('[slider] start x=' + x);
-  }
+  photo.querySelector('.slider-prev').addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx - 1); });
+  photo.querySelector('.slider-next').addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx + 1); });
 
-  function onMove(x, y) {
-    if (!active) return;
-    var dx = x - startX, dy = y - startY;
-    if (isHoriz === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
-      isHoriz = Math.abs(dx) > Math.abs(dy);
-      console.log('[slider] direction horiz=' + isHoriz + ' dx=' + dx.toFixed(1) + ' dy=' + dy.toFixed(1));
-    }
-    if (!isHoriz) return;
-    var newX = dragX + dx;
-    if (idx === 0 && dx > 0)       newX = dx * 0.25;
-    if (idx === total-1 && dx < 0) newX = dragX + dx * 0.25;
-    slider.style.transform = 'translateX(' + newX + 'px)';
-  }
+  var startX = 0, startY = 0;
 
-  function onEnd(x) {
-    if (!active) return;
-    active = false;
-    console.log('[slider] end dx=' + (x - startX).toFixed(1) + ' isHoriz=' + isHoriz);
-    if (!isHoriz) { snapTo(idx, true); return; }
-    var dx = x - startX;
-    var vel = Math.abs(dx) / Math.max(1, Date.now() - startT);
-    if (Math.abs(dx) > 50 || vel > 0.3) {
-      snapTo(idx + (dx < 0 ? 1 : -1), true);
-    } else {
-      snapTo(idx, true);
-    }
-  }
-
-  var prevBtn = photo.querySelector('.slider-prev');
-  var nextBtn = photo.querySelector('.slider-next');
-  if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx - 1, true); });
-  if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx + 1, true); });
-
-  // ── Pointer events (desktop mouse + modern touch) ──────────────────────────
-  slider.addEventListener('pointerdown', function(e) {
-    if (e.button !== 0) return;
-    console.log('[slider] pointerdown type=' + e.pointerType);
-    try { slider.setPointerCapture(e.pointerId); } catch(ex) {}
-    onStart(e.clientX, e.clientY);
-  });
-  slider.addEventListener('pointermove', function(e) {
-    if (!active) return;
-    e.preventDefault();
-    onMove(e.clientX, e.clientY);
-  }, { passive: false });
-  slider.addEventListener('pointerup',     function(e) { onEnd(e.clientX); });
-  slider.addEventListener('pointercancel', function()  { active = false; snapTo(idx, true); });
-
-  // ── Touch events (iOS Safari fallback) ────────────────────────────────────
-  var touchActive = false;
   slider.addEventListener('touchstart', function(e) {
     if (e.touches.length !== 1) return;
-    touchActive = true;
-    console.log('[slider] touchstart');
-    onStart(e.touches[0].clientX, e.touches[0].clientY);
+    startX = e.touches[0].clientX;
+    startY = e.touches[0].clientY;
   }, { passive: true });
-  slider.addEventListener('touchmove', function(e) {
-    if (!touchActive || e.touches.length !== 1) return;
-    onMove(e.touches[0].clientX, e.touches[0].clientY);
-  }, { passive: true });
+
   slider.addEventListener('touchend', function(e) {
-    if (!touchActive) return;
-    touchActive = false;
-    console.log('[slider] touchend');
-    onEnd(e.changedTouches[0].clientX);
-  }, { passive: true });
-  slider.addEventListener('touchcancel', function() {
-    touchActive = false; active = false; snapTo(idx, true);
+    var dx = e.changedTouches[0].clientX - startX;
+    var dy = e.changedTouches[0].clientY - startY;
+    if (Math.abs(dx) < 50 || Math.abs(dx) < Math.abs(dy)) return;
+    snapTo(idx + (dx < 0 ? 1 : -1));
   }, { passive: true });
 });
 
