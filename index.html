@@ -178,7 +178,7 @@
     white-space: nowrap;
     animation: marquee 30s linear infinite;
   }
-  @media (min-width: 900px) { .trust-scroll { animation: none; justify-content: center; flex-wrap: wrap; } }
+  @media (min-width: 900px) { .trust-scroll { animation: none; justify-content: center; flex-wrap: wrap; } .trust-dupe { display: none; } }
   @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
   .trust-item { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--ash); padding: 0 20px; }
   .trust-dot { color: var(--gold); font-size: 16px; line-height: 1; }
@@ -543,8 +543,8 @@
     <span class="trust-dot">·</span>
     <span class="trust-item" data-i18n="trust.noSSN"></span>
     <span class="trust-dot">·</span>
-    <!-- duplicate for seamless marquee -->
-    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--gold)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="trust.dmv"></span></span>
+    <!-- duplicate for seamless marquee (hidden on desktop) -->
+    <span class="trust-dupe"><span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--gold)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="trust.dmv"></span></span>
     <span class="trust-dot">·</span>
     <span class="trust-item" data-i18n="trust.members"></span>
     <span class="trust-dot">·</span>
@@ -555,7 +555,7 @@
     <span class="trust-item" data-i18n="trust.mongolia"></span>
     <span class="trust-dot">·</span>
     <span class="trust-item" data-i18n="trust.noSSN"></span>
-    <span class="trust-dot">·</span>
+    <span class="trust-dot">·</span></span>
   </div>
 </div>
 
