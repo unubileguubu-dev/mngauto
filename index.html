@@ -1523,6 +1523,9 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
 
   var startX = 0, startY = 0;
 
+  // TEMP INSTRUMENTATION — remove after mobile swipe diagnosis (sets tab title on touch)
+  slider.addEventListener('touchstart', function() { document.title = 'TOUCH OK'; }, { passive: true });
+
   slider.addEventListener('touchstart', function(e) {
     if (e.touches.length !== 1) return;
     startX = e.touches[0].clientX;
