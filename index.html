@@ -225,7 +225,8 @@
   .car-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .car-photo { position: relative; aspect-ratio: 4/3; background: var(--steel); overflow: hidden; }
   .car-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .car-slider { display: flex; height: 100%; width: 100%; will-change: transform; touch-action: none; user-select: none; }
+  .car-slider { display: flex; height: 100%; width: 100%; will-change: transform; touch-action: none; user-select: none; cursor: grab; }
+  .car-slider:active { cursor: grabbing; }
   .car-slider img { flex-shrink: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
   .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.48); border: none; color: #fff; font-size: 24px; line-height: 1; width: 34px; height: 52px; cursor: pointer; z-index: 4; display: flex; align-items: center; justify-content: center; transition: background 0.2s; padding: 0; }
   .slider-btn:hover, .slider-btn:focus { background: rgba(0,0,0,0.72); outline: none; }
@@ -1524,40 +1525,53 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
   if (prevBtn) prevBtn.addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx - 1, true); });
   if (nextBtn) nextBtn.addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx + 1, true); });
 
-  slider.addEventListener('touchstart', function(e) {
-    if (e.touches.length !== 1) return;
+  var startY = 0, isHoriz = null;
+
+  slider.addEventListener('pointerdown', function(e) {
+    if (e.button !== 0) return;
     active = true;
-    startX = e.touches[0].clientX;
+    isHoriz = null;
+    startX = e.clientX;
+    startY = e.clientY;
     startT = Date.now();
     dragX = -idx * w();
     slider.style.transition = 'none';
-  }, { passive: true });
+    slider.setPointerCapture(e.pointerId);
+  });
 
-  slider.addEventListener('touchmove', function(e) {
-    if (!active || e.touches.length !== 1) return;
-    var dx = e.touches[0].clientX - startX;
+  slider.addEventListener('pointermove', function(e) {
+    if (!active) return;
+    var dx = e.clientX - startX;
+    var dy = e.clientY - startY;
+    // Determine gesture direction once we have enough movement
+    if (isHoriz === null && (Math.abs(dx) > 5 || Math.abs(dy) > 5)) {
+      isHoriz = Math.abs(dx) > Math.abs(dy);
+    }
+    if (!isHoriz) return; // vertical swipe — don't move slider
+    e.preventDefault();
     var newX = dragX + dx;
-    // rubber-band at edges
-    if (idx === 0 && dx > 0)           newX = dx * 0.25;
-    if (idx === total-1 && dx < 0)     newX = dragX + dx * 0.25;
+    // rubber-band resistance at edges
+    if (idx === 0 && dx > 0)        newX = dx * 0.25;
+    if (idx === total-1 && dx < 0)  newX = dragX + dx * 0.25;
     slider.style.transform = 'translateX(' + newX + 'px)';
-  }, { passive: true });
+  }, { passive: false });
 
-  slider.addEventListener('touchend', function(e) {
+  slider.addEventListener('pointerup', function(e) {
     if (!active) return;
     active = false;
-    var dx = e.changedTouches[0].clientX - startX;
+    if (!isHoriz) return; // was a vertical gesture, snap back
+    var dx = e.clientX - startX;
     var vel = Math.abs(dx) / Math.max(1, Date.now() - startT);
-    if (Math.abs(dx) > w() * 0.18 || vel > 0.3) {
+    if (Math.abs(dx) > 50 || vel > 0.3) {
       snapTo(idx + (dx < 0 ? 1 : -1), true);
     } else {
       snapTo(idx, true);
     }
-  }, { passive: true });
+  });
 
-  slider.addEventListener('touchcancel', function() {
+  slider.addEventListener('pointercancel', function() {
     active = false; snapTo(idx, true);
-  }, { passive: true });
+  });
 });
 
 // ── DEAL BUILDER ─────────────────────────────────────────────────────────────
