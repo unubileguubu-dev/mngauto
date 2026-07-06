@@ -1102,6 +1102,15 @@
 <script>
 if (history.scrollRestoration) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
+document.documentElement.scrollTop = 0;
+document.body.scrollTop = 0;
+if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+window.addEventListener('load', function() {
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  setTimeout(function() { window.scrollTo(0, 0); }, 50);
+});
 // ── TRANSLATIONS ──────────────────────────────────────────────────────────────
 const t = {
   en: {
