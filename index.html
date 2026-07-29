@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MNG Auto Club — Mongolian-Owned Car Dealer in Los Angeles</title>
-<meta name="description" content="Mongolian-owned used car dealership in Los Angeles. Financing with no SSN, no credit, no visa status required. DMV Approved Dealer #48175.">
+<meta name="description" content="Mongolian-owned used car dealership in Los Angeles. Fast financing and same-day approval. DMV Approved Dealer #48175.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Saira:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -515,10 +515,6 @@
         <div class="hero-stat-label" data-i18n="hero.stat1Label"></div>
       </div>
       <div>
-        <div class="hero-stat-value">0</div>
-        <div class="hero-stat-label" data-i18n="hero.stat2Label"></div>
-      </div>
-      <div>
         <div class="hero-stat-value">50</div>
         <div class="hero-stat-label" data-i18n="hero.stat3Label"></div>
       </div>
@@ -612,8 +608,6 @@
     <span class="trust-dot">·</span>
     <span class="trust-item" data-i18n="trust.mongolia"></span>
     <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.noSSN"></span>
-    <span class="trust-dot">·</span>
     <!-- duplicate for seamless marquee (hidden on desktop) -->
     <span class="trust-dupe"><span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--gold)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="trust.dmv"></span></span>
     <span class="trust-dot">·</span>
@@ -624,8 +618,6 @@
     <span class="trust-item" data-i18n="trust.states"></span>
     <span class="trust-dot">·</span>
     <span class="trust-item" data-i18n="trust.mongolia"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.noSSN"></span>
     <span class="trust-dot">·</span></span>
   </div>
 </div>
@@ -706,7 +698,7 @@
           <div class="car-title">2025 RAM ProMaster 3500</div>
           <div class="car-meta"><span class="car-mileage">28,559 mi · High Roof 159"</span></div>
           <div class="car-price">$38,000</div>
-          <div class="car-monthly">Down payment $3,000 · No SSN needed</div>
+          <div class="car-monthly">Down payment $3,000</div>
           <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
@@ -745,7 +737,7 @@
           <div class="car-title">2025 Toyota Corolla LE Hybrid</div>
           <div class="car-meta"><span class="car-mileage">38,791 mi</span></div>
           <div class="car-price">$22,900</div>
-          <div class="car-monthly">Down payment $2,999 · No SSN needed</div>
+          <div class="car-monthly">Down payment $2,999</div>
           <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
@@ -780,7 +772,7 @@
           <div class="car-title">2023 BMW 3 Series 330e</div>
           <div class="car-meta"><span class="car-mileage">20,512 mi</span></div>
           <div class="car-price">$34,000</div>
-          <div class="car-monthly">Down payment $2,999 · No SSN needed</div>
+          <div class="car-monthly">Down payment $2,999</div>
           <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
@@ -846,27 +838,6 @@
     <div class="financing-grid">
       <div>
         <div class="financing-items fade-up">
-          <div class="financing-item">
-            <div class="financing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div>
-              <div class="financing-item-title" data-i18n="fin.1.title"></div>
-              <div class="financing-item-desc" data-i18n="fin.1.desc"></div>
-            </div>
-          </div>
-          <div class="financing-item">
-            <div class="financing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div>
-              <div class="financing-item-title" data-i18n="fin.2.title"></div>
-              <div class="financing-item-desc" data-i18n="fin.2.desc"></div>
-            </div>
-          </div>
-          <div class="financing-item">
-            <div class="financing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div>
-              <div class="financing-item-title" data-i18n="fin.3.title"></div>
-              <div class="financing-item-desc" data-i18n="fin.3.desc"></div>
-            </div>
-          </div>
           <div class="financing-item">
             <div class="financing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
             <div>
@@ -1132,12 +1103,11 @@ const t = {
 
     // HERO
     'hero.badge':       'Монгол эзэмшилтэй · Mongolian-owned',
-    'hero.headline':    'Drive home today —<br><em>financed in Mongolian.</em>',
-    'hero.sub':         '<strong>No SSN · No credit · No status.</strong><br>Fast approval. Mongolian, Korean, Chinese-speaking team.',
+    'hero.headline':    'Drive home today',
+    'hero.sub':         '<strong>Fast approval.</strong><br>Mongolian, Korean, Chinese-speaking team.',
     'hero.ctaApproved': 'Get Pre-Approved',
     'hero.ctaCall':     'Call Us',
     'hero.stat1Label':  'Community followers',
-    'hero.stat2Label':  'SSN required',
     'hero.stat3Label':  'States and international shipping',
 
     // TRUST BAR
@@ -1145,13 +1115,12 @@ const t = {
     'trust.members':  '4,800+ Community Members',
     'trust.states':   'Ships All 50 States',
     'trust.mongolia': 'Ships to Mongolia',
-    'trust.noSSN':    'No SSN · No Credit · No Status',
 
     // VALUE PROPS
     'props.eyebrow':  'Why MNG Auto Club',
     'props.headline': 'We get you approved.<br>We speak your language.',
     'props.1.title':  'Financing for Everyone',
-    'props.1.desc':   'No SSN · No credit history · No visa status. Fast approval, lowest rates.',
+    'props.1.desc':   'Fast approval, lowest rates.',
     'props.2.title':  'We Speak Mongolian',
     'props.2.desc':   'Buy a car in your own language, from your own community. No translator needed.',
     'props.3.title':  'We Outpay CarMax',
@@ -1172,24 +1141,18 @@ const t = {
 
     // FINANCING
     'fin.eyebrow':   'Financing',
-    'fin.headline':  'No credit? No SSN?<br><span class="gold-text">Still approved.</span>',
-    'fin.1.title':   'No SSN Required',
-    'fin.1.desc':    "We work with lenders who don't require a Social Security Number to get started.",
-    'fin.2.title':   'No Credit History Needed',
-    'fin.2.desc':    "New to the US? First-time buyer? We get you approved regardless.",
-    'fin.3.title':   'No Visa Status Required',
-    'fin.3.desc':    "F-1, B-1, undocumented — your status doesn't stop you from driving home today.",
+    'fin.headline':  'Financing<br><span class="gold-text">made simple.</span>',
     'fin.4.title':   'Fast — 10 Minutes',
     'fin.4.desc':    'Pre-approval in 10 minutes. Drive the same day in many cases.',
     'fin.stampSub':  'All applications welcome',
     'fin.formTitle': 'Get Pre-Approved Now',
-    'fin.formSub':   "4 fields. No SSN required to start. We'll call you.",
+    'fin.formSub':   "4 fields. We'll call you.",
     'fin.field1':    'Your Name',
     'fin.field2':    'Phone Number',
     'fin.field3':    "Car You're Interested In",
     'fin.field4':    'Preferred Language',
     'fin.submit':    'Get Pre-Approved →',
-    'fin.formNote':  'No SSN required. No commitment. We call you within 1 hour.',
+    'fin.formNote':  'No commitment. We call you within 1 hour.',
     'fin.success':   "✓ Submitted — we'll call you soon!",
 
     // SELL
@@ -1247,11 +1210,10 @@ const t = {
     // HERO
     'hero.badge':       'Монгол эзэмшилтэй · Los Angeles, CA',
     'hero.headline':    'Өнөөдөр машинтай бол—<br><em>Монголчуудаа санхүүжүүлнэ.</em>',
-    'hero.sub':         '<strong>SSN, зээлийн түүх, визийн статус шаардлагагүй.</strong><br>Шуурхай зөвшөөрөл. Монгол, Солонгос, Хятад хэлээр ярьна',
+    'hero.sub':         '<strong>Шуурхай зөвшөөрөл.</strong><br>Монгол, Солонгос, Хятад хэлээр ярьна',
     'hero.ctaApproved': 'Урьдчилан зөвшөөрөл авах',
     'hero.ctaCall':     'Залгах',
     'hero.stat1Label':  'Дагагчид',
-    'hero.stat2Label':  'SSN шаардлагагүй',
     'hero.stat3Label':  '50 муж-руу болон Монгол руу тээвэрлэнэ',
 
     // TRUST BAR
@@ -1259,13 +1221,12 @@ const t = {
     'trust.members':  '4,800+ дагагчид',
     'trust.states':   '50 мужид хүргэнэ',
     'trust.mongolia': 'Монгол руу тээвэрлэнэ',
-    'trust.noSSN':    'SSN · Зээл · Статус шаардлагагүй',
 
     // VALUE PROPS
     'props.eyebrow':  'Яагаад MNG Auto Club',
     'props.headline': 'Бид танд зөвшөөрөл олгоно.<br>Монголоор ярина.',
     'props.1.title':  'Бүгдэд зориулсан санхүүжилт',
-    'props.1.desc':   'SSN, зээлийн түүх, виз шаардлагагүй. Шуурхай зөвшөөрөл.',
+    'props.1.desc':   'Шуурхай зөвшөөрөл.',
     'props.2.title':  'Монголоор ярина',
     'props.2.desc':   'Өөрийн хэлээрээ, өөрийн хамт олноосоо машин ав.',
     'props.3.title':  'CarMax-аас илүү төлнө',
@@ -1286,24 +1247,18 @@ const t = {
 
     // FINANCING
     'fin.eyebrow':   'Санхүүжилт',
-    'fin.headline':  'Зээлгүй юу? SSN-гүй юу?<br><span class="gold-text">Бид зөвшөөрнө.</span>',
-    'fin.1.title':   'SSN шаардлагагүй',
-    'fin.1.desc':    'Бид SSN шаардлагагүй зээлдүүлэгчидтэй хамтран ажилладаг.',
-    'fin.2.title':   'Зээлийн түүх шаардлагагүй',
-    'fin.2.desc':    'АНУ-д шинэ үү? Анх удаа авч байна уу? Бид зөвшөөрнө.',
-    'fin.3.title':   'Визийн статус шаардлагагүй',
-    'fin.3.desc':    'F-1, B-1 эсвэл визгүй — өнөөдөр машинтай болно.',
+    'fin.headline':  'Санхүүжилт<br><span class="gold-text">хялбар шуурхай.</span>',
     'fin.4.title':   'Шуурхай — 10 минут',
     'fin.4.desc':    '10 минутад урьдчилсан зөвшөөрөл. Ихэнх тохиолдолд өдрийнхөө дотор явна.',
     'fin.stampSub':  'Бүх хүсэлт нээлттэй',
     'fin.formTitle': 'Одоо урьдчилан зөвшөөрөл авах',
-    'fin.formSub':   '4 талбар. SSN шаардлагагүй. Бид тан руу залгана',
+    'fin.formSub':   '4 талбар. Бид тан руу залгана',
     'fin.field1':    'Таны нэр',
     'fin.field2':    'Утасны дугаар',
     'fin.field3':    'Сонирхож буй машин',
     'fin.field4':    'Харилцах хэл',
     'fin.submit':    'Зөвшөөрөл авах →',
-    'fin.formNote':  'SSN шаардлагагүй. 1 цагийн дотор залгах болно.',
+    'fin.formNote':  '1 цагийн дотор залгах болно.',
     'fin.success':   '✓ Илгээгдсэн — удахгүй залгах болно!',
 
     // SELL
@@ -1372,8 +1327,8 @@ function applyLang(l) {
   document.querySelectorAll('[data-i18n-monthly]').forEach(function(el) {
     var mo = el.dataset.i18nMonthly;
     el.textContent = l === 'en'
-      ? 'or from $' + mo + '/mo — No SSN needed'
-      : 'эсвэл $' + mo + '/сар — SSN шаардлагагүй';
+      ? 'or from $' + mo + '/mo'
+      : 'эсвэл $' + mo + '/сар';
   });
 
   document.getElementById('lang-en').classList.toggle('active', l === 'en');
