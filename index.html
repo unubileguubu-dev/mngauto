@@ -129,9 +129,13 @@
     overflow: hidden;
     background: var(--onyx);
   }
+  /* Bounded to a viewport-height band, not the full hero: the hero is much taller
+     than the viewport (it holds the promo video), and letting cover stretch over
+     all of it zooms the photo into an unreadable crop on phones. */
   .hero-bg {
-    position: absolute; inset: 0;
-    background: url('images/bmw-330e/02.jpg') 72% 55% / cover no-repeat;
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 64vh; height: 64svh;
+    background: url('images/hero-porsche.webp') 50% 56% / cover no-repeat;
   }
   .hero-bg::after {
     content: ''; position: absolute; inset: 0;
@@ -140,7 +144,7 @@
       linear-gradient(to top, var(--onyx) 2%, transparent 45%),
       linear-gradient(to bottom, rgba(11,11,13,0.8) 0%, transparent 30%);
   }
-  @media (min-width: 768px) { .hero-bg { background-position: center 55%; } }
+  @media (min-width: 768px) { .hero-bg { height: 100vh; height: 100svh; background-position: center 58%; } }
   .hero-content {
     position: relative; z-index: 2;
     padding: 120px 20px 80px;
