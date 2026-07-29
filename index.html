@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MNG Auto Club — Mongolian-Owned Car Dealer in Los Angeles</title>
-<meta name="description" content="Mongolian-owned used car dealership in Los Angeles, in business since 2016. Fast financing and same-day approval. DMV Approved Dealer #48175.">
+<meta name="description" content="Mongolian-owned used car dealership in Los Angeles — 10 years in business. Fast financing and same-day approval. DMV Approved Dealer #48175.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Saira:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -75,8 +75,29 @@
   .btn-full { width: 100%; }
 
   /* NAV */
+  /* TOP BAR — thin, static (scrolls away). Nav sits below it, then pins to 0. */
+  #top-bar {
+    height: 32px; display: flex; align-items: center;
+    padding: 0 20px; overflow: hidden;
+    background: var(--carbon); border-bottom: 1px solid var(--steel);
+  }
+  .top-bar-inner {
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  }
+  .top-bar-addr, .top-bar-tel {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 12px; color: var(--ash);
+    white-space: nowrap; transition: color 0.15s;
+  }
+  .top-bar-addr:hover, .top-bar-tel:hover { color: var(--gold); }
+  .top-bar-addr svg { color: var(--gold); flex-shrink: 0; }
+  .top-bar-tel { font-weight: 600; }
+  .addr-full { display: none; }
+  @media (min-width: 768px) { .addr-full { display: inline; } .addr-short { display: none; } }
+
   #nav {
-    position: fixed; top: 0; left: 0; right: 0;
+    position: fixed; top: 32px; left: 0; right: 0;
     z-index: 100;
     padding: 0 20px;
     height: 68px;
@@ -88,6 +109,7 @@
     transition: background 0.3s, border-color 0.3s;
   }
   #nav.scrolled {
+    top: 0;
     background: rgba(11,11,13,0.96);
     border-bottom-color: var(--steel);
     backdrop-filter: blur(12px);
@@ -212,16 +234,19 @@
   }
 
   /* TRUST BAR */
-  #trust-bar { border-top: 1px solid var(--steel); border-bottom: 1px solid var(--steel); padding: 14px 20px; overflow: hidden; }
-  .trust-scroll {
-    display: flex; align-items: center; gap: 0;
-    white-space: nowrap;
-    animation: marquee 30s linear infinite;
+  /* TRUST BAR — one stat system, same treatment as the hero stat counter */
+  #trust-bar { border-top: 1px solid var(--steel); border-bottom: 1px solid var(--steel); padding: 20px; }
+  .trust-stats { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; }
+  .trust-stat { padding: 14px 0; text-align: center; }
+  .trust-stat + .trust-stat { border-top: 1px solid var(--steel); }
+  .trust-stat-value { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 800; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
+  .trust-stat-label { font-size: 13px; color: var(--ash); margin-top: 6px; }
+  @media (min-width: 768px) {
+    .trust-stats { flex-direction: row; }
+    .trust-stat { flex: 1; padding: 4px 24px; }
+    .trust-stat + .trust-stat { border-top: none; border-left: 1px solid var(--steel); }
+    .trust-stat-value { font-size: 40px; }
   }
-  @media (min-width: 900px) { .trust-scroll { animation: none; justify-content: center; flex-wrap: wrap; } .trust-dupe { display: none; } }
-  @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-  .trust-item { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 500; color: var(--ash); padding: 0 20px; }
-  .trust-dot { color: var(--gold); font-size: 16px; line-height: 1; }
 
   /* SECTIONS */
   section { padding: 64px 0; }
@@ -399,6 +424,31 @@
   .ship-title { font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 700; color: var(--bone); margin-bottom: 8px; }
   .ship-desc { font-size: 13px; color: var(--ash); line-height: 1.6; }
 
+  /* TEAM — two-column split, not a card grid */
+  #team { background: var(--carbon); }
+  .team-split { display: grid; grid-template-columns: 1fr; gap: 48px; }
+  @media (min-width: 768px) { .team-split { grid-template-columns: 1fr 1fr; gap: 40px; } }
+  .team-photo {
+    position: relative; aspect-ratio: 4 / 5;
+    background: var(--steel); border: 1px solid var(--steel);
+    border-radius: 10px; overflow: hidden;
+  }
+  .team-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .team-body { padding-top: 20px; }
+  .team-name { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 700; color: var(--bone); margin-bottom: 4px; }
+  .team-role { font-size: 12px; font-weight: 600; letter-spacing: 0.07em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
+  .team-langs-label { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ash); margin-bottom: 8px; }
+  .team-langs { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .team-lang {
+    font-size: 12px; font-weight: 600; color: var(--bone);
+    background: rgba(201,162,75,0.12); border: 1px solid rgba(201,162,75,0.38);
+    border-radius: 999px; padding: 6px 12px;
+  }
+  .team-phone { display: inline-flex; align-items: center; gap: 8px; font-family: 'Saira', sans-serif; font-size: 18px; font-weight: 700; color: var(--bone); transition: color 0.15s; }
+  .team-phone:hover { color: var(--gold); }
+  .team-phone svg { color: var(--gold); flex-shrink: 0; }
+  .team-detail { font-size: 14px; color: var(--ash); line-height: 1.6; margin-top: 14px; }
+
   /* FOOTER */
   footer { background: var(--carbon); border-top: 1px solid var(--steel); padding: 64px 0 100px; }
   @media (min-width: 768px) { footer { padding-bottom: 64px; } }
@@ -449,6 +499,20 @@
 </style>
 </head>
 <body>
+
+<!-- TOP BAR -->
+<!-- The street address is deliberately NOT routed through the i18n tables: it has to stay
+     byte-identical here, in the footer, and in the JSON-LD, in every language. -->
+<div id="top-bar">
+  <div class="top-bar-inner">
+    <a class="top-bar-addr" href="https://maps.google.com/?q=1515+Railroad+St+Glendale+CA+91204" target="_blank" rel="noopener">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+      <span class="addr-full">1515 Railroad St, Glendale, CA 91204</span>
+      <span class="addr-short">1515 Railroad St, Glendale</span>
+    </a>
+    <a class="top-bar-tel" href="tel:+12133528955">(213) 352-8955</a>
+  </div>
+</div>
 
 <!-- NAV -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
@@ -512,20 +576,6 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         <span data-i18n="hero.ctaCall"></span>
       </a>
-    </div>
-    <div class="hero-stats">
-      <div>
-        <div class="hero-stat-value">4,800+</div>
-        <div class="hero-stat-label" data-i18n="hero.stat1Label"></div>
-      </div>
-      <div>
-        <div class="hero-stat-value">2016</div>
-        <div class="hero-stat-label" data-i18n="hero.stat2Label"></div>
-      </div>
-      <div>
-        <div class="hero-stat-value">50</div>
-        <div class="hero-stat-label" data-i18n="hero.stat3Label"></div>
-      </div>
     </div>
 
     <!-- PROMO VIDEO -->
@@ -605,32 +655,19 @@
 
 <!-- TRUST BAR -->
 <div id="trust-bar" aria-label="Trust signals">
-  <div class="trust-scroll" id="trust-scroll">
-    <span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--gold)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="trust.dmv"></span></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.since"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.members"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item">English · Монгол · 한국어 · 中文</span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.states"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.mongolia"></span>
-    <span class="trust-dot">·</span>
-    <!-- duplicate for seamless marquee (hidden on desktop) -->
-    <span class="trust-dupe"><span class="trust-item"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" style="color:var(--gold)"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><span data-i18n="trust.dmv"></span></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.since"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.members"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item">English · Монгол · 한국어 · 中文</span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.states"></span>
-    <span class="trust-dot">·</span>
-    <span class="trust-item" data-i18n="trust.mongolia"></span>
-    <span class="trust-dot">·</span></span>
+  <div class="trust-stats">
+    <div class="trust-stat">
+      <div class="trust-stat-value"><span data-years>10</span></div>
+      <div class="trust-stat-label" data-i18n="trust.yearsLabel">Years in Los Angeles</div>
+    </div>
+    <div class="trust-stat">
+      <div class="trust-stat-value">#48175</div>
+      <div class="trust-stat-label" data-i18n="trust.dmvLabel">DMV Approved Dealer</div>
+    </div>
+    <div class="trust-stat">
+      <div class="trust-stat-value">4,800+</div>
+      <div class="trust-stat-label" data-i18n="trust.membersLabel">Community members</div>
+    </div>
   </div>
 </div>
 
@@ -924,6 +961,60 @@
   </div>
 </section>
 
+<!-- TEAM -->
+<!-- All swappable copy lives in the "// TEAM" block of the en/mn tables below.
+     Only three things live in this markup: the photo filenames and the two tel: numbers. -->
+<section id="team">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow" data-i18n="team.eyebrow">The Team</p>
+      <h2 data-i18n-html="team.headline">Two people.<br><span class="gold-text">Same person from first call to keys.</span></h2>
+      <div class="gold-line"></div>
+      <p style="margin-top:12px;" data-i18n="team.sub">No call centre and no handoffs — one of us takes you from first call to keys.</p>
+    </div>
+    <div class="team-split">
+      <article class="team-person fade-up">
+        <div class="team-photo">
+          <!-- swap this file, keep the name: images/team/person-1.jpg (portrait, 4:5) -->
+          <img src="images/team/person-1.jpg" width="800" height="1000"
+               alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="team-body">
+          <h3 class="team-name" data-i18n="team.1.name">PLACEHOLDER Name 1</h3>
+          <p class="team-role" data-i18n="team.1.role">PLACEHOLDER Role</p>
+          <div class="team-langs-label" data-i18n="team.langsLabel">Languages spoken</div>
+          <ul class="team-langs">
+            <li class="team-lang" data-i18n="team.lang.en">English</li>
+            <li class="team-lang" data-i18n="team.lang.mn">Монгол</li>
+            <li class="team-lang" data-i18n="team.lang.ko">한국어</li>
+            <li class="team-lang" data-i18n="team.lang.zh">中文</li>
+          </ul>
+          <a class="team-phone" href="tel:+12133528955"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span>(213) 352-8955</span></a>
+          <p class="team-detail" data-i18n="team.1.detail">PLACEHOLDER detail line</p>
+        </div>
+      </article>
+      <article class="team-person fade-up">
+        <div class="team-photo">
+          <!-- swap this file, keep the name: images/team/person-2.jpg (portrait, 4:5) -->
+          <img src="images/team/person-2.jpg" width="800" height="1000"
+               alt="" loading="lazy" decoding="async">
+        </div>
+        <div class="team-body">
+          <h3 class="team-name" data-i18n="team.2.name">PLACEHOLDER Name 2</h3>
+          <p class="team-role" data-i18n="team.2.role">PLACEHOLDER Role</p>
+          <div class="team-langs-label" data-i18n="team.langsLabel">Languages spoken</div>
+          <ul class="team-langs">
+            <li class="team-lang" data-i18n="team.lang.en">English</li>
+            <li class="team-lang" data-i18n="team.lang.mn">Монгол</li>
+          </ul>
+          <a class="team-phone" href="tel:+15712370635"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span>(571) 237-0635</span></a>
+          <p class="team-detail" data-i18n="team.2.detail">PLACEHOLDER detail line</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer id="contact">
   <div class="container">
@@ -937,6 +1028,7 @@
           </div>
         </div>
         <p class="footer-tagline" data-i18n="footer.tagline"></p>
+        <p class="footer-years"><strong data-years>10</strong> <span data-i18n="footer.years">years serving Los Angeles</span></p>
         <div class="footer-socials">
           <a href="https://facebook.com/mngautoclub" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -968,7 +1060,7 @@
         <div class="footer-col-title" data-i18n="footer.contactTitle"></div>
         <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-          <span>1515 Railroad St<br>Glendale, CA 91204</span>
+          <span>1515 Railroad St, Glendale, CA 91204</span>
         </div>
         <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
@@ -1041,16 +1133,11 @@ const t = {
     'hero.sub':         '<strong>Fast approval.</strong><br>Mongolian, Korean, Chinese-speaking team.',
     'hero.ctaApproved': 'Get Pre-Approved',
     'hero.ctaCall':     'Call Us',
-    'hero.stat1Label':  'Community followers',
-    'hero.stat2Label':  'In business since',
-    'hero.stat3Label':  'States and international shipping',
 
     // TRUST BAR
-    'trust.dmv':      'DMV Approved Dealer #48175',
-    'trust.since':    'In Business Since 2016',
-    'trust.members':  '4,800+ Community Members',
-    'trust.states':   'Ships All 50 States',
-    'trust.mongolia': 'Ships to Mongolia',
+    'trust.yearsLabel':   'Years in Los Angeles',
+    'trust.dmvLabel':     'DMV Approved Dealer',
+    'trust.membersLabel': 'Community members',
 
     // VALUE PROPS
     'props.eyebrow':  'Why MNG Auto Club',
@@ -1091,6 +1178,23 @@ const t = {
     'fin.formNote':  'No commitment. We call you within 1 hour.',
     'fin.success':   "✓ Submitted — we'll call you soon!",
 
+    // TEAM — swap these values, no markup changes needed
+    'team.eyebrow':    'The Team',
+    'team.headline':   'Two people.<br><span class="gold-text">Same person from first call to keys.</span>',
+    'team.sub':        'No call centre and no handoffs — one of us takes you from first call to keys.',
+    'team.langsLabel': 'Languages spoken',
+    'team.1.name':     'PLACEHOLDER Name One',
+    'team.1.role':     'PLACEHOLDER Role — e.g. Owner, Sales',
+    'team.1.detail':   'PLACEHOLDER — one specific line, e.g. 10 years in LA, 600+ cars sold.',
+    'team.2.name':     'PLACEHOLDER Name Two',
+    'team.2.role':     'PLACEHOLDER Role — e.g. Finance, Shipping',
+    'team.2.detail':   'PLACEHOLDER — one specific line, e.g. handles every out-of-state delivery.',
+    // language pill labels stay in their own script in every UI language
+    'team.lang.en':    'English',
+    'team.lang.mn':    'Монгол',
+    'team.lang.ko':    '한국어',
+    'team.lang.zh':    '中文',
+
     // SELL
     'sell.eyebrow':      'Sell or Trade',
     'sell.headline':     'We Outpay CarMax<br><span class="gold-text">and any dealer.</span>',
@@ -1121,6 +1225,7 @@ const t = {
 
     // FOOTER
     'footer.tagline':      'Mongolian-owned car dealership in Los Angeles. We get you financed and we speak your language.',
+    'footer.years':        'years serving Los Angeles',
     'footer.quickLinks':   'Quick Links',
     'footer.contactTitle': 'Contact',
     'footer.hours':        'Mon–Sat: 9am – 7pm<br>Sun: 10am – 5pm',
@@ -1149,16 +1254,11 @@ const t = {
     'hero.sub':         '<strong>Шуурхай зөвшөөрөл.</strong><br>Монгол, Солонгос, Хятад хэлээр ярьна',
     'hero.ctaApproved': 'Урьдчилан зөвшөөрөл авах',
     'hero.ctaCall':     'Залгах',
-    'hero.stat1Label':  'Дагагчид',
-    'hero.stat2Label':  'оноос хойш',
-    'hero.stat3Label':  'муж-руу болон Монгол руу тээвэрлэнэ',
 
     // TRUST BAR
-    'trust.dmv':      'ДМВ зөвшөөрөлтэй дилер #48175',
-    'trust.since':    '2016 оноос хойш',
-    'trust.members':  '4,800+ дагагчид',
-    'trust.states':   '50 мужид хүргэнэ',
-    'trust.mongolia': 'Монгол руу тээвэрлэнэ',
+    'trust.yearsLabel':   'Лос Анжелест ажилласан жил',
+    'trust.dmvLabel':     'ДМВ зөвшөөрөлтэй дилер',
+    'trust.membersLabel': 'Хамт олон',
 
     // VALUE PROPS
     'props.eyebrow':  'Яагаад MNG Auto Club',
@@ -1199,6 +1299,23 @@ const t = {
     'fin.formNote':  '1 цагийн дотор залгах болно.',
     'fin.success':   '✓ Илгээгдсэн — удахгүй залгах болно!',
 
+    // TEAM
+    'team.eyebrow':    'Хамт олон',
+    'team.headline':   'Хоёр хүн.<br><span class="gold-text">Эхний дуудлагаас түлхүүр хүртэл нэг хүн.</span>',
+    'team.sub':        'Дуудлагын төв, дамжуулалт байхгүй — бид хоёрын нэг тантай эхнээс дуустал ажиллана.',
+    'team.langsLabel': 'Ярьдаг хэлнүүд',
+    'team.1.name':     'PLACEHOLDER Нэр 1',
+    'team.1.role':     'PLACEHOLDER Албан тушаал',
+    'team.1.detail':   'PLACEHOLDER — тодорхой нэг мөр.',
+    'team.2.name':     'PLACEHOLDER Нэр 2',
+    'team.2.role':     'PLACEHOLDER Албан тушаал',
+    'team.2.detail':   'PLACEHOLDER — тодорхой нэг мөр.',
+    // хэлний нэрс бүх UI хэлэнд өөрчлөгдөхгүй
+    'team.lang.en':    'English',
+    'team.lang.mn':    'Монгол',
+    'team.lang.ko':    '한국어',
+    'team.lang.zh':    '中文',
+
     // SELL
     'sell.eyebrow':      'Зарах эсвэл солих',
     'sell.headline':     'Бид CarMax болон<br><span class="gold-text">бусад дилерээс илүү төлнө.</span>',
@@ -1229,6 +1346,7 @@ const t = {
 
     // FOOTER
     'footer.tagline':      'Лос Анжелес дэх монголын эзэмшилтэй машины дилер. Бид танд санхүүжилт олгон, монголоор ярина.',
+    'footer.years':        'жил Лос Анжелест үйлчилж байна',
     'footer.quickLinks':   'Холбоосууд',
     'footer.contactTitle': 'Холбоо барих',
     'footer.hours':        'Да–Бя: 9:00 – 19:00<br>Ня: 10:00 – 17:00',
@@ -1354,13 +1472,14 @@ function handleForm(e) {
 }
 
 // ── TRUST BAR ─────────────────────────────────────────────────────────────────
-function checkTrustBar() {
-  var scroll = document.getElementById('trust-scroll');
-  if (!scroll) return;
-  scroll.style.animation = window.innerWidth >= 900 ? 'none' : '';
-}
-checkTrustBar();
-window.addEventListener('resize', checkTrustBar, { passive: true });
+// Years in business — computed so the figure never goes stale. The markup carries a
+// static fallback of the same width, so this can't shift layout.
+(function setYears() {
+  var years = new Date().getFullYear() - 2016;
+  document.querySelectorAll('[data-years]').forEach(function(el) { el.textContent = years; });
+  var meta = document.querySelector('meta[name="description"]');
+  if (meta) meta.content = meta.content.replace(/\b\d+ years in business\b/, years + ' years in business');
+})();
 
 // Photo slider
 document.querySelectorAll('.car-photo').forEach(function(photo) {
@@ -1396,6 +1515,43 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
     snapTo(idx + (dx < 0 ? 1 : -1));
   }, { passive: true });
 });
+</script>
+<!-- Schema.org. No AutoDealer/LocalBusiness block existed, so this is new; the two
+     team members are nested as employees. streetAddress must stay identical to the
+     top bar and footer. Swap the employee names alongside the team.N.name i18n keys. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "AutoDealer",
+  "name": "MNG Auto Club",
+  "url": "https://mngautoclub.com/",
+  "telephone": "+1-213-352-8955",
+  "foundingDate": "2016",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "1515 Railroad St",
+    "addressLocality": "Glendale",
+    "addressRegion": "CA",
+    "postalCode": "91204",
+    "addressCountry": "US"
+  },
+  "employee": [
+    {
+      "@type": "Person",
+      "name": "PLACEHOLDER Name One",
+      "jobTitle": "PLACEHOLDER Role",
+      "telephone": "+1-213-352-8955",
+      "knowsLanguage": ["en", "mn", "ko", "zh"]
+    },
+    {
+      "@type": "Person",
+      "name": "PLACEHOLDER Name Two",
+      "jobTitle": "PLACEHOLDER Role",
+      "telephone": "+1-571-237-0635",
+      "knowsLanguage": ["en", "mn"]
+    }
+  ]
+}
 </script>
 </body>
 </html>
