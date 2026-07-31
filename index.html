@@ -912,14 +912,14 @@
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
+            <img src="images/honda-s2000/01.jpg" alt="2002 Honda S2000 Turbo" loading="eager">
+            <img src="images/honda-s2000/02.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
             <video poster="video/s2000-poster.jpg"
                    muted loop playsinline preload="none"
                    aria-label="2002 Honda S2000 Turbo walkaround video">
               <source src="video/s2000.webm" type="video/webm">
               <source src="video/s2000.mp4" type="video/mp4">
             </video>
-            <img src="images/honda-s2000/01.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
-            <img src="images/honda-s2000/02.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
             <img src="images/honda-s2000/03.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
             <img src="images/honda-s2000/04.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
             <img src="images/honda-s2000/05.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
@@ -1658,10 +1658,11 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
   // A slide can be a video. Play it only while it's the active slide AND the card is
   // on screen, so it never burns bandwidth sitting below the fold.
   var vid = slider.querySelector('video');
+  var vidIdx = vid ? Array.prototype.indexOf.call(slider.children, vid) : -1;
   var onScreen = false;
   function syncVideo() {
     if (!vid) return;
-    if (idx === 0 && onScreen) { var pr = vid.play(); if (pr && pr.catch) pr.catch(function() {}); }
+    if (idx === vidIdx && onScreen) { var pr = vid.play(); if (pr && pr.catch) pr.catch(function() {}); }
     else vid.pause();
   }
   if (vid && 'IntersectionObserver' in window) {
