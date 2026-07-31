@@ -292,7 +292,7 @@
   .car-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
   .car-slider { display: flex; height: 100%; width: 100%; will-change: transform; touch-action: none; user-select: none; cursor: grab; }
   .car-slider:active { cursor: grabbing; }
-  .car-slider img { flex-shrink: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
+  .car-slider img, .car-slider video { flex-shrink: 0; width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none; }
   .slider-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.48); border: none; color: #fff; font-size: 24px; line-height: 1; width: 34px; height: 52px; cursor: pointer; z-index: 4; display: flex; align-items: center; justify-content: center; transition: background 0.2s; padding: 0; }
   .slider-btn:hover, .slider-btn:focus { background: rgba(0,0,0,0.72); outline: none; }
   .slider-prev { left: 0; border-radius: 0 4px 4px 0; }
@@ -796,7 +796,13 @@
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
-            <img src="images/toyota-camry/01.jpg" alt="2026 Toyota Camry SE" loading="eager">
+            <video poster="video/camry-2026-poster.jpg"
+                   muted loop playsinline preload="none"
+                   aria-label="2026 Toyota Camry SE walkaround video">
+              <source src="video/camry-2026.webm" type="video/webm">
+              <source src="video/camry-2026.mp4" type="video/mp4">
+            </video>
+            <img src="images/toyota-camry/01.jpg" alt="2026 Toyota Camry SE" loading="lazy">
             <img src="images/toyota-camry/02.jpg" alt="2026 Toyota Camry SE" loading="lazy">
             <img src="images/toyota-camry/03.jpg" alt="2026 Toyota Camry SE" loading="lazy">
             <img src="images/toyota-camry/04.jpg" alt="2026 Toyota Camry SE" loading="lazy">
@@ -817,7 +823,7 @@
           </div>
           <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
           <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
-          <div class="slider-count">1 / 18</div>
+          <div class="slider-count">1 / 19</div>
           <div class="car-photo-scrim"></div>
           <div class="car-badge-instock" data-i18n="inv.badge"></div>
         </div>
@@ -864,6 +870,35 @@
         <div class="car-body">
           <div class="car-title">2017 Honda CR-V</div>
           <div class="car-meta"><span class="car-mileage">107,551 mi</span></div>
+          <div class="car-price">$17,500</div>
+          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+        </div>
+      </div>
+
+      <!-- Card 5: 2021 Toyota Camry LE Hybrid -->
+      <div class="car-card fade-up">
+        <div class="car-photo">
+          <div class="car-slider">
+            <img src="images/toyota-camry-2021/01.jpg" alt="2021 Toyota Camry LE Hybrid" loading="eager">
+            <img src="images/toyota-camry-2021/02.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/03.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/04.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/05.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/06.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/07.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/08.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/09.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+            <img src="images/toyota-camry-2021/10.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
+          </div>
+          <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
+          <div class="slider-count">1 / 10</div>
+          <div class="car-photo-scrim"></div>
+          <div class="car-badge-instock" data-i18n="inv.badge"></div>
+        </div>
+        <div class="car-body">
+          <div class="car-title">2021 Toyota Camry LE Hybrid</div>
+          <div class="car-meta"><span class="car-mileage">118,387 mi</span></div>
           <div class="car-price">$17,500</div>
           <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
@@ -1564,7 +1599,7 @@ function handleForm(e) {
 document.querySelectorAll('.car-photo').forEach(function(photo) {
   var slider = photo.querySelector('.car-slider');
   if (!slider) return;
-  var total = slider.querySelectorAll('img').length;
+  var total = slider.children.length;
   if (total <= 1) return;
   var countEl = photo.querySelector('.slider-count');
   var idx = 0;
@@ -1574,6 +1609,23 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
     slider.style.transition = 'transform 0.3s cubic-bezier(0.25,0.46,0.45,0.94)';
     slider.style.transform = 'translateX(' + (-idx * photo.offsetWidth) + 'px)';
     if (countEl) countEl.textContent = (idx + 1) + ' / ' + total;
+    syncVideo();
+  }
+
+  // A slide can be a video. Play it only while it's the active slide AND the card is
+  // on screen, so it never burns bandwidth sitting below the fold.
+  var vid = slider.querySelector('video');
+  var onScreen = false;
+  function syncVideo() {
+    if (!vid) return;
+    if (idx === 0 && onScreen) { var pr = vid.play(); if (pr && pr.catch) pr.catch(function() {}); }
+    else vid.pause();
+  }
+  if (vid && 'IntersectionObserver' in window) {
+    new IntersectionObserver(function(entries) {
+      onScreen = entries[0].isIntersecting;
+      syncVideo();
+    }, { threshold: 0.35 }).observe(photo);
   }
 
   photo.querySelector('.slider-prev').addEventListener('click', function(e) { e.stopPropagation(); snapTo(idx - 1); });
