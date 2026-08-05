@@ -96,8 +96,19 @@
   .addr-full { display: none; }
   @media (min-width: 768px) { .addr-full { display: inline; } .addr-short { display: none; } }
 
+  /* SINCE 2016 banner — static like the top bar, so it scrolls away. */
+  #since-banner {
+    height: 34px; display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(90deg, #8C6D2B 0%, var(--gold) 50%, #8C6D2B 100%);
+    color: var(--onyx);
+    font-family: 'Saira', sans-serif; font-weight: 800;
+    font-size: 14px; letter-spacing: 0.22em; text-transform: uppercase;
+    white-space: nowrap; overflow: hidden;
+  }
+  @media (min-width: 768px) { #since-banner { height: 38px; font-size: 17px; letter-spacing: 0.3em; } }
+
   #nav {
-    position: fixed; top: 32px; left: 0; right: 0;
+    position: fixed; top: 66px; left: 0; right: 0;
     z-index: 100;
     padding: 0 20px;
     height: 68px;
@@ -116,8 +127,13 @@
   }
   .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
   .nav-logo img { height: 44px; width: 44px; object-fit: contain; }
-  .nav-logo-text { font-family: 'Saira', sans-serif; font-weight: 700; font-size: 17px; color: var(--bone); line-height: 1.1; }
-  .nav-logo-sub { font-size: 10px; font-weight: 500; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; }
+  .nav-logo-text { font-family: 'Saira', sans-serif; font-weight: 700; font-size: 17px; color: var(--bone); line-height: 1.1; white-space: nowrap; }
+  .nav-logo-sub { font-size: 10px; font-weight: 500; color: var(--gold); letter-spacing: 0.06em; text-transform: uppercase; white-space: nowrap; }
+  /* Five language buttons crowd the bar on phones — shrink the wordmark, drop the city line. */
+  @media (max-width: 600px) {
+    .nav-logo img { height: 38px; width: 38px; }
+    .nav-logo-text, .nav-logo-sub { display: none; }
+  }
   .nav-right { display: flex; align-items: center; gap: 16px; }
   .lang-toggle {
     display: flex; align-items: center;
@@ -126,7 +142,7 @@
     padding: 3px; gap: 2px;
   }
   .lang-btn {
-    padding: 4px 12px;
+    padding: 4px 8px;
     border-radius: 999px;
     font-size: 12px; font-weight: 600;
     cursor: pointer;
@@ -137,6 +153,7 @@
     transition: background 0.15s, color 0.15s;
   }
   .lang-btn.active { background: var(--gold); color: var(--onyx); }
+  @media (min-width: 768px) { .lang-btn { padding: 4px 12px; } }
   .nav-cta { display: none; }
   @media (min-width: 768px) { .nav-cta { display: flex; } }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
@@ -167,6 +184,7 @@
       linear-gradient(to bottom, rgba(11,11,13,0.8) 0%, transparent 30%);
   }
   @media (min-width: 768px) { .hero-bg { height: 100vh; height: 100svh; background-position: center 58%; } }
+  @media (min-width: 768px) { #nav { top: 70px; } }
   .hero-content {
     position: relative; z-index: 2;
     padding: 120px 20px 80px;
@@ -539,6 +557,9 @@
   </div>
 </div>
 
+<!-- SINCE 2016 BANNER -->
+<div id="since-banner">Since 2016</div>
+
 <!-- NAV -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <a href="#" class="nav-logo" aria-label="MNG Auto Club home">
@@ -552,6 +573,9 @@
     <div class="lang-toggle" role="group" aria-label="Language">
       <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
       <button class="lang-btn" id="lang-mn" onclick="setLang('mn')">МН</button>
+      <button class="lang-btn" id="lang-es" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" id="lang-ko" onclick="setLang('ko')">KO</button>
+      <button class="lang-btn" id="lang-zh" onclick="setLang('zh')">ZH</button>
     </div>
     <a href="tel:+12133528955" class="btn btn-primary btn-sm nav-cta">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
@@ -591,7 +615,7 @@
   <div class="hero-content container">
     <div class="hero-badge">
       <span class="hero-badge-dot"></span>
-      <span data-i18n="hero.badge"></span>
+      <span><strong data-years>10</strong><span data-i18n="hero.badge"> years in business</span></span>
     </div>
     <h1 class="hero-h1" data-i18n-html="hero.headline"></h1>
     <p class="hero-sub" data-i18n-html="hero.sub"></p>
@@ -1148,48 +1172,44 @@
 <section id="team">
   <div class="container">
     <div class="section-header fade-up">
-      <p class="eyebrow" data-i18n="team.eyebrow">The Team</p>
-      <h2 data-i18n-html="team.headline">Two people.<br><span class="gold-text">Same person from first call to keys.</span></h2>
+      <h2 data-i18n="team.headline">The Team</h2>
       <div class="gold-line"></div>
-      <p style="margin-top:12px;" data-i18n="team.sub">No call centre and no handoffs — one of us takes you from first call to keys.</p>
     </div>
     <div class="team-split">
       <article class="team-person fade-up">
         <div class="team-photo">
           <!-- swap this file, keep the name: images/team/person-1.jpg (portrait, 4:5) -->
           <img src="images/team/person-1.jpg" width="800" height="1000"
-               alt="" loading="lazy" decoding="async">
+               alt="Bilguun Bayaraa, CEO and Sales at MNG Auto Club" loading="lazy" decoding="async">
         </div>
         <div class="team-body">
-          <h3 class="team-name" data-i18n="team.1.name">PLACEHOLDER Name 1</h3>
-          <p class="team-role" data-i18n="team.1.role">PLACEHOLDER Role</p>
+          <h3 class="team-name" data-i18n="team.1.name">Bilguun Bayaraa</h3>
+          <p class="team-role" data-i18n="team.1.role">CEO · Sales</p>
           <div class="team-langs-label" data-i18n="team.langsLabel">Languages spoken</div>
           <ul class="team-langs">
             <li class="team-lang" data-i18n="team.lang.en">English</li>
-            <li class="team-lang" data-i18n="team.lang.mn">Монгол</li>
             <li class="team-lang" data-i18n="team.lang.ko">한국어</li>
-            <li class="team-lang" data-i18n="team.lang.zh">中文</li>
+            <li class="team-lang" data-i18n="team.lang.mn">Монгол</li>
           </ul>
           <a class="team-phone" href="tel:+12133528955"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span>(213) 352-8955</span></a>
-          <p class="team-detail" data-i18n="team.1.detail">PLACEHOLDER detail line</p>
         </div>
       </article>
       <article class="team-person fade-up">
         <div class="team-photo">
           <!-- swap this file, keep the name: images/team/person-2.jpg (portrait, 4:5) -->
           <img src="images/team/person-2.jpg" width="800" height="1000"
-               alt="" loading="lazy" decoding="async">
+               alt="Bilguudei Minjin, Sales at MNG Auto Club" loading="lazy" decoding="async">
         </div>
         <div class="team-body">
-          <h3 class="team-name" data-i18n="team.2.name">PLACEHOLDER Name 2</h3>
-          <p class="team-role" data-i18n="team.2.role">PLACEHOLDER Role</p>
+          <h3 class="team-name" data-i18n="team.2.name">Bilguudei Minjin</h3>
+          <p class="team-role" data-i18n="team.2.role">Sales</p>
           <div class="team-langs-label" data-i18n="team.langsLabel">Languages spoken</div>
           <ul class="team-langs">
             <li class="team-lang" data-i18n="team.lang.en">English</li>
+            <li class="team-lang" data-i18n="team.lang.zh">中文</li>
             <li class="team-lang" data-i18n="team.lang.mn">Монгол</li>
           </ul>
           <a class="team-phone" href="tel:+15712370635"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span>(571) 237-0635</span></a>
-          <p class="team-detail" data-i18n="team.2.detail">PLACEHOLDER detail line</p>
         </div>
       </article>
     </div>
@@ -1209,7 +1229,7 @@
           </div>
         </div>
         <p class="footer-tagline" data-i18n="footer.tagline"></p>
-        <p class="footer-years"><strong data-years>10</strong> <span data-i18n="footer.years">years serving Los Angeles</span></p>
+        <p class="footer-years"><strong data-years>10</strong><span data-i18n="footer.years"> years serving Los Angeles</span></p>
         <div class="footer-socials">
           <a href="https://facebook.com/mngautoclub" class="social-btn" aria-label="Facebook" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
@@ -1296,6 +1316,9 @@ window.addEventListener('load', function() {
   setTimeout(function() { window.scrollTo(0, 0); }, 50);
 });
 // ── TRANSLATIONS ──────────────────────────────────────────────────────────────
+// Toggle order, and the whitelist everything else validates against.
+var LANGS = ['en', 'mn', 'es', 'ko', 'zh'];
+
 const t = {
   en: {
     // NAV
@@ -1309,7 +1332,8 @@ const t = {
     'nav.fbMessage':  'Message on Facebook',
 
     // HERO
-    'hero.badge':       'Монгол эзэмшилтэй · Mongolian-owned',
+    'meta.title':       'MNG Auto Club — Mongolian-Owned Car Dealer in Los Angeles',
+    'hero.badge':       ' years in business',
     'hero.headline':    'Drive home today',
     'hero.sub':         '<strong>Fast approval.</strong><br>Mongolian, Korean, Chinese-speaking team.',
     'hero.ctaApproved': 'Get Pre-Approved',
@@ -1361,17 +1385,13 @@ const t = {
     'fin.formNote':  'No commitment. We call you within 1 hour.',
     'fin.success':   "✓ Submitted — we'll call you soon!",
 
-    // TEAM — swap these values, no markup changes needed
-    'team.eyebrow':    'The Team',
-    'team.headline':   'Two people.<br><span class="gold-text">Same person from first call to keys.</span>',
-    'team.sub':        'No call centre and no handoffs — one of us takes you from first call to keys.',
+    // TEAM
+    'team.headline':   'The Team',
     'team.langsLabel': 'Languages spoken',
-    'team.1.name':     'PLACEHOLDER Name One',
-    'team.1.role':     'PLACEHOLDER Role — e.g. Owner, Sales',
-    'team.1.detail':   'PLACEHOLDER — one specific line, e.g. 10 years in LA, 600+ cars sold.',
-    'team.2.name':     'PLACEHOLDER Name Two',
-    'team.2.role':     'PLACEHOLDER Role — e.g. Finance, Shipping',
-    'team.2.detail':   'PLACEHOLDER — one specific line, e.g. handles every out-of-state delivery.',
+    'team.1.name':     'Bilguun Bayaraa',
+    'team.1.role':     'CEO · Sales',
+    'team.2.name':     'Bilguudei Minjin',
+    'team.2.role':     'Sales',
     // language pill labels stay in their own script in every UI language
     'team.lang.en':    'English',
     'team.lang.mn':    'Монгол',
@@ -1408,7 +1428,7 @@ const t = {
 
     // FOOTER
     'footer.tagline':      'Mongolian-owned car dealership in Los Angeles. We get you financed and we speak your language.',
-    'footer.years':        'years serving Los Angeles',
+    'footer.years':        ' years serving Los Angeles',
     'footer.quickLinks':   'Quick Links',
     'footer.contactTitle': 'Contact',
     'footer.hours':        'Mon–Sat: 9am – 7pm<br>Sun: 10am – 5pm',
@@ -1418,6 +1438,363 @@ const t = {
     // STICKY BAR
     'bar.call':    'Call',
     'bar.message': 'Message',
+  },
+
+  es: {
+    // NAV
+    'nav.callBtn':    'Llamar ahora',
+    'nav.inventory':  'Inventario',
+    'nav.financing':  'Financiamiento',
+    'nav.sell':       'Vender / Intercambiar',
+    'nav.shipping':   'Envíos',
+    'nav.contact':    'Contacto',
+    'nav.callNow':    'Llámanos ahora',
+    'nav.fbMessage':  'Escríbenos por Facebook',
+
+    // HERO
+    'meta.title':       'MNG Auto Club — Concesionario de autos de propiedad mongola en Los Ángeles',
+    'hero.badge':       ' años en el negocio',
+    'hero.headline':    'Llévate tu auto hoy',
+    'hero.sub':         '<strong>Aprobación rápida.</strong><br>Equipo que habla mongol, coreano y chino.',
+    'hero.ctaApproved': 'Obtener preaprobación',
+    'hero.ctaCall':     'Llámanos',
+
+    // TRUST BAR
+    'trust.yearsLabel':   'Años en Los Ángeles',
+    'trust.dmvLabel':     'Concesionario aprobado por el DMV',
+    'trust.membersLabel': 'Miembros de la comunidad',
+
+    // VALUE PROPS
+    'props.eyebrow':  'Por qué MNG Auto Club',
+    'props.headline': 'Te conseguimos la aprobación.<br>Hablamos tu idioma.',
+    'props.1.title':  'Financiamiento para todos',
+    'props.1.desc':   'Aprobación rápida, las mejores tasas.',
+    'props.2.title':  'Hablamos inglés, coreano, chino y mongol',
+    'props.2.desc':   'Compra tu auto en tu propio idioma, con tu propia comunidad. Sin traductor.',
+    'props.3.title':  'Pagamos más que CarMax',
+    'props.3.desc':   '¿Vendes tu auto? Pagamos más que CarMax y cualquier concesionario. Garantizado.',
+    'props.4.title':  'Envíos a todo EE. UU. y Mongolia',
+    'props.4.desc':   'Entregamos en cualquier ciudad de EE. UU., o enviamos a Mongolia. Puerta a puerta.',
+    'props.5.title':  'Concesionario con licencia del DMV',
+    'props.5.desc':   'Concesionario aprobado por el DMV #48175. Con licencia, legítimo, con la confianza de miles.',
+
+    // INVENTORY
+    'inv.eyebrow':          'Inventario actual',
+    'inv.headline':         'Disponible ahora',
+    'inv.sub':              'Tesla, RAM, Toyota, Honda y más. Todos los vehículos inspeccionados.',
+    'inv.photoPlaceholder': 'FOTO REAL PRÓXIMAMENTE',
+    'inv.callPrice':        'Llama por el precio',
+    'inv.badge':            'Disponible',
+    'inv.sold':             'Vendido',
+    'inv.details':          'Ver detalles',
+    'inv.cta':              'Llama para ver todo el inventario',
+
+    // FINANCING
+    'fin.eyebrow':   'Financiamiento',
+    'fin.headline':  'Financiamiento<br><span class="gold-text">sin complicaciones.</span>',
+    'fin.4.title':   'Rápido — 10 minutos',
+    'fin.4.desc':    'Preaprobación en 10 minutos. En muchos casos, te llevas el auto el mismo día.',
+    'fin.stampSub':  'Todas las solicitudes son bienvenidas',
+    'fin.formTitle': 'Obtén tu preaprobación',
+    'fin.formSub':   '4 campos. Te llamamos.',
+    'fin.field1':    'Tu nombre',
+    'fin.field2':    'Número de teléfono',
+    'fin.field3':    'Auto que te interesa',
+    'fin.field4':    'Idioma preferido',
+    'fin.submit':    'Obtener preaprobación →',
+    'fin.formNote':  'Sin compromiso. Te llamamos en menos de 1 hora.',
+    'fin.success':   '✓ Enviado — ¡te llamamos pronto!',
+
+    // TEAM
+    'team.headline':   'El equipo',
+    'team.langsLabel': 'Idiomas que hablamos',
+    'team.1.name':     'Bilguun Bayaraa',
+    'team.1.role':     'CEO · Ventas',
+    'team.2.name':     'Bilguudei Minjin',
+    'team.2.role':     'Ventas',
+    'team.lang.en':    'English',
+    'team.lang.mn':    'Монгол',
+    'team.lang.ko':    '한국어',
+    'team.lang.zh':    '中文',
+
+    // SELL
+    'sell.eyebrow':      'Vende o intercambia',
+    'sell.headline':     'Pagamos más que CarMax<br><span class="gold-text">y cualquier concesionario.</span>',
+    'sell.compEyebrow':  'Comparación de oferta típica',
+    'sell.tagline':      'La diferencia es para ti.',
+    'sell.disclaimer':   'Solo un ejemplo. La oferta real depende del estado del vehículo y del mercado.',
+    'sell.step1.title':  'Cuéntanos sobre tu auto',
+    'sell.step1.desc':   'Año, marca, modelo, millaje — llámanos o escríbenos.',
+    'sell.step2.title':  'Recibe una oferta al instante',
+    'sell.step2.desc':   'Superamos a CarMax. Garantizado por escrito antes de que te comprometas.',
+    'sell.step3.title':  'Te pagamos el mismo día',
+    'sell.step3.desc':   'Trae el auto y nosotros hacemos todo el papeleo. Efectivo o cheque, el mismo día.',
+    'sell.cta1':         'Quiero mi oferta',
+    'sell.cta2':         'Escríbenos por WhatsApp',
+
+    // SHIPPING
+    'ship.eyebrow':  'Envíos',
+    'ship.headline': 'Entregamos en todo EE. UU. —<br><span class="gold-text">o enviamos a Mongolia.</span>',
+    'ship.1.title':  'Los 50 estados',
+    'ship.1.desc':   'Entregamos en cualquier ciudad de EE. UU. Transporte puerta a puerta, con seguro completo.',
+    'ship.2.title':  'Envío a Mongolia',
+    'ship.2.desc':   'Enviamos directamente a Ulán Bator. Nos encargamos de los trámites aduaneros por ti.',
+    'ship.3.title':  'Documentación completa',
+    'ship.3.desc':   'Título, factura de venta, certificado de exportación — lo preparamos todo en inglés y mongol.',
+    'ship.4.title':  'Atención en inglés, coreano, chino y mongol',
+    'ship.4.desc':   'Nuestro equipo de envíos habla mongol. Escríbenos por WhatsApp o Messenger cuando quieras.',
+    'ship.cta':      'Pregunta sobre envíos',
+
+    // FOOTER
+    'footer.tagline':      'Concesionario de autos de propiedad mongola en Los Ángeles. Te financiamos y hablamos tu idioma.',
+    'footer.years':        ' años sirviendo a Los Ángeles',
+    'footer.quickLinks':   'Enlaces rápidos',
+    'footer.contactTitle': 'Contacto',
+    'footer.hours':        'Lun–Sáb: 9am – 7pm<br>Dom: 10am – 5pm',
+    'footer.directions':   'Cómo llegar',
+    'footer.copyright':    '© 2025 MNG Auto Club. Todos los derechos reservados.',
+
+    // STICKY BAR
+    'bar.call':    'Llamar',
+    'bar.message': 'Mensaje',
+  },
+
+  ko: {
+    // NAV
+    'nav.callBtn':    '지금 전화',
+    'nav.inventory':  '재고 차량',
+    'nav.financing':  '할부 금융',
+    'nav.sell':       '판매 / 트레이드',
+    'nav.shipping':   '배송',
+    'nav.contact':    '연락처',
+    'nav.callNow':    '지금 전화하기',
+    'nav.fbMessage':  '페이스북 메시지',
+
+    // HERO
+    'meta.title':       'MNG Auto Club — 로스앤젤레스 몽골인 운영 자동차 딜러',
+    'hero.badge':       '년째 영업 중',
+    'hero.headline':    '오늘 바로 차를 가져가세요',
+    'hero.sub':         '<strong>빠른 승인.</strong><br>몽골어, 한국어, 중국어 가능한 팀.',
+    'hero.ctaApproved': '사전 승인 받기',
+    'hero.ctaCall':     '전화하기',
+
+    // TRUST BAR
+    'trust.yearsLabel':   'LA 영업 햇수',
+    'trust.dmvLabel':     'DMV 공인 딜러',
+    'trust.membersLabel': '커뮤니티 회원',
+
+    // VALUE PROPS
+    'props.eyebrow':  'MNG Auto Club을 선택하는 이유',
+    'props.headline': '승인을 도와드립니다.<br>고객님의 언어로 상담합니다.',
+    'props.1.title':  '누구나 가능한 할부',
+    'props.1.desc':   '빠른 승인, 최저 금리.',
+    'props.2.title':  '영어, 한국어, 중국어, 몽골어 가능',
+    'props.2.desc':   '같은 커뮤니티에서 익숙한 언어로 차를 사세요. 통역이 필요 없습니다.',
+    'props.3.title':  'CarMax보다 높은 매입가',
+    'props.3.desc':   '차를 파시나요? CarMax와 어떤 딜러보다 높게 드립니다. 보장합니다.',
+    'props.4.title':  '미국 전역 + 몽골 배송',
+    'props.4.desc':   '미국 어느 도시로든 배송하고, 몽골까지 보내드립니다. 문 앞까지.',
+    'props.5.title':  'DMV 정식 등록 딜러',
+    'props.5.desc':   'DMV 공인 딜러 #48175. 정식 등록되어 수천 명이 신뢰합니다.',
+
+    // INVENTORY
+    'inv.eyebrow':          '현재 재고',
+    'inv.headline':         '지금 구매 가능',
+    'inv.sub':              'Tesla, RAM, Toyota, Honda 등. 모든 차량 점검 완료.',
+    'inv.photoPlaceholder': '실제 사진 준비 중',
+    'inv.callPrice':        '가격 문의',
+    'inv.badge':            '재고 있음',
+    'inv.sold':             '판매 완료',
+    'inv.details':          '자세히 보기',
+    'inv.cta':              '전체 재고 문의하기',
+
+    // FINANCING
+    'fin.eyebrow':   '할부 금융',
+    'fin.headline':  '할부가<br><span class="gold-text">간단해집니다.</span>',
+    'fin.4.title':   '빠르게 — 10분',
+    'fin.4.desc':    '10분이면 사전 승인. 많은 경우 당일 출고 가능합니다.',
+    'fin.stampSub':  '모든 신청 환영',
+    'fin.formTitle': '지금 사전 승인 받기',
+    'fin.formSub':   '4개 항목만. 저희가 전화드립니다.',
+    'fin.field1':    '성함',
+    'fin.field2':    '전화번호',
+    'fin.field3':    '관심 있는 차량',
+    'fin.field4':    '선호 언어',
+    'fin.submit':    '사전 승인 받기 →',
+    'fin.formNote':  '부담 없습니다. 1시간 이내에 연락드립니다.',
+    'fin.success':   '✓ 접수되었습니다 — 곧 연락드리겠습니다!',
+
+    // TEAM
+    'team.headline':   '팀 소개',
+    'team.langsLabel': '가능한 언어',
+    'team.1.name':     'Bilguun Bayaraa',
+    'team.1.role':     'CEO · 영업',
+    'team.2.name':     'Bilguudei Minjin',
+    'team.2.role':     '영업',
+    'team.lang.en':    'English',
+    'team.lang.mn':    'Монгол',
+    'team.lang.ko':    '한국어',
+    'team.lang.zh':    '中文',
+
+    // SELL
+    'sell.eyebrow':      '판매 또는 트레이드',
+    'sell.headline':     'CarMax보다<br><span class="gold-text">높게 매입합니다.</span>',
+    'sell.compEyebrow':  '일반적인 견적 비교',
+    'sell.tagline':      '차액은 고객님의 몫입니다.',
+    'sell.disclaimer':   '예시입니다. 실제 견적은 차량 상태와 시세에 따라 달라집니다.',
+    'sell.step1.title':  '차량 정보를 알려주세요',
+    'sell.step1.desc':   '연식, 제조사, 모델, 주행거리 — 전화나 메시지로 알려주세요.',
+    'sell.step2.title':  '즉시 견적 확인',
+    'sell.step2.desc':   'CarMax보다 높게 드립니다. 계약 전에 서면으로 보장합니다.',
+    'sell.step3.title':  '당일 지급',
+    'sell.step3.desc':   '차량만 가져오시면 서류는 저희가 처리합니다. 현금 또는 수표, 당일 지급.',
+    'sell.cta1':         '견적 받기',
+    'sell.cta2':         'WhatsApp으로 문의',
+
+    // SHIPPING
+    'ship.eyebrow':  '배송',
+    'ship.headline': '미국 어디로든 배송 —<br><span class="gold-text">몽골까지도 보내드립니다.</span>',
+    'ship.1.title':  '미국 50개 주',
+    'ship.1.desc':   '미국 어느 도시로든 배송합니다. 문 앞까지 운송, 보험 완비.',
+    'ship.2.title':  '몽골 배송',
+    'ship.2.desc':   '울란바토르로 직접 배송합니다. 통관 서류는 저희가 처리합니다.',
+    'ship.3.title':  '서류 일체 준비',
+    'ship.3.desc':   '타이틀, 매매 계약서, 수출 증명서 — 영어와 몽골어로 모두 준비해 드립니다.',
+    'ship.4.title':  '영어, 한국어, 중국어, 몽골어 지원',
+    'ship.4.desc':   '배송팀은 몽골어로 상담합니다. WhatsApp이나 Messenger로 언제든 문의하세요.',
+    'ship.cta':      '배송 문의하기',
+
+    // FOOTER
+    'footer.tagline':      '로스앤젤레스의 몽골인 운영 자동차 딜러. 할부를 도와드리고 고객님의 언어로 상담합니다.',
+    'footer.years':        '년째 로스앤젤레스에서 영업 중',
+    'footer.quickLinks':   '바로가기',
+    'footer.contactTitle': '연락처',
+    'footer.hours':        '월–토: 오전 9시 – 오후 7시<br>일: 오전 10시 – 오후 5시',
+    'footer.directions':   '길찾기',
+    'footer.copyright':    '© 2025 MNG Auto Club. All rights reserved.',
+
+    // STICKY BAR
+    'bar.call':    '전화',
+    'bar.message': '메시지',
+  },
+
+  zh: {
+    // NAV
+    'nav.callBtn':    '立即致电',
+    'nav.inventory':  '现有车辆',
+    'nav.financing':  '贷款',
+    'nav.sell':       '出售 / 置换',
+    'nav.shipping':   '运输',
+    'nav.contact':    '联系我们',
+    'nav.callNow':    '立即致电',
+    'nav.fbMessage':  'Facebook 私信',
+
+    // HERO
+    'meta.title':       'MNG Auto Club — 洛杉矶蒙古人经营的汽车车行',
+    'hero.badge':       '年经营经验',
+    'hero.headline':    '今天就把车开回家',
+    'hero.sub':         '<strong>快速批贷。</strong><br>会说蒙古语、韩语和中文的团队。',
+    'hero.ctaApproved': '获取预批准',
+    'hero.ctaCall':     '致电我们',
+
+    // TRUST BAR
+    'trust.yearsLabel':   '扎根洛杉矶年数',
+    'trust.dmvLabel':     'DMV 认证车行',
+    'trust.membersLabel': '社区成员',
+
+    // VALUE PROPS
+    'props.eyebrow':  '为什么选择 MNG Auto Club',
+    'props.headline': '我们帮您拿到批准。<br>我们说您的语言。',
+    'props.1.title':  '人人都能贷款',
+    'props.1.desc':   '快速批准，利率最低。',
+    'props.2.title':  '我们会说英语、韩语、中文和蒙古语',
+    'props.2.desc':   '用您熟悉的语言，在自己的社区买车。无需翻译。',
+    'props.3.title':  '出价高于 CarMax',
+    'props.3.desc':   '想卖车？我们出价高于 CarMax 和任何车行。保证。',
+    'props.4.title':  '全美配送 + 蒙古运输',
+    'props.4.desc':   '送达美国任何城市，也可运回蒙古。门到门服务。',
+    'props.5.title':  'DMV 持照车行',
+    'props.5.desc':   'DMV 认证车行 #48175。持照合法，数千客户信赖。',
+
+    // INVENTORY
+    'inv.eyebrow':          '现有库存',
+    'inv.headline':         '现车在售',
+    'inv.sub':              'Tesla、RAM、Toyota、Honda 等。所有车辆均已检测。',
+    'inv.photoPlaceholder': '实车照片即将上传',
+    'inv.callPrice':        '来电询价',
+    'inv.badge':            '现车',
+    'inv.sold':             '已售出',
+    'inv.details':          '查看详情',
+    'inv.cta':              '致电查看全部车辆',
+
+    // FINANCING
+    'fin.eyebrow':   '贷款',
+    'fin.headline':  '贷款<br><span class="gold-text">变简单。</span>',
+    'fin.4.title':   '快速 — 10 分钟',
+    'fin.4.desc':    '10 分钟完成预批准。多数情况下当天即可提车。',
+    'fin.stampSub':  '欢迎所有申请',
+    'fin.formTitle': '立即获取预批准',
+    'fin.formSub':   '只需 4 项。我们会致电您。',
+    'fin.field1':    '您的姓名',
+    'fin.field2':    '电话号码',
+    'fin.field3':    '您感兴趣的车型',
+    'fin.field4':    '首选语言',
+    'fin.submit':    '获取预批准 →',
+    'fin.formNote':  '无需承诺。我们会在 1 小时内致电。',
+    'fin.success':   '✓ 已提交 — 我们会尽快联系您！',
+
+    // TEAM
+    'team.headline':   '团队介绍',
+    'team.langsLabel': '会说的语言',
+    'team.1.name':     'Bilguun Bayaraa',
+    'team.1.role':     'CEO · 销售',
+    'team.2.name':     'Bilguudei Minjin',
+    'team.2.role':     '销售',
+    'team.lang.en':    'English',
+    'team.lang.mn':    'Монгол',
+    'team.lang.ko':    '한국어',
+    'team.lang.zh':    '中文',
+
+    // SELL
+    'sell.eyebrow':      '出售或置换',
+    'sell.headline':     '我们出价高于 CarMax<br><span class="gold-text">和任何车行。</span>',
+    'sell.compEyebrow':  '常见报价对比',
+    'sell.tagline':      '差价归您。',
+    'sell.disclaimer':   '仅为示例。实际报价取决于车况与市场行情。',
+    'sell.step1.title':  '告诉我们车辆信息',
+    'sell.step1.desc':   '年份、品牌、型号、里程 — 致电或发消息给我们。',
+    'sell.step2.title':  '立即获得报价',
+    'sell.step2.desc':   '我们出价高于 CarMax。成交前书面保证。',
+    'sell.step3.title':  '当天付款',
+    'sell.step3.desc':   '把车开来，所有手续由我们办理。现金或支票，当天结清。',
+    'sell.cta1':         '获取报价',
+    'sell.cta2':         'WhatsApp 联系',
+
+    // SHIPPING
+    'ship.eyebrow':  '运输',
+    'ship.headline': '送达美国任何地方 —<br><span class="gold-text">也可运回蒙古。</span>',
+    'ship.1.title':  '全美 50 州',
+    'ship.1.desc':   '送达美国任何城市。门到门运输，全额保险。',
+    'ship.2.title':  '运往蒙古',
+    'ship.2.desc':   '直接运至乌兰巴托。清关手续由我们办理。',
+    'ship.3.title':  '完整文件',
+    'ship.3.desc':   '车辆产权证、买卖合同、出口证明 — 我们以英文和蒙古文备齐。',
+    'ship.4.title':  '英语、韩语、中文和蒙古语服务',
+    'ship.4.desc':   '我们的运输团队会说蒙古语。随时通过 WhatsApp 或 Messenger 联系。',
+    'ship.cta':      '咨询运输',
+
+    // FOOTER
+    'footer.tagline':      '洛杉矶蒙古人经营的汽车车行。我们帮您办贷款，并用您的语言沟通。',
+    'footer.years':        '年服务洛杉矶',
+    'footer.quickLinks':   '快速链接',
+    'footer.contactTitle': '联系方式',
+    'footer.hours':        '周一至周六：上午 9 点 – 晚上 7 点<br>周日：上午 10 点 – 下午 5 点',
+    'footer.directions':   '导航前往',
+    'footer.copyright':    '© 2025 MNG Auto Club. 保留所有权利。',
+
+    // STICKY BAR
+    'bar.call':    '致电',
+    'bar.message': '消息',
   },
 
   mn: {
@@ -1432,7 +1809,8 @@ const t = {
     'nav.fbMessage':  'Facebook мессеж',
 
     // HERO
-    'hero.badge':       'Монгол эзэмшилтэй · Los Angeles, CA',
+    'meta.title':       'MNG Auto Club — Монголын эзэмшилтэй автомашины дилер Лос Анжелес',
+    'hero.badge':       ' жил бизнес хийж байна',
     'hero.headline':    'Өнөөдөр машинтай бол—<br><em>Монголчуудаа санхүүжүүлнэ.</em>',
     'hero.sub':         '<strong>Шуурхай зөвшөөрөл.</strong><br>Монгол, Солонгос, Хятад хэлээр ярьна',
     'hero.ctaApproved': 'Урьдчилан зөвшөөрөл авах',
@@ -1485,16 +1863,12 @@ const t = {
     'fin.success':   '✓ Илгээгдсэн — удахгүй залгах болно!',
 
     // TEAM
-    'team.eyebrow':    'Хамт олон',
-    'team.headline':   'Хоёр хүн.<br><span class="gold-text">Эхний дуудлагаас түлхүүр хүртэл нэг хүн.</span>',
-    'team.sub':        'Дуудлагын төв, дамжуулалт байхгүй — бид хоёрын нэг тантай эхнээс дуустал ажиллана.',
+    'team.headline':   'Хамт олон',
     'team.langsLabel': 'Ярьдаг хэлнүүд',
-    'team.1.name':     'PLACEHOLDER Нэр 1',
-    'team.1.role':     'PLACEHOLDER Албан тушаал',
-    'team.1.detail':   'PLACEHOLDER — тодорхой нэг мөр.',
-    'team.2.name':     'PLACEHOLDER Нэр 2',
-    'team.2.role':     'PLACEHOLDER Албан тушаал',
-    'team.2.detail':   'PLACEHOLDER — тодорхой нэг мөр.',
+    'team.1.name':     'Bilguun Bayaraa',
+    'team.1.role':     'Гүйцэтгэх захирал · Борлуулалт',
+    'team.2.name':     'Bilguudei Minjin',
+    'team.2.role':     'Борлуулалт',
     // хэлний нэрс бүх UI хэлэнд өөрчлөгдөхгүй
     'team.lang.en':    'English',
     'team.lang.mn':    'Монгол',
@@ -1531,7 +1905,7 @@ const t = {
 
     // FOOTER
     'footer.tagline':      'Лос Анжелес дэх монголын эзэмшилтэй машины дилер. Бид танд санхүүжилт олгон, монголоор ярина.',
-    'footer.years':        'жил Лос Анжелест үйлчилж байна',
+    'footer.years':        ' жил Лос Анжелест үйлчилж байна',
     'footer.quickLinks':   'Холбоосууд',
     'footer.contactTitle': 'Холбоо барих',
     'footer.hours':        'Да–Бя: 9:00 – 19:00<br>Ня: 10:00 – 17:00',
@@ -1548,12 +1922,11 @@ const t = {
 let lang = 'en';
 
 function applyLang(l) {
+  if (!t[l]) l = 'en';
   lang = l;
   document.documentElement.lang = l;
 
-  document.title = l === 'mn'
-    ? 'MNG Auto Club — Монголын эзэмшилтэй автомашины дилер Лос Анжелес'
-    : 'MNG Auto Club — Mongolian-Owned Car Dealer in Los Angeles';
+  if (t[l]['meta.title']) document.title = t[l]['meta.title'];
 
   document.querySelectorAll('[data-i18n]').forEach(function(el) {
     var key = el.dataset.i18n;
@@ -1565,15 +1938,10 @@ function applyLang(l) {
     if (t[l][key] != null) el.innerHTML = t[l][key];
   });
 
-  document.querySelectorAll('[data-i18n-monthly]').forEach(function(el) {
-    var mo = el.dataset.i18nMonthly;
-    el.textContent = l === 'en'
-      ? 'or from $' + mo + '/mo'
-      : 'эсвэл $' + mo + '/сар';
+  LANGS.forEach(function(code) {
+    var btn = document.getElementById('lang-' + code);
+    if (btn) btn.classList.toggle('active', l === code);
   });
-
-  document.getElementById('lang-en').classList.toggle('active', l === 'en');
-  document.getElementById('lang-mn').classList.toggle('active', l === 'mn');
 
   try { localStorage.setItem('mng-lang', l); } catch(e) {}
 }
@@ -1584,12 +1952,16 @@ function setLang(l) { applyLang(l); }
 (function() {
   var saved = '';
   try { saved = localStorage.getItem('mng-lang') || ''; } catch(e) {}
-  if (saved === 'en' || saved === 'mn') {
+  if (LANGS.indexOf(saved) !== -1) {
     applyLang(saved);
-  } else {
-    var bl = (navigator.language || navigator.userLanguage || '').toLowerCase();
-    applyLang(bl.startsWith('mn') ? 'mn' : 'en');
+    return;
   }
+  var bl = (navigator.language || navigator.userLanguage || '').toLowerCase();
+  var match = 'en';
+  LANGS.forEach(function(code) {
+    if (code !== 'en' && bl.indexOf(code) === 0) match = code;
+  });
+  applyLang(match);
 })();
 
 // ── NAV SCROLL ────────────────────────────────────────────────────────────────
@@ -1741,17 +2113,17 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
   "employee": [
     {
       "@type": "Person",
-      "name": "PLACEHOLDER Name One",
-      "jobTitle": "PLACEHOLDER Role",
+      "name": "Bilguun Bayaraa",
+      "jobTitle": "CEO, Sales",
       "telephone": "+1-213-352-8955",
-      "knowsLanguage": ["en", "mn", "ko", "zh"]
+      "knowsLanguage": ["en", "ko", "mn"]
     },
     {
       "@type": "Person",
-      "name": "PLACEHOLDER Name Two",
-      "jobTitle": "PLACEHOLDER Role",
+      "name": "Bilguudei Minjin",
+      "jobTitle": "Sales",
       "telephone": "+1-571-237-0635",
-      "knowsLanguage": ["en", "mn"]
+      "knowsLanguage": ["en", "zh", "mn"]
     }
   ]
 }
