@@ -315,6 +315,31 @@
     letter-spacing: 0.04em; text-transform: uppercase;
     pointer-events: none;
   }
+  .car-badge-sold {
+    position: absolute; top: 12px; left: 12px; z-index: 5;
+    background: var(--mongol-red); color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 999px;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    pointer-events: none;
+  }
+  /* Sold cars stay listed but read clearly as unavailable */
+  .car-card.sold .car-slider img, .car-card.sold .car-slider video { filter: grayscale(1) brightness(0.62); }
+  .car-card.sold:hover { border-color: var(--steel); transform: none; }
+  .car-sold-banner {
+    position: absolute; top: 50%; left: 50%; z-index: 5;
+    transform: translate(-50%, -50%) rotate(-8deg);
+    font-family: 'Saira', sans-serif; font-size: 40px; font-weight: 800;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: #fff; padding: 8px 28px;
+    border: 3px solid #fff; border-radius: 6px;
+    background: rgba(200,16,46,0.82);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.45);
+    pointer-events: none; white-space: nowrap;
+  }
+  @media (min-width: 600px) { .car-sold-banner { font-size: 34px; } }
+  @media (min-width: 900px) { .car-sold-banner { font-size: 44px; } }
+
   .car-body { padding: 16px; }
   .car-title { font-family: 'Saira', sans-serif; font-size: 18px; font-weight: 600; color: var(--bone); margin-bottom: 6px; }
   .car-meta { display: flex; align-items: center; gap: 16px; margin-bottom: 14px; }
@@ -752,8 +777,8 @@
         </div>
       </div>
 
-      <!-- Card 2: 2022 Tesla Model Y Performance AWD -->
-      <div class="car-card fade-up">
+      <!-- Card 2: 2022 Tesla Model Y Performance AWD — SOLD -->
+      <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/tesla-model-y/01.jpg" alt="2022 Tesla Model Y Performance AWD" loading="eager">
@@ -781,7 +806,8 @@
           <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
           <div class="slider-count">1 / 20</div>
           <div class="car-photo-scrim"></div>
-          <div class="car-badge-instock" data-i18n="inv.badge"></div>
+          <div class="car-badge-sold" data-i18n="inv.sold">Sold</div>
+          <div class="car-sold-banner" data-i18n="inv.sold">Sold</div>
         </div>
         <div class="car-body">
           <div class="car-title">2022 Tesla Model Y Performance AWD</div>
@@ -1315,6 +1341,7 @@ const t = {
     'inv.photoPlaceholder': 'REAL PHOTO COMING SOON',
     'inv.callPrice':        'Call for Price',
     'inv.badge':            'In Stock',
+    'inv.sold':             'Sold',
     'inv.details':          'See Details',
     'inv.cta':              'Call to See Full Inventory',
 
@@ -1437,6 +1464,7 @@ const t = {
     'inv.photoPlaceholder': 'ЗУРАГ УДАХГҮЙ',
     'inv.callPrice':        'Үнэ асуух',
     'inv.badge':            'Бэлэн байгаа',
+    'inv.sold':             'Зарагдсан',
     'inv.details':          'Дэлгэрэнгүй',
     'inv.cta':              'Бүх машинаа харах',
 
