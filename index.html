@@ -300,11 +300,19 @@
   .inventory-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
   @media (min-width: 600px) { .inventory-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 900px) { .inventory-grid { grid-template-columns: repeat(2, 1fr); } }
+  /* Cards stretch to the tallest in their row, and the body is a column so the
+     CTA pins to the bottom — otherwise a card with an extra detail line pushes
+     its button out of line with its neighbour. */
   .car-card {
     background: var(--carbon); border: 1px solid var(--steel);
     border-radius: 8px; overflow: hidden;
     transition: border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
   }
+  .car-card .car-body { display: flex; flex-direction: column; flex: 1 1 auto; }
+  .car-card .car-body .btn { margin-top: auto; }
+  .car-title { min-height: 2.6em; }
+  .car-meta { min-height: 21px; }
   .car-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .car-photo { position: relative; aspect-ratio: 4/3; background: var(--steel); overflow: hidden; }
   .car-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -805,8 +813,7 @@
         </div>
       </div>
 
-    </div>
-          <!-- Card 2: 2002 Honda S2000 Turbo -->
+      <!-- Card 2: 2002 Honda S2000 Turbo -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -997,7 +1004,6 @@
           <div class="car-title">2022 Tesla Model Y Performance AWD</div>
           <div class="car-meta"><span class="car-mileage">36,919 mi</span></div>
           <div class="car-price">$35,800</div>
-          <div class="car-monthly"></div>
           <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
@@ -1034,7 +1040,8 @@
         </div>
       </div>
 
-<div class="inventory-footer fade-up">
+    </div>
+    <div class="inventory-footer fade-up">
       <a href="tel:+12133528955" class="btn btn-primary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         <span data-i18n="inv.cta"></span>
