@@ -408,18 +408,17 @@
   #sell { background: var(--carbon); padding: 44px 0; }
   .sell-banner {
     display: flex; flex-direction: column; gap: 20px;
-    align-items: flex-start;
+    align-items: center; text-align: center;
     background: linear-gradient(120deg, rgba(201,162,75,0.13), rgba(201,162,75,0.04));
     border: 1px solid rgba(201,162,75,0.4); border-radius: 12px;
     padding: 26px 24px;
   }
   @media (min-width: 860px) {
-    .sell-banner { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; padding: 30px 36px; }
+    .sell-banner { padding: 30px 36px; }
   }
   .sell-banner-title { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 700; color: var(--bone); margin-bottom: 6px; line-height: 1.2; }
   @media (min-width: 768px) { .sell-banner-title { font-size: 28px; } }
-  .sell-banner-sub { font-size: 14px; color: var(--ash); line-height: 1.6; margin: 0; max-width: 480px; }
-  .sell-banner-cta { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
+  .sell-banner-sub { font-size: 14px; color: var(--ash); line-height: 1.6; margin: 0; max-width: 540px; }
 
   /* SHIPPING — one line, no section furniture */
   #shipping { background: var(--carbon); padding: 26px 0; }
@@ -872,10 +871,6 @@
         <h2 class="sell-banner-title" data-i18n="sell.headline">We buy cars at the best price</h2>
         <p class="sell-banner-sub" data-i18n="sell.sub">Sell outright or trade in towards your next car. Free appraisal, paid the same day.</p>
       </div>
-      <div class="sell-banner-cta">
-        <a href="tel:+12133528955" class="btn btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span data-i18n="sell.cta1">Get My Offer</span></a>
-        <a href="https://m.me/mngautoclub" target="_blank" rel="noopener" class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.9 3.7 7.7v3.8l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2zm1 12.5l-2.5-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.5 5.8z"/></svg><span data-i18n="sell.cta2">Message on Facebook</span></a>
-      </div>
     </div>
   </div>
 </section>
@@ -1191,8 +1186,6 @@ const t = {
     // SELL
     'sell.headline':     'We buy cars at the best price',
     'sell.sub':          'Sell outright or trade in towards your next car. Free appraisal, paid the same day.',
-    'sell.cta1':         'Get My Offer',
-    'sell.cta2':         'Message on Facebook',
 
     // SHIPPING
     'ship.headline': 'We ship to all 50 states and to Mongolia',
@@ -1265,8 +1258,6 @@ const t = {
     // SELL
     'sell.headline':     'Compramos autos al mejor precio',
     'sell.sub':          'Vende directamente o cámbialo por tu próximo auto. Tasación gratis, pago el mismo día.',
-    'sell.cta1':         'Quiero mi oferta',
-    'sell.cta2':         'Escríbenos por Facebook',
 
     // SHIPPING
     'ship.headline': 'Enviamos a los 50 estados y a Mongolia',
@@ -1339,8 +1330,6 @@ const t = {
     // SELL
     'sell.headline':     '차량을 최고가에 매입합니다',
     'sell.sub':          '바로 판매하거나 다음 차량으로 트레이드인 하세요. 무료 감정, 당일 지급.',
-    'sell.cta1':         '견적 받기',
-    'sell.cta2':         '페이스북 메시지',
 
     // SHIPPING
     'ship.headline': '미국 50개 주와 몽골까지 배송합니다',
@@ -1413,8 +1402,6 @@ const t = {
     // SELL
     'sell.headline':     '我们以最优价格收车',
     'sell.sub':          '可直接出售，也可置换下一辆车。免费估价，当天付款。',
-    'sell.cta1':         '获取报价',
-    'sell.cta2':         'Facebook 私信',
 
     // SHIPPING
     'ship.headline': '我们运往全美 50 州和蒙古',
@@ -1488,8 +1475,6 @@ const t = {
     // SELL
     'sell.headline':     'Бид машиныг хамгийн сайн үнээр авна',
     'sell.sub':          'Шууд зарах эсвэл дараагийн машиндаа солиулж болно. Үнэлгээ үнэгүй, тухайн өдөртөө төлнө.',
-    'sell.cta1':         'Үнийн санал авах',
-    'sell.cta2':         'Facebook мессеж',
 
     // SHIPPING
     'ship.headline': '50 муж болон Монгол руу тээвэрлэнэ',
