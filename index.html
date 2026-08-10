@@ -421,16 +421,15 @@
   .sell-banner-sub { font-size: 14px; color: var(--ash); line-height: 1.6; margin: 0; max-width: 480px; }
   .sell-banner-cta { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
 
-  /* SHIPPING */
-  #shipping { background: var(--carbon); }
-  .shipping-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-  @media (min-width: 768px) { .shipping-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .shipping-grid { grid-template-columns: repeat(4, 1fr); } }
-  .ship-card { padding: 8px 12px; text-align: center; }
-  .ship-icon { width: 56px; height: 56px; background: rgba(201,162,75,0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 16px; }
-  .ship-icon svg { width: 26px; height: 26px; color: var(--gold); }
-  .ship-title { font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 700; color: var(--bone); margin-bottom: 8px; }
-  .ship-desc { font-size: 13px; color: var(--ash); line-height: 1.6; }
+  /* SHIPPING — one line, no section furniture */
+  #shipping { background: var(--carbon); padding: 26px 0; }
+  .ship-line {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 0; text-align: center;
+    font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 600; color: var(--bone);
+  }
+  @media (min-width: 768px) { .ship-line { font-size: 19px; } }
+  .ship-line svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; }
 
   /* TEAM — two-column split, not a card grid */
   #team { background: var(--carbon); }
@@ -884,32 +883,9 @@
 <!-- SHIPPING -->
 <section id="shipping">
   <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow" data-i18n="ship.eyebrow"></p>
-      <h2 data-i18n="ship.headline"></h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="shipping-grid">
-      <div class="ship-card fade-up">
-        <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/></svg></div>
-        <div class="ship-title" data-i18n="ship.1.title"></div>
-      </div>
-      <div class="ship-card fade-up">
-        <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
-        <div class="ship-title" data-i18n="ship.2.title"></div>
-      </div>
-      <div class="ship-card fade-up">
-        <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
-        <div class="ship-title" data-i18n="ship.3.title"></div>
-      </div>
-      <div class="ship-card fade-up">
-        <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8z"/></svg></div>
-        <div class="ship-title" data-i18n="ship.4.title"></div>
-      </div>
-    </div>
-    <div style="text-align:center;margin-top:40px;" class="fade-up">
-      <a href="tel:+12133528955" class="btn btn-primary" data-i18n="ship.cta"></a>
-    </div>
+    <p class="ship-line fade-up">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><span data-i18n="ship.headline">We ship to all 50 states and to Mongolia</span>
+    </p>
   </div>
 </section>
 
@@ -1219,13 +1195,7 @@ const t = {
     'sell.cta2':         'Message on Facebook',
 
     // SHIPPING
-    'ship.eyebrow':  'Shipping',
-    'ship.headline': 'We ship anywhere',
-    'ship.1.title':  'All 50 states',
-    'ship.2.title':  'To Mongolia',
-    'ship.3.title':  'Full paperwork',
-    'ship.4.title':  'We speak your language',
-    'ship.cta':      'Ask About Shipping',
+    'ship.headline': 'We ship to all 50 states and to Mongolia',
 
     // FOOTER
     'footer.tagline':      'Mongolian-owned car dealership in Los Angeles. We get you financed and we speak your language.',
@@ -1299,13 +1269,7 @@ const t = {
     'sell.cta2':         'Escríbenos por Facebook',
 
     // SHIPPING
-    'ship.eyebrow':  'Envíos',
-    'ship.headline': 'Enviamos a donde sea',
-    'ship.1.title':  'Los 50 estados',
-    'ship.2.title':  'A Mongolia',
-    'ship.3.title':  'Papeleo completo',
-    'ship.4.title':  'Hablamos tu idioma',
-    'ship.cta':      'Pregunta sobre envíos',
+    'ship.headline': 'Enviamos a los 50 estados y a Mongolia',
 
     // FOOTER
     'footer.tagline':      'Concesionario de autos de propiedad mongola en Los Ángeles. Te financiamos y hablamos tu idioma.',
@@ -1379,13 +1343,7 @@ const t = {
     'sell.cta2':         '페이스북 메시지',
 
     // SHIPPING
-    'ship.eyebrow':  '배송',
-    'ship.headline': '어디든 배송합니다',
-    'ship.1.title':  '미국 50개 주',
-    'ship.2.title':  '몽골까지',
-    'ship.3.title':  '서류 일체',
-    'ship.4.title':  '고객님의 언어로 상담',
-    'ship.cta':      '배송 문의하기',
+    'ship.headline': '미국 50개 주와 몽골까지 배송합니다',
 
     // FOOTER
     'footer.tagline':      '로스앤젤레스의 몽골인 운영 자동차 딜러. 할부를 도와드리고 고객님의 언어로 상담합니다.',
@@ -1459,13 +1417,7 @@ const t = {
     'sell.cta2':         'Facebook 私信',
 
     // SHIPPING
-    'ship.eyebrow':  '运输',
-    'ship.headline': '送达任何地方',
-    'ship.1.title':  '全美 50 州',
-    'ship.2.title':  '运往蒙古',
-    'ship.3.title':  '手续齐全',
-    'ship.4.title':  '用您的语言沟通',
-    'ship.cta':      '咨询运输',
+    'ship.headline': '我们运往全美 50 州和蒙古',
 
     // FOOTER
     'footer.tagline':      '洛杉矶蒙古人经营的汽车车行。我们帮您办贷款，并用您的语言沟通。',
@@ -1540,13 +1492,7 @@ const t = {
     'sell.cta2':         'Facebook мессеж',
 
     // SHIPPING
-    'ship.eyebrow':  'Тээвэрлэлт',
-    'ship.headline': 'Хаана ч хүргэнэ',
-    'ship.1.title':  '50 муж',
-    'ship.2.title':  'Монгол руу',
-    'ship.3.title':  'Бүрэн бичиг баримт',
-    'ship.4.title':  'Таны хэлээр ярина',
-    'ship.cta':      'Тээврийн талаар асуух',
+    'ship.headline': '50 муж болон Монгол руу тээвэрлэнэ',
 
     // FOOTER
     'footer.tagline':      'Лос Анжелес дэх монголын эзэмшилтэй машины дилер. Бид танд санхүүжилт олгон, монголоор ярина.',
