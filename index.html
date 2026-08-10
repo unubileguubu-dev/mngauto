@@ -7,6 +7,8 @@
 <meta name="description" content="Mongolian-owned used car dealership in Los Angeles — 10 years in business. Fast financing and same-day approval. DMV Approved Dealer #48175.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="images/hero-porsche-mobile.jpg" media="(max-width: 767px)" fetchpriority="high">
+<link rel="preload" as="image" href="images/hero-porsche.webp" media="(min-width: 768px)" fetchpriority="high">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Saira:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -192,7 +194,7 @@
   .hero-bg {
     position: absolute; top: 0; left: 0; right: 0;
     height: 64vh; height: 64svh;
-    background: url('images/hero-porsche.webp') 50% 56% / cover no-repeat;
+    background: url('images/hero-porsche-mobile.jpg') 50% 56% / cover no-repeat;
   }
   .hero-bg::after {
     content: ''; position: absolute; inset: 0;
@@ -201,7 +203,13 @@
       linear-gradient(to top, var(--onyx) 2%, transparent 45%),
       linear-gradient(to bottom, rgba(11,11,13,0.8) 0%, transparent 30%);
   }
-  @media (min-width: 768px) { .hero-bg { height: 100vh; height: 100svh; background-position: center 58%; } }
+  @media (min-width: 768px) {
+    .hero-bg {
+      height: 100vh; height: 100svh;
+      background-image: url('images/hero-porsche.webp');
+      background-position: center 58%;
+    }
+  }
   @media (min-width: 768px) { #nav { top: 70px; } }
   .hero-content {
     position: relative; z-index: 2;
@@ -526,7 +534,7 @@
 <!-- NAV -->
 <nav id="nav" role="navigation" aria-label="Main navigation">
   <a href="#" class="nav-logo" aria-label="MNG Auto Club home">
-    <img src="brand%20assets/595284641_1525140289295125_7103465221803359041_n.jpg" alt="MNG Auto Club logo">
+    <img src="images/logo-176.jpg" alt="MNG Auto Club logo">
     <div>
       <div class="nav-logo-text">MNG Auto Club</div>
       <div class="nav-logo-sub">Los Angeles, CA</div>
@@ -562,7 +570,7 @@
 <div id="mobile-menu" role="dialog" aria-modal="true">
   <div class="mobile-menu-header">
     <a href="#" class="nav-logo" onclick="closeMenu()">
-      <img src="brand%20assets/595284641_1525140289295125_7103465221803359041_n.jpg" alt="MNG Auto Club logo" style="height:40px;width:40px;object-fit:contain;">
+      <img src="images/logo-176.jpg" alt="MNG Auto Club logo" style="height:40px;width:40px;object-fit:contain;">
       <div class="nav-logo-text">MNG Auto Club</div>
     </a>
     <button class="mobile-menu-close" onclick="closeMenu()" aria-label="Close menu">✕</button>
@@ -632,6 +640,12 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function showPlay() { playBtn.hidden = false; }
+
+  // Phones get a much smaller encode — 640x360, no audio track, ~547KB against
+  // 2.96MB. Setting src overrides the <source> children per the spec.
+  if (window.matchMedia('(max-width: 767px)').matches) {
+    v.src = 'video/promo-mobile.mp4';
+  }
 
   if (reduced) {
     showPlay();
@@ -1029,7 +1043,7 @@
     <div class="footer-grid">
       <div>
         <div class="footer-logo">
-          <img src="brand%20assets/595284641_1525140289295125_7103465221803359041_n.jpg" alt="MNG Auto Club">
+          <img src="images/logo-176.jpg" alt="MNG Auto Club">
           <div>
             <div class="footer-brand-name">MNG Auto Club</div>
             <div class="footer-brand-sub">Los Angeles, CA</div>
