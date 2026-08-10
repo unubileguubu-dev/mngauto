@@ -276,25 +276,6 @@
   @media (min-width: 768px) { .section-header h2 { font-size: 38px; } }
   .gold-line { width: 48px; height: 3px; background: var(--gold); margin: 16px auto 0; border-radius: 2px; }
 
-  /* VALUE PROPS — editorial list, no boxes */
-  #value-props { background: var(--carbon); }
-  #value-props .section-header { text-align: left; margin-bottom: 40px; }
-  #value-props .section-header p { margin: 0; max-width: 540px; }
-  #value-props .gold-line { margin-left: 0; }
-  .props-grid { display: grid; grid-template-columns: 1fr; gap: 32px 28px; }
-  @media (min-width: 600px) { .props-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 1024px) { .props-grid { grid-template-columns: repeat(5, 1fr); } }
-  .prop-card { padding: 4px 0; text-align: left; }
-  .prop-icon {
-    width: 52px; height: 52px;
-    background: rgba(201,162,75,0.1);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin: 0 0 16px;
-  }
-  .prop-icon svg { width: 24px; height: 24px; color: var(--gold); }
-  .prop-title { font-family: 'Saira', sans-serif; font-size: 15px; font-weight: 700; color: var(--bone); margin-bottom: 8px; line-height: 1.3; }
-  .prop-desc { font-size: 13px; color: var(--ash); line-height: 1.55; }
-
   /* INVENTORY */
   #inventory { background: var(--onyx); }
   .inventory-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
@@ -422,43 +403,22 @@
   .reviews-embed:empty { display: none; }
   .reviews-embed { margin-top: 28px; }
 
-  /* SELL — light relief section */
-  #sell { background: var(--bone); }
-  #sell .section-header h2, #sell .sell-tagline, #sell .sell-step-title, #sell .sell-box-val { color: var(--onyx); }
-  #sell .eyebrow { color: #6E6E78; }
-  #sell .sell-visual { background: #FFFFFF; border-color: #E3DFD4; }
-  #sell .sell-box { background: var(--bone); border-color: #E3DFD4; }
-  #sell .sell-box-label { color: #6E6E78; }
-  #sell .sell-box.mng { background: #FFFFFF; border-color: var(--gold); }
-  #sell .sell-box.mng .sell-box-val { color: #8C6D2B; }
-  #sell .sell-vs-arrow { color: #8C6D2B; }
-  #sell .sell-step-num { border-color: #8C6D2B; color: #8C6D2B; }
-  #sell .sell-step-desc { color: #55555E; }
-  #sell [data-i18n="sell.disclaimer"] { color: #6E6E78 !important; }
-  #sell .btn-secondary { border-color: var(--onyx); color: var(--onyx); }
-  #sell .btn-secondary:hover { background: rgba(11,11,13,0.06); }
-  #sell .gold-text { color: #8C6D2B; }
-  .sell-inner { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
-  @media (min-width: 900px) { .sell-inner { grid-template-columns: 1fr 1fr; } }
-  .sell-visual { position: relative; background: var(--carbon); border: 1px solid var(--steel); border-radius: 8px; padding: 40px 32px; text-align: center; }
-  .sell-vs { display: flex; align-items: center; justify-content: center; gap: 20px; margin: 24px 0; flex-wrap: wrap; }
-  .sell-box { background: var(--onyx); border: 1px solid var(--steel); border-radius: 8px; padding: 16px 24px; min-width: 100px; }
-  .sell-box-label { font-size: 11px; color: var(--ash); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
-  .sell-box-val { font-family: 'Saira', sans-serif; font-size: 20px; font-weight: 700; color: var(--bone); }
-  .sell-box.mng { border-color: var(--gold); }
-  .sell-box.mng .sell-box-val { color: var(--gold-bright); }
-  .sell-vs-arrow { font-family: 'Saira', sans-serif; font-size: 22px; color: var(--gold); font-weight: 800; }
-  .sell-tagline { font-family: 'Saira', sans-serif; font-size: 18px; font-weight: 700; color: var(--bone); margin-bottom: 8px; }
-  .sell-steps { display: flex; flex-direction: column; gap: 20px; }
-  .sell-step { display: flex; gap: 16px; align-items: flex-start; }
-  .sell-step-num {
-    flex-shrink: 0; width: 32px; height: 32px;
-    border: 1px solid var(--gold); border-radius: 50%;
-    display: flex; align-items: center; justify-content: center;
-    font-family: 'Saira', sans-serif; font-size: 14px; font-weight: 700; color: var(--gold);
+  /* SELL — compact banner */
+  #sell { background: var(--carbon); padding: 44px 0; }
+  .sell-banner {
+    display: flex; flex-direction: column; gap: 20px;
+    align-items: flex-start;
+    background: linear-gradient(120deg, rgba(201,162,75,0.13), rgba(201,162,75,0.04));
+    border: 1px solid rgba(201,162,75,0.4); border-radius: 12px;
+    padding: 26px 24px;
   }
-  .sell-step-title { font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 600; color: var(--bone); margin-bottom: 4px; }
-  .sell-step-desc { font-size: 14px; color: var(--ash); }
+  @media (min-width: 860px) {
+    .sell-banner { flex-direction: row; align-items: center; justify-content: space-between; gap: 32px; padding: 30px 36px; }
+  }
+  .sell-banner-title { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 700; color: var(--bone); margin-bottom: 6px; line-height: 1.2; }
+  @media (min-width: 768px) { .sell-banner-title { font-size: 28px; } }
+  .sell-banner-sub { font-size: 14px; color: var(--ash); line-height: 1.6; margin: 0; max-width: 480px; }
+  .sell-banner-cta { display: flex; flex-wrap: wrap; gap: 10px; flex-shrink: 0; }
 
   /* SHIPPING */
   #shipping { background: var(--carbon); }
@@ -710,56 +670,10 @@
   <div class="trust-stats">
     <div class="trust-stat">
       <div class="trust-stat-value"><span data-years>10</span></div>
-      <div class="trust-stat-label" data-i18n="trust.yearsLabel">Years in Los Angeles</div>
-    </div>
-    <div class="trust-stat">
-      <div class="trust-stat-value">#48175</div>
-      <div class="trust-stat-label" data-i18n="trust.dmvLabel">DMV Approved Dealer</div>
-    </div>
-    <div class="trust-stat">
-      <div class="trust-stat-value">4,800+</div>
-      <div class="trust-stat-label" data-i18n="trust.membersLabel">Community members</div>
+      <div class="trust-stat-label" data-i18n="trust.yearsLabel">Years in business in Los Angeles</div>
     </div>
   </div>
 </div>
-
-<!-- VALUE PROPS -->
-<section id="value-props">
-  <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow" data-i18n="props.eyebrow"></p>
-      <h2 data-i18n-html="props.headline"></h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="props-grid">
-      <div class="prop-card fade-up">
-        <div class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div>
-        <div class="prop-title" data-i18n="props.1.title"></div>
-        <div class="prop-desc" data-i18n="props.1.desc"></div>
-      </div>
-      <div class="prop-card fade-up">
-        <div class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div>
-        <div class="prop-title" data-i18n="props.2.title"></div>
-        <div class="prop-desc" data-i18n="props.2.desc"></div>
-      </div>
-      <div class="prop-card fade-up">
-        <div class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
-        <div class="prop-title" data-i18n="props.3.title"></div>
-        <div class="prop-desc" data-i18n="props.3.desc"></div>
-      </div>
-      <div class="prop-card fade-up">
-        <div class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
-        <div class="prop-title" data-i18n="props.4.title"></div>
-        <div class="prop-desc" data-i18n="props.4.desc"></div>
-      </div>
-      <div class="prop-card fade-up">
-        <div class="prop-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <div class="prop-title" data-i18n="props.5.title"></div>
-        <div class="prop-desc" data-i18n="props.5.desc"></div>
-      </div>
-    </div>
-  </div>
-</section>
 
 <!-- INVENTORY -->
 <section id="inventory">
@@ -1085,56 +999,14 @@
 <!-- SELL / TRADE -->
 <section id="sell">
   <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow" data-i18n="sell.eyebrow"></p>
-      <h2 data-i18n-html="sell.headline"></h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="sell-inner">
-      <div class="sell-visual fade-up">
-        <p class="eyebrow" data-i18n="sell.compEyebrow"></p>
-        <div class="sell-vs">
-          <div class="sell-box">
-            <div class="sell-box-label">CarMax</div>
-            <div class="sell-box-val">$18,200</div>
-          </div>
-          <div class="sell-vs-arrow">→</div>
-          <div class="sell-box mng">
-            <div class="sell-box-label">MNG Auto</div>
-            <div class="sell-box-val">$20,500+</div>
-          </div>
-        </div>
-        <div class="sell-tagline" data-i18n="sell.tagline"></div>
-        <p style="font-size:12px;color:var(--ash);margin-top:8px;" data-i18n="sell.disclaimer"></p>
+    <div class="sell-banner fade-up">
+      <div class="sell-banner-copy">
+        <h2 class="sell-banner-title" data-i18n="sell.headline">We buy cars at the best price</h2>
+        <p class="sell-banner-sub" data-i18n="sell.sub">Sell outright or trade in towards your next car. Free appraisal, paid the same day.</p>
       </div>
-      <div class="fade-up">
-        <div class="sell-steps">
-          <div class="sell-step">
-            <div class="sell-step-num">1</div>
-            <div>
-              <div class="sell-step-title" data-i18n="sell.step1.title"></div>
-              <div class="sell-step-desc" data-i18n="sell.step1.desc"></div>
-            </div>
-          </div>
-          <div class="sell-step">
-            <div class="sell-step-num">2</div>
-            <div>
-              <div class="sell-step-title" data-i18n="sell.step2.title"></div>
-              <div class="sell-step-desc" data-i18n="sell.step2.desc"></div>
-            </div>
-          </div>
-          <div class="sell-step">
-            <div class="sell-step-num">3</div>
-            <div>
-              <div class="sell-step-title" data-i18n="sell.step3.title"></div>
-              <div class="sell-step-desc" data-i18n="sell.step3.desc"></div>
-            </div>
-          </div>
-        </div>
-        <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:12px;">
-          <a href="tel:+12133528955" class="btn btn-primary" data-i18n="sell.cta1"></a>
-          <a href="https://wa.me/14243353285" class="btn btn-secondary" data-i18n="sell.cta2"></a>
-        </div>
+      <div class="sell-banner-cta">
+        <a href="tel:+12133528955" class="btn btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span data-i18n="sell.cta1">Get My Offer</span></a>
+        <a href="https://wa.me/14243353285?text=Hi!%20I%20want%20to%20sell%20my%20car" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="sell.cta2">WhatsApp Us</a>
       </div>
     </div>
   </div>
@@ -1145,29 +1017,25 @@
   <div class="container">
     <div class="section-header fade-up">
       <p class="eyebrow" data-i18n="ship.eyebrow"></p>
-      <h2 data-i18n-html="ship.headline"></h2>
+      <h2 data-i18n="ship.headline"></h2>
       <div class="gold-line"></div>
     </div>
     <div class="shipping-grid">
       <div class="ship-card fade-up">
         <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 8 3 16 6 23 3 23 18 16 21 8 18 1 21"/><line x1="8" y1="3" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="21"/></svg></div>
         <div class="ship-title" data-i18n="ship.1.title"></div>
-        <div class="ship-desc" data-i18n="ship.1.desc"></div>
       </div>
       <div class="ship-card fade-up">
         <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></div>
         <div class="ship-title" data-i18n="ship.2.title"></div>
-        <div class="ship-desc" data-i18n="ship.2.desc"></div>
       </div>
       <div class="ship-card fade-up">
         <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <div class="ship-title" data-i18n="ship.3.title"></div>
-        <div class="ship-desc" data-i18n="ship.3.desc"></div>
       </div>
       <div class="ship-card fade-up">
         <div class="ship-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8z"/></svg></div>
         <div class="ship-title" data-i18n="ship.4.title"></div>
-        <div class="ship-desc" data-i18n="ship.4.desc"></div>
       </div>
     </div>
     <div style="text-align:center;margin-top:40px;" class="fade-up">
@@ -1460,23 +1328,8 @@ const t = {
     'hero.ctaCall':     'Call Us',
 
     // TRUST BAR
-    'trust.yearsLabel':   'Years in Los Angeles',
-    'trust.dmvLabel':     'DMV Approved Dealer',
-    'trust.membersLabel': 'Community members',
+    'trust.yearsLabel':   'Years in business in Los Angeles',
 
-    // VALUE PROPS
-    'props.eyebrow':  'Why MNG Auto Club',
-    'props.headline': 'We get you approved.<br>We speak your language.',
-    'props.1.title':  'Financing for Everyone',
-    'props.1.desc':   'Fast approval, lowest rates.',
-    'props.2.title':  'We Speak English, Korean, Chinese, and Mongolian',
-    'props.2.desc':   'Buy a car in your own language, from your own community. No translator needed.',
-    'props.3.title':  'We Outpay CarMax',
-    'props.3.desc':   'Selling your car? We pay more than CarMax and any dealer. Guaranteed.',
-    'props.4.title':  'Nationwide + Mongolia Shipping',
-    'props.4.desc':   'Delivered to any US city, or shipped home to Mongolia. Door-to-door.',
-    'props.5.title':  'DMV Licensed Dealer',
-    'props.5.desc':   'DMV Approved Dealer #48175. Licensed, legitimate, trusted by thousands.',
 
     // INVENTORY
     'inv.eyebrow':          'Current Inventory',
@@ -1504,31 +1357,18 @@ const t = {
     'team.lang.zh':    '中文',
 
     // SELL
-    'sell.eyebrow':      'Sell or Trade',
-    'sell.headline':     'We Outpay CarMax<br><span class="gold-text">and any dealer.</span>',
-    'sell.compEyebrow':  'Typical Offer Comparison',
-    'sell.tagline':      'You keep the difference.',
-    'sell.disclaimer':   'Example only. Actual offer depends on vehicle condition and market.',
-    'sell.step1.title':  'Share your car info',
-    'sell.step1.desc':   'Year, make, model, mileage — call or message us in Mongolian.',
-    'sell.step2.title':  'Get an instant offer',
-    'sell.step2.desc':   'We beat CarMax. Guaranteed in writing before you commit.',
-    'sell.step3.title':  'Get paid same day',
-    'sell.step3.desc':   'Bring the car in, we handle all the paperwork. Cash or check, same day.',
+    'sell.headline':     'We buy cars at the best price',
+    'sell.sub':          'Sell outright or trade in towards your next car. Free appraisal, paid the same day.',
     'sell.cta1':         'Get My Offer',
     'sell.cta2':         'WhatsApp Us',
 
     // SHIPPING
     'ship.eyebrow':  'Shipping',
-    'ship.headline': 'Delivered anywhere in the US —<br><span class="gold-text">or shipped home to Mongolia.</span>',
-    'ship.1.title':  'All 50 States',
-    'ship.1.desc':   'We deliver to any US city. Door-to-door transport, fully insured.',
-    'ship.2.title':  'Ship to Mongolia',
-    'ship.2.desc':   "We ship directly to Ulaanbaatar. We handle customs paperwork so you don't have to.",
-    'ship.3.title':  'Full Documentation',
-    'ship.3.desc':   'Title, bill of sale, export certificate — we prepare everything in English and Mongolian.',
-    'ship.4.title':  'English, Korean, Chinese, and Mongolian support',
-    'ship.4.desc':   'Our shipping team speaks Mongolian. Ask us on WhatsApp or Messenger anytime.',
+    'ship.headline': 'We ship anywhere',
+    'ship.1.title':  'All 50 states',
+    'ship.2.title':  'To Mongolia',
+    'ship.3.title':  'Full paperwork',
+    'ship.4.title':  'We speak your language',
     'ship.cta':      'Ask About Shipping',
 
     // FOOTER
@@ -1571,23 +1411,8 @@ const t = {
     'hero.ctaCall':     'Llámanos',
 
     // TRUST BAR
-    'trust.yearsLabel':   'Años en Los Ángeles',
-    'trust.dmvLabel':     'Concesionario aprobado por el DMV',
-    'trust.membersLabel': 'Miembros de la comunidad',
+    'trust.yearsLabel':   'Años de negocio en Los Ángeles',
 
-    // VALUE PROPS
-    'props.eyebrow':  'Por qué MNG Auto Club',
-    'props.headline': 'Te conseguimos la aprobación.<br>Hablamos tu idioma.',
-    'props.1.title':  'Financiamiento para todos',
-    'props.1.desc':   'Aprobación rápida, las mejores tasas.',
-    'props.2.title':  'Hablamos inglés, coreano, chino y mongol',
-    'props.2.desc':   'Compra tu auto en tu propio idioma, con tu propia comunidad. Sin traductor.',
-    'props.3.title':  'Pagamos más que CarMax',
-    'props.3.desc':   '¿Vendes tu auto? Pagamos más que CarMax y cualquier concesionario. Garantizado.',
-    'props.4.title':  'Envíos a todo EE. UU. y Mongolia',
-    'props.4.desc':   'Entregamos en cualquier ciudad de EE. UU., o enviamos a Mongolia. Puerta a puerta.',
-    'props.5.title':  'Concesionario con licencia del DMV',
-    'props.5.desc':   'Concesionario aprobado por el DMV #48175. Con licencia, legítimo, con la confianza de miles.',
 
     // INVENTORY
     'inv.eyebrow':          'Inventario actual',
@@ -1614,31 +1439,18 @@ const t = {
     'team.lang.zh':    '中文',
 
     // SELL
-    'sell.eyebrow':      'Vende o intercambia',
-    'sell.headline':     'Pagamos más que CarMax<br><span class="gold-text">y cualquier concesionario.</span>',
-    'sell.compEyebrow':  'Comparación de oferta típica',
-    'sell.tagline':      'La diferencia es para ti.',
-    'sell.disclaimer':   'Solo un ejemplo. La oferta real depende del estado del vehículo y del mercado.',
-    'sell.step1.title':  'Cuéntanos sobre tu auto',
-    'sell.step1.desc':   'Año, marca, modelo, millaje — llámanos o escríbenos.',
-    'sell.step2.title':  'Recibe una oferta al instante',
-    'sell.step2.desc':   'Superamos a CarMax. Garantizado por escrito antes de que te comprometas.',
-    'sell.step3.title':  'Te pagamos el mismo día',
-    'sell.step3.desc':   'Trae el auto y nosotros hacemos todo el papeleo. Efectivo o cheque, el mismo día.',
+    'sell.headline':     'Compramos autos al mejor precio',
+    'sell.sub':          'Vende directamente o cámbialo por tu próximo auto. Tasación gratis, pago el mismo día.',
     'sell.cta1':         'Quiero mi oferta',
     'sell.cta2':         'Escríbenos por WhatsApp',
 
     // SHIPPING
     'ship.eyebrow':  'Envíos',
-    'ship.headline': 'Entregamos en todo EE. UU. —<br><span class="gold-text">o enviamos a Mongolia.</span>',
+    'ship.headline': 'Enviamos a donde sea',
     'ship.1.title':  'Los 50 estados',
-    'ship.1.desc':   'Entregamos en cualquier ciudad de EE. UU. Transporte puerta a puerta, con seguro completo.',
-    'ship.2.title':  'Envío a Mongolia',
-    'ship.2.desc':   'Enviamos directamente a Ulán Bator. Nos encargamos de los trámites aduaneros por ti.',
-    'ship.3.title':  'Documentación completa',
-    'ship.3.desc':   'Título, factura de venta, certificado de exportación — lo preparamos todo en inglés y mongol.',
-    'ship.4.title':  'Atención en inglés, coreano, chino y mongol',
-    'ship.4.desc':   'Nuestro equipo de envíos habla mongol. Escríbenos por WhatsApp o Messenger cuando quieras.',
+    'ship.2.title':  'A Mongolia',
+    'ship.3.title':  'Papeleo completo',
+    'ship.4.title':  'Hablamos tu idioma',
     'ship.cta':      'Pregunta sobre envíos',
 
     // FOOTER
@@ -1681,23 +1493,8 @@ const t = {
     'hero.ctaCall':     '전화하기',
 
     // TRUST BAR
-    'trust.yearsLabel':   'LA 영업 햇수',
-    'trust.dmvLabel':     'DMV 공인 딜러',
-    'trust.membersLabel': '커뮤니티 회원',
+    'trust.yearsLabel':   '로스앤젤레스에서 영업한 햇수',
 
-    // VALUE PROPS
-    'props.eyebrow':  'MNG Auto Club을 선택하는 이유',
-    'props.headline': '승인을 도와드립니다.<br>고객님의 언어로 상담합니다.',
-    'props.1.title':  '누구나 가능한 할부',
-    'props.1.desc':   '빠른 승인, 최저 금리.',
-    'props.2.title':  '영어, 한국어, 중국어, 몽골어 가능',
-    'props.2.desc':   '같은 커뮤니티에서 익숙한 언어로 차를 사세요. 통역이 필요 없습니다.',
-    'props.3.title':  'CarMax보다 높은 매입가',
-    'props.3.desc':   '차를 파시나요? CarMax와 어떤 딜러보다 높게 드립니다. 보장합니다.',
-    'props.4.title':  '미국 전역 + 몽골 배송',
-    'props.4.desc':   '미국 어느 도시로든 배송하고, 몽골까지 보내드립니다. 문 앞까지.',
-    'props.5.title':  'DMV 정식 등록 딜러',
-    'props.5.desc':   'DMV 공인 딜러 #48175. 정식 등록되어 수천 명이 신뢰합니다.',
 
     // INVENTORY
     'inv.eyebrow':          '현재 재고',
@@ -1724,31 +1521,18 @@ const t = {
     'team.lang.zh':    '中文',
 
     // SELL
-    'sell.eyebrow':      '판매 또는 트레이드',
-    'sell.headline':     'CarMax보다<br><span class="gold-text">높게 매입합니다.</span>',
-    'sell.compEyebrow':  '일반적인 견적 비교',
-    'sell.tagline':      '차액은 고객님의 몫입니다.',
-    'sell.disclaimer':   '예시입니다. 실제 견적은 차량 상태와 시세에 따라 달라집니다.',
-    'sell.step1.title':  '차량 정보를 알려주세요',
-    'sell.step1.desc':   '연식, 제조사, 모델, 주행거리 — 전화나 메시지로 알려주세요.',
-    'sell.step2.title':  '즉시 견적 확인',
-    'sell.step2.desc':   'CarMax보다 높게 드립니다. 계약 전에 서면으로 보장합니다.',
-    'sell.step3.title':  '당일 지급',
-    'sell.step3.desc':   '차량만 가져오시면 서류는 저희가 처리합니다. 현금 또는 수표, 당일 지급.',
+    'sell.headline':     '차량을 최고가에 매입합니다',
+    'sell.sub':          '바로 판매하거나 다음 차량으로 트레이드인 하세요. 무료 감정, 당일 지급.',
     'sell.cta1':         '견적 받기',
     'sell.cta2':         'WhatsApp으로 문의',
 
     // SHIPPING
     'ship.eyebrow':  '배송',
-    'ship.headline': '미국 어디로든 배송 —<br><span class="gold-text">몽골까지도 보내드립니다.</span>',
+    'ship.headline': '어디든 배송합니다',
     'ship.1.title':  '미국 50개 주',
-    'ship.1.desc':   '미국 어느 도시로든 배송합니다. 문 앞까지 운송, 보험 완비.',
-    'ship.2.title':  '몽골 배송',
-    'ship.2.desc':   '울란바토르로 직접 배송합니다. 통관 서류는 저희가 처리합니다.',
-    'ship.3.title':  '서류 일체 준비',
-    'ship.3.desc':   '타이틀, 매매 계약서, 수출 증명서 — 영어와 몽골어로 모두 준비해 드립니다.',
-    'ship.4.title':  '영어, 한국어, 중국어, 몽골어 지원',
-    'ship.4.desc':   '배송팀은 몽골어로 상담합니다. WhatsApp이나 Messenger로 언제든 문의하세요.',
+    'ship.2.title':  '몽골까지',
+    'ship.3.title':  '서류 일체',
+    'ship.4.title':  '고객님의 언어로 상담',
     'ship.cta':      '배송 문의하기',
 
     // FOOTER
@@ -1791,23 +1575,8 @@ const t = {
     'hero.ctaCall':     '致电我们',
 
     // TRUST BAR
-    'trust.yearsLabel':   '扎根洛杉矶年数',
-    'trust.dmvLabel':     'DMV 认证车行',
-    'trust.membersLabel': '社区成员',
+    'trust.yearsLabel':   '在洛杉矶经营年数',
 
-    // VALUE PROPS
-    'props.eyebrow':  '为什么选择 MNG Auto Club',
-    'props.headline': '我们帮您拿到批准。<br>我们说您的语言。',
-    'props.1.title':  '人人都能贷款',
-    'props.1.desc':   '快速批准，利率最低。',
-    'props.2.title':  '我们会说英语、韩语、中文和蒙古语',
-    'props.2.desc':   '用您熟悉的语言，在自己的社区买车。无需翻译。',
-    'props.3.title':  '出价高于 CarMax',
-    'props.3.desc':   '想卖车？我们出价高于 CarMax 和任何车行。保证。',
-    'props.4.title':  '全美配送 + 蒙古运输',
-    'props.4.desc':   '送达美国任何城市，也可运回蒙古。门到门服务。',
-    'props.5.title':  'DMV 持照车行',
-    'props.5.desc':   'DMV 认证车行 #48175。持照合法，数千客户信赖。',
 
     // INVENTORY
     'inv.eyebrow':          '现有库存',
@@ -1834,31 +1603,18 @@ const t = {
     'team.lang.zh':    '中文',
 
     // SELL
-    'sell.eyebrow':      '出售或置换',
-    'sell.headline':     '我们出价高于 CarMax<br><span class="gold-text">和任何车行。</span>',
-    'sell.compEyebrow':  '常见报价对比',
-    'sell.tagline':      '差价归您。',
-    'sell.disclaimer':   '仅为示例。实际报价取决于车况与市场行情。',
-    'sell.step1.title':  '告诉我们车辆信息',
-    'sell.step1.desc':   '年份、品牌、型号、里程 — 致电或发消息给我们。',
-    'sell.step2.title':  '立即获得报价',
-    'sell.step2.desc':   '我们出价高于 CarMax。成交前书面保证。',
-    'sell.step3.title':  '当天付款',
-    'sell.step3.desc':   '把车开来，所有手续由我们办理。现金或支票，当天结清。',
+    'sell.headline':     '我们以最优价格收车',
+    'sell.sub':          '可直接出售，也可置换下一辆车。免费估价，当天付款。',
     'sell.cta1':         '获取报价',
     'sell.cta2':         'WhatsApp 联系',
 
     // SHIPPING
     'ship.eyebrow':  '运输',
-    'ship.headline': '送达美国任何地方 —<br><span class="gold-text">也可运回蒙古。</span>',
+    'ship.headline': '送达任何地方',
     'ship.1.title':  '全美 50 州',
-    'ship.1.desc':   '送达美国任何城市。门到门运输，全额保险。',
     'ship.2.title':  '运往蒙古',
-    'ship.2.desc':   '直接运至乌兰巴托。清关手续由我们办理。',
-    'ship.3.title':  '完整文件',
-    'ship.3.desc':   '车辆产权证、买卖合同、出口证明 — 我们以英文和蒙古文备齐。',
-    'ship.4.title':  '英语、韩语、中文和蒙古语服务',
-    'ship.4.desc':   '我们的运输团队会说蒙古语。随时通过 WhatsApp 或 Messenger 联系。',
+    'ship.3.title':  '手续齐全',
+    'ship.4.title':  '用您的语言沟通',
     'ship.cta':      '咨询运输',
 
     // FOOTER
@@ -1901,23 +1657,8 @@ const t = {
     'hero.ctaCall':     'Залгах',
 
     // TRUST BAR
-    'trust.yearsLabel':   'Лос Анжелест ажилласан жил',
-    'trust.dmvLabel':     'ДМВ зөвшөөрөлтэй дилер',
-    'trust.membersLabel': 'Хамт олон',
+    'trust.yearsLabel':   'Лос Анжелест бизнес хийсэн жил',
 
-    // VALUE PROPS
-    'props.eyebrow':  'Яагаад MNG Auto Club',
-    'props.headline': 'Бид танд зөвшөөрөл олгоно.<br>Монголоор ярина.',
-    'props.1.title':  'Бүгдэд зориулсан санхүүжилт',
-    'props.1.desc':   'Шуурхай зөвшөөрөл.',
-    'props.2.title':  'Монголоор ярина',
-    'props.2.desc':   'Өөрийн хэлээрээ, өөрийн хамт олноосоо машин ав.',
-    'props.3.title':  'CarMax-аас илүү төлнө',
-    'props.3.desc':   'Машинаа зарах уу? Бид хамгийн өндөр үнэ санал болгоно.',
-    'props.4.title':  'АНУ болон Монгол руу тээвэрлэнэ',
-    'props.4.desc':   'АНУ-ын аль ч хотод, эсвэл Монгол руу хүргэнэ.',
-    'props.5.title':  'ДМВ зөвшөөрөлтэй дилер',
-    'props.5.desc':   'ДМВ #48175. Хуулийн дагуу, мянга мянган хүний итгэлийг хүлээсэн.',
 
     // INVENTORY
     'inv.eyebrow':          'Одоогийн машинууд',
@@ -1945,31 +1686,18 @@ const t = {
     'team.lang.zh':    '中文',
 
     // SELL
-    'sell.eyebrow':      'Зарах эсвэл солих',
-    'sell.headline':     'Бид CarMax болон<br><span class="gold-text">бусад дилерээс илүү төлнө.</span>',
-    'sell.compEyebrow':  'Үнийн харьцуулалт',
-    'sell.tagline':      'Зөрүүг та авна.',
-    'sell.disclaimer':   'Жишээ үнэ. Яг үнэ машины байдлаас хамаарна.',
-    'sell.step1.title':  'Машины мэдээллээ илгээх',
-    'sell.step1.desc':   'Оноо, марк, загвар, гүйлт — монголоор залгах эсвэл мессеж.',
-    'sell.step2.title':  'Шуурхай үнийн санал авах',
-    'sell.step2.desc':   'Бид CarMax-аас дээш үнэ санал болгоно. Бичгээр баталгаажуулна.',
-    'sell.step3.title':  'Өдрийн дотор мөнгөө авах',
-    'sell.step3.desc':   'Машинаа авчирна уу, бид бичиг цаасыг шийдэнэ. Өдрийн дотор.',
+    'sell.headline':     'Бид машиныг хамгийн сайн үнээр авна',
+    'sell.sub':          'Шууд зарах эсвэл дараагийн машиндаа солиулж болно. Үнэлгээ үнэгүй, тухайн өдөртөө төлнө.',
     'sell.cta1':         'Үнийн санал авах',
-    'sell.cta2':         'WhatsApp мессеж',
+    'sell.cta2':         'WhatsApp-аар холбогдох',
 
     // SHIPPING
     'ship.eyebrow':  'Тээвэрлэлт',
-    'ship.headline': 'АНУ-ын аль ч хотод —<br><span class="gold-text">эсвэл Монгол руу тээвэрлэнэ.</span>',
-    'ship.1.title':  '50 муж бүгд',
-    'ship.1.desc':   'АНУ-ын аль ч хотод хүргэнэ. Даатгалтай тээвэр.',
-    'ship.2.title':  'Монгол руу тээвэр',
-    'ship.2.desc':   'Улаанбаатар руу шууд тээвэрлэнэ. Гаалийн бичиг цаасыг бид хариуцна.',
+    'ship.headline': 'Хаана ч хүргэнэ',
+    'ship.1.title':  '50 муж',
+    'ship.2.title':  'Монгол руу',
     'ship.3.title':  'Бүрэн бичиг баримт',
-    'ship.3.desc':   'Гарчиг, худалдааны гэрчилгээ — монгол, англи хэл дээр бэлдэнэ.',
-    'ship.4.title':  'Монгол хэлний дэмжлэг',
-    'ship.4.desc':   'Тээврийн баг монголоор ярьдаг. WhatsApp эсвэл Messenger-ээр ч холбогдож болно.',
+    'ship.4.title':  'Таны хэлээр ярина',
     'ship.cta':      'Тээврийн талаар асуух',
 
     // FOOTER
