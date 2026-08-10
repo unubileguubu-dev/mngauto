@@ -251,21 +251,6 @@
     .promo-sound { transform: none; }
   }
 
-  /* TRUST BAR */
-  /* TRUST BAR — one stat system, same treatment as the hero stat counter */
-  #trust-bar { border-top: 1px solid var(--steel); border-bottom: 1px solid var(--steel); padding: 20px; }
-  .trust-stats { width: 100%; max-width: 1200px; margin: 0 auto; display: flex; flex-direction: column; }
-  .trust-stat { padding: 14px 0; text-align: center; }
-  .trust-stat + .trust-stat { border-top: 1px solid var(--steel); }
-  .trust-stat-value { font-family: 'Saira', sans-serif; font-size: 32px; font-weight: 800; color: var(--gold); line-height: 1; font-variant-numeric: tabular-nums; }
-  .trust-stat-label { font-size: 13px; color: var(--ash); margin-top: 6px; }
-  @media (min-width: 768px) {
-    .trust-stats { flex-direction: row; }
-    .trust-stat { flex: 1; padding: 4px 24px; }
-    .trust-stat + .trust-stat { border-top: none; border-left: 1px solid var(--steel); }
-    .trust-stat-value { font-size: 40px; }
-  }
-
   /* SECTIONS */
   section { padding: 64px 0; }
   @media (min-width: 768px) { section { padding: 96px 0; } }
@@ -664,16 +649,6 @@
   });
 })();
 </script>
-
-<!-- TRUST BAR -->
-<div id="trust-bar" aria-label="Trust signals">
-  <div class="trust-stats">
-    <div class="trust-stat">
-      <div class="trust-stat-value"><span data-years>10</span></div>
-      <div class="trust-stat-label" data-i18n="trust.yearsLabel">Years in business in Los Angeles</div>
-    </div>
-  </div>
-</div>
 
 <!-- INVENTORY -->
 <section id="inventory">
@@ -1327,8 +1302,6 @@ const t = {
     'hero.ctaApproved': 'Get Pre-Approved',
     'hero.ctaCall':     'Call Us',
 
-    // TRUST BAR
-    'trust.yearsLabel':   'Years in business in Los Angeles',
 
 
     // INVENTORY
@@ -1410,8 +1383,6 @@ const t = {
     'hero.ctaApproved': 'Obtener preaprobación',
     'hero.ctaCall':     'Llámanos',
 
-    // TRUST BAR
-    'trust.yearsLabel':   'Años de negocio en Los Ángeles',
 
 
     // INVENTORY
@@ -1492,8 +1463,6 @@ const t = {
     'hero.ctaApproved': '사전 승인 받기',
     'hero.ctaCall':     '전화하기',
 
-    // TRUST BAR
-    'trust.yearsLabel':   '로스앤젤레스에서 영업한 햇수',
 
 
     // INVENTORY
@@ -1574,8 +1543,6 @@ const t = {
     'hero.ctaApproved': '获取预批准',
     'hero.ctaCall':     '致电我们',
 
-    // TRUST BAR
-    'trust.yearsLabel':   '在洛杉矶经营年数',
 
 
     // INVENTORY
@@ -1656,8 +1623,6 @@ const t = {
     'hero.ctaApproved': 'Урьдчилан зөвшөөрөл авах',
     'hero.ctaCall':     'Залгах',
 
-    // TRUST BAR
-    'trust.yearsLabel':   'Лос Анжелест бизнес хийсэн жил',
 
 
     // INVENTORY
