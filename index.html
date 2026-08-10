@@ -374,57 +374,39 @@
   .car-monthly { font-size: 12px; color: var(--ash); margin-bottom: 14px; }
   .inventory-footer { text-align: center; margin-top: 40px; }
 
-  /* FINANCING */
-  #financing { background: var(--carbon); position: relative; overflow: hidden; }
-  .financing-grid { display: grid; grid-template-columns: 1fr; gap: 48px; align-items: center; }
-  @media (min-width: 900px) { .financing-grid { grid-template-columns: 1fr 1fr; gap: 64px; } }
-  .financing-items { display: flex; flex-direction: column; gap: 20px; }
-  .financing-item { display: flex; gap: 16px; align-items: flex-start; }
-  .financing-check {
-    flex-shrink: 0; width: 28px; height: 28px;
-    background: rgba(46,158,91,0.15); border: 1px solid var(--success);
-    border-radius: 50%; display: flex; align-items: center; justify-content: center;
-    margin-top: 2px;
+  /* REVIEWS */
+  #reviews { background: var(--carbon); }
+  .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+  @media (min-width: 768px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
+  .review-src {
+    background: var(--onyx); border: 1px solid var(--steel); border-radius: 10px;
+    padding: 24px; display: flex; flex-direction: column; align-items: center; text-align: center;
   }
-  .financing-check svg { width: 14px; height: 14px; color: var(--success); }
-  .financing-item-title { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 700; color: var(--bone); margin-bottom: 4px; }
-  .financing-item-desc { font-size: 14px; color: var(--ash); }
+  .review-src-logo { width: 44px; height: 44px; margin-bottom: 12px; }
+  .review-src-name { font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 700; color: var(--bone); margin-bottom: 10px; }
+  .review-stars { color: var(--gold); font-size: 19px; letter-spacing: 0.14em; margin-bottom: 6px; }
+  .review-note { font-size: 13px; color: var(--ash); line-height: 1.6; margin-bottom: 18px; }
+  .review-src .btn { margin-top: auto; }
+  /* Drop a review-widget embed in here and it inherits the section spacing. */
+  .reviews-embed:empty { display: none; }
+  .reviews-embed { margin-top: 28px; }
 
-  /* STAMP */
-  .stamp-wrapper { display: flex; justify-content: center; align-items: center; padding: 20px; }
-  .stamp {
-    position: relative; width: 220px; height: 220px;
-    border-radius: 50%; border: 4px solid var(--gold);
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    text-align: center; padding: 20px;
-    opacity: 0; transform: scale(0.7) rotate(-8deg);
-    transition: opacity 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    box-shadow: 0 0 0 8px rgba(201,162,75,0.05), 0 0 0 12px rgba(201,162,75,0.08), inset 0 0 40px rgba(201,162,75,0.06);
+  /* INSTAGRAM */
+  #instagram { background: var(--onyx); }
+  .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  @media (min-width: 700px) { .ig-grid { grid-template-columns: repeat(6, 1fr); gap: 10px; } }
+  .ig-tile {
+    position: relative; aspect-ratio: 1 / 1; display: block;
+    background: linear-gradient(160deg, #1a1a20 0%, #0f0f14 100%);
+    border: 1px solid var(--steel); border-radius: 6px; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+    transition: border-color 0.15s, transform 0.15s;
   }
-  .stamp.visible { opacity: 1; transform: scale(1) rotate(-6deg); }
-  @media (prefers-reduced-motion: reduce) { .stamp { transition: opacity 0.3s; transform: rotate(-6deg) !important; } }
-  .stamp::before { content: ''; position: absolute; inset: 8px; border-radius: 50%; border: 1.5px dashed rgba(201,162,75,0.3); }
-  .stamp-approved { font-family: 'Saira', sans-serif; font-size: 36px; font-weight: 800; color: var(--gold); letter-spacing: 0.06em; line-height: 1; }
-  .stamp-divider { width: 60px; height: 2px; background: var(--gold); margin: 8px 0; opacity: 0.5; }
-  .stamp-mn { font-family: 'Saira', sans-serif; font-size: 14px; font-weight: 700; color: var(--gold); letter-spacing: 0.04em; opacity: 0.8; }
-  .stamp-sub { font-size: 10px; color: var(--ash); letter-spacing: 0.08em; text-transform: uppercase; margin-top: 6px; }
-
-  /* FORM */
-  .financing-form { background: var(--onyx); border: 1px solid var(--steel); border-radius: 8px; padding: 28px; }
-  .financing-form h3 { font-family: 'Saira', sans-serif; font-size: 20px; font-weight: 700; color: var(--bone); margin-bottom: 6px; }
-  .financing-form p { font-size: 13px; color: var(--ash); margin-bottom: 20px; }
-  .form-field { margin-bottom: 14px; }
-  .form-field label { display: block; font-size: 12px; font-weight: 600; color: var(--ash); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 6px; }
-  .form-field input, .form-field select {
-    width: 100%; height: 48px;
-    background: var(--carbon); border: 1px solid var(--steel);
-    border-radius: 6px; padding: 0 14px;
-    color: var(--bone); font-family: 'Inter', sans-serif; font-size: 15px;
-    outline: none; transition: border-color 0.15s;
-  }
-  .form-field input:focus, .form-field select:focus { border-color: var(--gold); }
-  .form-field select option { background: var(--carbon); }
-  .form-note { font-size: 12px; color: var(--ash); margin-top: 10px; text-align: center; }
+  .ig-tile:hover { border-color: var(--gold); transform: translateY(-2px); }
+  .ig-tile svg { width: 22px; height: 22px; color: var(--ash); opacity: 0.35; }
+  .ig-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .ig-footer { text-align: center; margin-top: 28px; }
+  .ig-embed:empty { display: none; }
 
   /* SELL — light relief section */
   #sell { background: var(--bone); }
@@ -606,7 +588,6 @@
   </div>
   <ul class="mobile-menu-links">
     <li><a href="#inventory" onclick="closeMenu()" data-i18n="nav.inventory"></a></li>
-    <li><a href="#financing" onclick="closeMenu()" data-i18n="nav.financing"></a></li>
     <li><a href="#sell" onclick="closeMenu()" data-i18n="nav.sell"></a></li>
     <li><a href="#shipping" onclick="closeMenu()" data-i18n="nav.shipping"></a></li>
     <li><a href="#contact" onclick="closeMenu()" data-i18n="nav.contact"></a></li>
@@ -628,7 +609,7 @@
     <h1 class="hero-h1" data-i18n-html="hero.headline"></h1>
     <p class="hero-sub" data-i18n-html="hero.sub"></p>
     <div class="hero-ctas">
-      <a href="#financing" class="btn btn-primary" data-i18n="hero.ctaApproved"></a>
+      <a href="#contact" class="btn btn-primary" data-i18n="hero.ctaApproved"></a>
       <a href="tel:+12133528955" class="btn btn-secondary">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         <span data-i18n="hero.ctaCall"></span>
@@ -779,7 +760,41 @@
 
       <!-- NEWEST FIRST. Add a new listing directly below this line, not at the bottom. -->
 
-      <!-- Card 1: 2023 Toyota Highlander Platinum Hybrid -->
+      <!-- Card 1: Toyota Prius — awaiting photos, mileage, year and price -->
+      <div class="car-card fade-up">
+        <div class="car-photo">
+          <div class="car-photo-placeholder">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M5 17h14m0 0a2 2 0 104 0M5 12h14"/></svg>
+            <span data-i18n="inv.photoPlaceholder">REAL PHOTO COMING SOON</span>
+          </div>
+          <div class="car-badge-instock" data-i18n="inv.badge"></div>
+        </div>
+        <div class="car-body">
+          <div class="car-title">Toyota Prius</div>
+          <div class="car-meta"><span class="car-mileage"></span></div>
+          <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+        </div>
+      </div>
+
+      <!-- Card 2: Lexus TX — awaiting photos, mileage, year and price -->
+      <div class="car-card fade-up">
+        <div class="car-photo">
+          <div class="car-photo-placeholder">
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17H3v-5l2-5h14l2 5v5h-2M5 17a2 2 0 104 0M5 17h14m0 0a2 2 0 104 0M5 12h14"/></svg>
+            <span data-i18n="inv.photoPlaceholder">REAL PHOTO COMING SOON</span>
+          </div>
+          <div class="car-badge-instock" data-i18n="inv.badge"></div>
+        </div>
+        <div class="car-body">
+          <div class="car-title">Lexus TX</div>
+          <div class="car-meta"><span class="car-mileage"></span></div>
+          <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+        </div>
+      </div>
+
+      <!-- Card 3: 2023 Toyota Highlander Platinum Hybrid -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -809,11 +824,11 @@
           <div class="car-title">2023 Toyota Highlander Platinum Hybrid</div>
           <div class="car-meta"><span class="car-mileage">50,000 mi</span></div>
           <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
-      <!-- Card 2: 2002 Honda S2000 Turbo -->
+      <!-- Card 4: 2002 Honda S2000 Turbo -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -848,11 +863,11 @@
           <div class="car-meta"><span class="car-mileage">55,000 mi · 6-Speed Manual · Convertible</span></div>
           <div class="car-price">$29,000 OBO</div>
           <div class="car-monthly">Clean title · Turbocharged · Performance exhaust · Recently serviced</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
-      <!-- Card 3: 2021 Toyota Camry LE Hybrid -->
+      <!-- Card 5: 2021 Toyota Camry LE Hybrid -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -881,11 +896,11 @@
           <div class="car-title">2021 Toyota Camry LE Hybrid</div>
           <div class="car-meta"><span class="car-mileage">118,387 mi</span></div>
           <div class="car-price">$17,500</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
-      <!-- Card 4: 2017 Honda CR-V -->
+      <!-- Card 6: 2017 Honda CR-V -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -921,11 +936,11 @@
           <div class="car-title">2017 Honda CR-V</div>
           <div class="car-meta"><span class="car-mileage">107,551 mi</span></div>
           <div class="car-price">$17,500</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
-      <!-- Card 5: 2026 Toyota Camry SE -->
+      <!-- Card 7: 2026 Toyota Camry SE -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -964,11 +979,11 @@
           <div class="car-title">2026 Toyota Camry SE</div>
           <div class="car-meta"><span class="car-mileage">47 mi</span></div>
           <div class="car-price">$34,500</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
-      <!-- Card 6: 2022 Tesla Model Y Performance AWD — SOLD -->
+      <!-- Card 8: 2022 Tesla Model Y Performance AWD — SOLD -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1004,11 +1019,11 @@
           <div class="car-title">2022 Tesla Model Y Performance AWD</div>
           <div class="car-meta"><span class="car-mileage">36,919 mi</span></div>
           <div class="car-price">$35,800</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
-      <!-- Card 7: 2025 RAM ProMaster 3500 -->
+      <!-- Card 9: 2025 RAM ProMaster 3500 -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1036,7 +1051,7 @@
           <div class="car-meta"><span class="car-mileage">28,559 mi · High Roof 159"</span></div>
           <div class="car-price">$38,000</div>
           <div class="car-monthly">Down payment $3,000</div>
-          <a href="#financing" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
       </div>
 
@@ -1046,71 +1061,6 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
         <span data-i18n="inv.cta"></span>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- FINANCING -->
-<section id="financing">
-  <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow" data-i18n="fin.eyebrow"></p>
-      <h2 data-i18n-html="fin.headline"></h2>
-      <div class="gold-line"></div>
-    </div>
-    <div class="financing-grid">
-      <div>
-        <div class="financing-items fade-up">
-          <div class="financing-item">
-            <div class="financing-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div>
-            <div>
-              <div class="financing-item-title" data-i18n="fin.4.title"></div>
-              <div class="financing-item-desc" data-i18n="fin.4.desc"></div>
-            </div>
-          </div>
-        </div>
-        <div class="stamp-wrapper" id="stamp-wrapper" style="margin-top:40px;">
-          <div class="stamp" id="approved-stamp">
-            <div class="stamp-approved">APPROVED</div>
-            <div class="stamp-divider"></div>
-            <div class="stamp-mn">Зөвшөөрөгдсөн</div>
-            <div class="stamp-sub" data-i18n="fin.stampSub"></div>
-          </div>
-        </div>
-      </div>
-      <div class="fade-up">
-        <div class="financing-form">
-          <h3 data-i18n="fin.formTitle"></h3>
-          <p data-i18n="fin.formSub"></p>
-          <form onsubmit="handleForm(event)">
-            <div class="form-field">
-              <label for="f-name" data-i18n="fin.field1"></label>
-              <input type="text" id="f-name" placeholder="Bat Erdene" required autocomplete="name">
-            </div>
-            <div class="form-field">
-              <label for="f-phone" data-i18n="fin.field2"></label>
-              <input type="tel" id="f-phone" placeholder="+1 (213) 000-0000" required autocomplete="tel">
-            </div>
-            <div class="form-field">
-              <label for="f-car" data-i18n="fin.field3"></label>
-              <input type="text" id="f-car" placeholder="2021 Toyota Camry" autocomplete="off">
-            </div>
-            <div class="form-field">
-              <label for="f-lang" data-i18n="fin.field4"></label>
-              <select id="f-lang">
-                <option value="en">English</option>
-                <option value="mn">Монгол</option>
-                <option value="ko">한국어</option>
-                <option value="zh">中文</option>
-              </select>
-            </div>
-            <button type="submit" class="btn btn-primary btn-full" style="margin-top:4px;" id="form-submit">
-              <span data-i18n="fin.submit"></span>
-            </button>
-          </form>
-          <p class="form-note" data-i18n="fin.formNote"></p>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -1259,6 +1209,74 @@
   </div>
 </section>
 
+<!-- REVIEWS -->
+<section id="reviews">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow" data-i18n="reviews.eyebrow">Reviews</p>
+      <h2 data-i18n="reviews.headline">What our customers say</h2>
+      <div class="gold-line"></div>
+      <p style="margin-top:12px;" data-i18n="reviews.sub">Real reviews from the people we have sold to.</p>
+    </div>
+    <div class="reviews-grid fade-up">
+      <div class="review-src">
+        <svg class="review-src-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        <div class="review-src-name" data-i18n="reviews.google">Google Reviews</div>
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p class="review-note" data-i18n="reviews.note">Read what customers have written, or leave your own.</p>
+        <a class="btn btn-secondary btn-sm btn-full" target="_blank" rel="noopener"
+           href="https://www.google.com/search?q=MNG+Auto+Club+Glendale+CA+reviews"
+           data-i18n="reviews.readGoogle">Read Google Reviews</a>
+      </div>
+      <div class="review-src">
+        <svg class="review-src-logo" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12a12 12 0 10-13.9 11.9v-8.4H7v-3.5h3.1V9.4c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0024 12z"/></svg>
+        <div class="review-src-name" data-i18n="reviews.facebook">Facebook Reviews</div>
+        <div class="review-stars" aria-hidden="true">★★★★★</div>
+        <p class="review-note" data-i18n="reviews.note">Read what customers have written, or leave your own.</p>
+        <a class="btn btn-secondary btn-sm btn-full" target="_blank" rel="noopener"
+           href="https://facebook.com/mngautoclub/reviews"
+           data-i18n="reviews.readFacebook">Read Facebook Reviews</a>
+      </div>
+    </div>
+    <!-- REVIEW WIDGET SLOT — paste the embed snippet from your review widget here
+         (Elfsight / Trustindex / EmbedSocial etc). It will pick up the section spacing. -->
+    <div class="reviews-embed"></div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section id="instagram">
+  <div class="container">
+    <div class="section-header fade-up">
+      <p class="eyebrow" data-i18n="insta.eyebrow">Instagram</p>
+      <h2 data-i18n="insta.headline">Follow the latest arrivals</h2>
+      <div class="gold-line"></div>
+      <p style="margin-top:12px;" data-i18n="insta.sub">New cars, sold cars and everything in between.</p>
+    </div>
+    <!-- INSTAGRAM FEED SLOT — a live feed needs an access token or a feed widget.
+         Paste the widget embed here and delete the placeholder grid below. -->
+    <div class="ig-embed"></div>
+    <div class="ig-grid fade-up">
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+    </div>
+    <div class="ig-footer fade-up">
+      <a class="btn btn-primary" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener"
+         data-i18n="insta.follow">Follow @mngautoclub</a>
+    </div>
+  </div>
+</section>
+
 <!-- FOOTER -->
 <footer id="contact">
   <div class="container">
@@ -1293,7 +1311,6 @@
         <div class="footer-col-title" data-i18n="footer.quickLinks"></div>
         <ul class="footer-links">
           <li><a href="#inventory" data-i18n="nav.inventory"></a></li>
-          <li><a href="#financing" data-i18n="nav.financing"></a></li>
           <li><a href="#sell" data-i18n="nav.sell"></a></li>
           <li><a href="#shipping" data-i18n="nav.shipping"></a></li>
           <li><a href="#contact" data-i18n="nav.contact"></a></li>
@@ -1313,6 +1330,14 @@
         <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
           <span style="color:var(--bone);font-size:13px;">Bilguudei Minjin<br><a href="tel:+15712370635" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">(571) 237-0635</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <span style="color:var(--bone);font-size:13px;">Solongo Sarankhuu<br><a href="tel:+14243353285" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">(424) 335-3285</a></span>
+        </div>
+        <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <span style="color:var(--bone);font-size:13px;">Unubileg Batjarga<br><a href="tel:+19842698196" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">(984) 269-8196</a></span>
         </div>
         <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -1364,10 +1389,23 @@ var LANGS = ['en', 'mn', 'es', 'ko', 'zh'];
 
 const t = {
   en: {
+    // REVIEWS + INSTAGRAM
+    'reviews.eyebrow':     'Reviews',
+    'reviews.headline':    'What our customers say',
+    'reviews.sub':         'Real reviews from the people we have sold to.',
+    'reviews.google':      'Google Reviews',
+    'reviews.facebook':    'Facebook Reviews',
+    'reviews.note':        'Read what customers have written, or leave your own.',
+    'reviews.readGoogle':  'Read Google Reviews',
+    'reviews.readFacebook': 'Read Facebook Reviews',
+    'insta.eyebrow':       'Instagram',
+    'insta.headline':      'Follow the latest arrivals',
+    'insta.sub':           'New cars, sold cars and everything in between.',
+    'insta.follow':        'Follow @mngautoclub',
+
     // NAV
     'nav.callBtn':    'Call Now',
     'nav.inventory':  'Inventory',
-    'nav.financing':  'Financing',
     'nav.sell':       'Sell / Trade',
     'nav.shipping':   'Shipping',
     'nav.contact':    'Contact',
@@ -1412,21 +1450,6 @@ const t = {
     'inv.details':          'See Details',
     'inv.cta':              'Call to See Full Inventory',
 
-    // FINANCING
-    'fin.eyebrow':   'Financing',
-    'fin.headline':  'Financing<br><span class="gold-text">made simple.</span>',
-    'fin.4.title':   'Fast — 10 Minutes',
-    'fin.4.desc':    'Pre-approval in 10 minutes. Drive the same day in many cases.',
-    'fin.stampSub':  'All applications welcome',
-    'fin.formTitle': 'Get Pre-Approved Now',
-    'fin.formSub':   "4 fields. We'll call you.",
-    'fin.field1':    'Your Name',
-    'fin.field2':    'Phone Number',
-    'fin.field3':    "Car You're Interested In",
-    'fin.field4':    'Preferred Language',
-    'fin.submit':    'Get Pre-Approved →',
-    'fin.formNote':  'No commitment. We call you within 1 hour.',
-    'fin.success':   "✓ Submitted — we'll call you soon!",
 
     // TEAM
     'team.headline':   'The Team',
@@ -1484,10 +1507,23 @@ const t = {
   },
 
   es: {
+    // REVIEWS + INSTAGRAM
+    'reviews.eyebrow':     'Reseñas',
+    'reviews.headline':    'Lo que dicen nuestros clientes',
+    'reviews.sub':         'Reseñas reales de las personas a las que hemos vendido.',
+    'reviews.google':      'Reseñas de Google',
+    'reviews.facebook':    'Reseñas de Facebook',
+    'reviews.note':        'Lee lo que han escrito los clientes, o deja la tuya.',
+    'reviews.readGoogle':  'Leer reseñas de Google',
+    'reviews.readFacebook': 'Leer reseñas de Facebook',
+    'insta.eyebrow':       'Instagram',
+    'insta.headline':      'Sigue las últimas llegadas',
+    'insta.sub':           'Autos nuevos, autos vendidos y todo lo demás.',
+    'insta.follow':        'Sigue @mngautoclub',
+
     // NAV
     'nav.callBtn':    'Llamar ahora',
     'nav.inventory':  'Inventario',
-    'nav.financing':  'Financiamiento',
     'nav.sell':       'Vender / Intercambiar',
     'nav.shipping':   'Envíos',
     'nav.contact':    'Contacto',
@@ -1532,21 +1568,6 @@ const t = {
     'inv.details':          'Ver detalles',
     'inv.cta':              'Llama para ver todo el inventario',
 
-    // FINANCING
-    'fin.eyebrow':   'Financiamiento',
-    'fin.headline':  'Financiamiento<br><span class="gold-text">sin complicaciones.</span>',
-    'fin.4.title':   'Rápido — 10 minutos',
-    'fin.4.desc':    'Preaprobación en 10 minutos. En muchos casos, te llevas el auto el mismo día.',
-    'fin.stampSub':  'Todas las solicitudes son bienvenidas',
-    'fin.formTitle': 'Obtén tu preaprobación',
-    'fin.formSub':   '4 campos. Te llamamos.',
-    'fin.field1':    'Tu nombre',
-    'fin.field2':    'Número de teléfono',
-    'fin.field3':    'Auto que te interesa',
-    'fin.field4':    'Idioma preferido',
-    'fin.submit':    'Obtener preaprobación →',
-    'fin.formNote':  'Sin compromiso. Te llamamos en menos de 1 hora.',
-    'fin.success':   '✓ Enviado — ¡te llamamos pronto!',
 
     // TEAM
     'team.headline':   'El equipo',
@@ -1603,10 +1624,23 @@ const t = {
   },
 
   ko: {
+    // REVIEWS + INSTAGRAM
+    'reviews.eyebrow':     '후기',
+    'reviews.headline':    '고객 후기',
+    'reviews.sub':         '실제로 구매하신 분들이 남긴 후기입니다.',
+    'reviews.google':      '구글 리뷰',
+    'reviews.facebook':    '페이스북 리뷰',
+    'reviews.note':        '고객들이 남긴 후기를 읽거나 직접 남겨보세요.',
+    'reviews.readGoogle':  '구글 리뷰 보기',
+    'reviews.readFacebook': '페이스북 리뷰 보기',
+    'insta.eyebrow':       '인스타그램',
+    'insta.headline':      '새로 들어온 차량 보기',
+    'insta.sub':           '입고 차량, 판매 완료 차량 등 소식을 전합니다.',
+    'insta.follow':        '@mngautoclub 팔로우',
+
     // NAV
     'nav.callBtn':    '지금 전화',
     'nav.inventory':  '재고 차량',
-    'nav.financing':  '할부 금융',
     'nav.sell':       '판매 / 트레이드',
     'nav.shipping':   '배송',
     'nav.contact':    '연락처',
@@ -1651,21 +1685,6 @@ const t = {
     'inv.details':          '자세히 보기',
     'inv.cta':              '전체 재고 문의하기',
 
-    // FINANCING
-    'fin.eyebrow':   '할부 금융',
-    'fin.headline':  '할부가<br><span class="gold-text">간단해집니다.</span>',
-    'fin.4.title':   '빠르게 — 10분',
-    'fin.4.desc':    '10분이면 사전 승인. 많은 경우 당일 출고 가능합니다.',
-    'fin.stampSub':  '모든 신청 환영',
-    'fin.formTitle': '지금 사전 승인 받기',
-    'fin.formSub':   '4개 항목만. 저희가 전화드립니다.',
-    'fin.field1':    '성함',
-    'fin.field2':    '전화번호',
-    'fin.field3':    '관심 있는 차량',
-    'fin.field4':    '선호 언어',
-    'fin.submit':    '사전 승인 받기 →',
-    'fin.formNote':  '부담 없습니다. 1시간 이내에 연락드립니다.',
-    'fin.success':   '✓ 접수되었습니다 — 곧 연락드리겠습니다!',
 
     // TEAM
     'team.headline':   '팀 소개',
@@ -1722,10 +1741,23 @@ const t = {
   },
 
   zh: {
+    // REVIEWS + INSTAGRAM
+    'reviews.eyebrow':     '评价',
+    'reviews.headline':    '客户评价',
+    'reviews.sub':         '来自真实成交客户的评价。',
+    'reviews.google':      '谷歌评价',
+    'reviews.facebook':    'Facebook 评价',
+    'reviews.note':        '看看客户怎么说，也欢迎留下您的评价。',
+    'reviews.readGoogle':  '查看谷歌评价',
+    'reviews.readFacebook': '查看 Facebook 评价',
+    'insta.eyebrow':       'Instagram',
+    'insta.headline':      '关注最新到店车辆',
+    'insta.sub':           '新到车辆、已售车辆，以及更多动态。',
+    'insta.follow':        '关注 @mngautoclub',
+
     // NAV
     'nav.callBtn':    '立即致电',
     'nav.inventory':  '现有车辆',
-    'nav.financing':  '贷款',
     'nav.sell':       '出售 / 置换',
     'nav.shipping':   '运输',
     'nav.contact':    '联系我们',
@@ -1770,21 +1802,6 @@ const t = {
     'inv.details':          '查看详情',
     'inv.cta':              '致电查看全部车辆',
 
-    // FINANCING
-    'fin.eyebrow':   '贷款',
-    'fin.headline':  '贷款<br><span class="gold-text">变简单。</span>',
-    'fin.4.title':   '快速 — 10 分钟',
-    'fin.4.desc':    '10 分钟完成预批准。多数情况下当天即可提车。',
-    'fin.stampSub':  '欢迎所有申请',
-    'fin.formTitle': '立即获取预批准',
-    'fin.formSub':   '只需 4 项。我们会致电您。',
-    'fin.field1':    '您的姓名',
-    'fin.field2':    '电话号码',
-    'fin.field3':    '您感兴趣的车型',
-    'fin.field4':    '首选语言',
-    'fin.submit':    '获取预批准 →',
-    'fin.formNote':  '无需承诺。我们会在 1 小时内致电。',
-    'fin.success':   '✓ 已提交 — 我们会尽快联系您！',
 
     // TEAM
     'team.headline':   '团队介绍',
@@ -1841,10 +1858,23 @@ const t = {
   },
 
   mn: {
+    // REVIEWS + INSTAGRAM
+    'reviews.eyebrow':     'Сэтгэгдэл',
+    'reviews.headline':    'Үйлчлүүлэгчид юу гэж хэлдэг вэ',
+    'reviews.sub':         'Бидний машин зарсан хүмүүсийн жинхэнэ сэтгэгдэл.',
+    'reviews.google':      'Google сэтгэгдэл',
+    'reviews.facebook':    'Facebook сэтгэгдэл',
+    'reviews.note':        'Үйлчлүүлэгчдийн бичсэнийг уншиж, өөрийнхөө сэтгэгдлийг үлдээгээрэй.',
+    'reviews.readGoogle':  'Google сэтгэгдэл унших',
+    'reviews.readFacebook': 'Facebook сэтгэгдэл унших',
+    'insta.eyebrow':       'Instagram',
+    'insta.headline':      'Шинэ ирсэн машинуудыг дагаарай',
+    'insta.sub':           'Шинэ машин, зарагдсан машин болон бусад мэдээлэл.',
+    'insta.follow':        '@mngautoclub дагах',
+
     // NAV
     'nav.callBtn':    'Залгах',
     'nav.inventory':  'Бэлэн машинууд',
-    'nav.financing':  'Санхүүжилт авах',
     'nav.sell':       'Зарах',
     'nav.shipping':   'Хүргэлт / Карго',
     'nav.contact':    'Холбоо барих',
@@ -1889,21 +1919,6 @@ const t = {
     'inv.details':          'Дэлгэрэнгүй',
     'inv.cta':              'Бүх машинаа харах',
 
-    // FINANCING
-    'fin.eyebrow':   'Санхүүжилт',
-    'fin.headline':  'Санхүүжилт<br><span class="gold-text">хялбар шуурхай.</span>',
-    'fin.4.title':   'Шуурхай — 10 минут',
-    'fin.4.desc':    '10 минутад урьдчилсан зөвшөөрөл. Ихэнх тохиолдолд өдрийнхөө дотор явна.',
-    'fin.stampSub':  'Бүх хүсэлт нээлттэй',
-    'fin.formTitle': 'Одоо урьдчилан зөвшөөрөл авах',
-    'fin.formSub':   '4 талбар. Бид тан руу залгана',
-    'fin.field1':    'Таны нэр',
-    'fin.field2':    'Утасны дугаар',
-    'fin.field3':    'Сонирхож буй машин',
-    'fin.field4':    'Харилцах хэл',
-    'fin.submit':    'Зөвшөөрөл авах →',
-    'fin.formNote':  '1 цагийн дотор залгах болно.',
-    'fin.success':   '✓ Илгээгдсэн — удахгүй залгах болно!',
 
     // TEAM
     'team.headline':   'Хамт олон',
@@ -2036,40 +2051,6 @@ var fadeObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
 document.querySelectorAll('.fade-up').forEach(function(el) { fadeObserver.observe(el); });
-
-// ── APPROVED STAMP ────────────────────────────────────────────────────────────
-var stampObserver = new IntersectionObserver(function(entries) {
-  if (entries[0].isIntersecting) {
-    document.getElementById('approved-stamp').classList.add('visible');
-    stampObserver.disconnect();
-  }
-}, { threshold: 0.4 });
-var stampEl = document.getElementById('stamp-wrapper');
-if (stampEl) stampObserver.observe(stampEl);
-
-// ── FORM SUBMIT ───────────────────────────────────────────────────────────────
-function handleForm(e) {
-  e.preventDefault();
-  var name  = (document.getElementById('f-name').value  || '').trim();
-  var phone = (document.getElementById('f-phone').value || '').trim();
-  var car   = (document.getElementById('f-car').value   || '').trim();
-  var lang2 = document.getElementById('f-lang').value;
-  var langLabel = { en: 'English', mn: 'Монгол', ko: '한국어', zh: '中文' }[lang2] || lang2;
-
-  var msg = '🚗 *Pre-Approval Request*\n'
-    + '━━━━━━━━━━━━━━\n'
-    + '👤 Name: ' + name + '\n'
-    + '📞 Phone: ' + phone + '\n'
-    + (car ? '🚘 Car interested in: ' + car + '\n' : '')
-    + '🌐 Language: ' + langLabel;
-
-  window.open('https://wa.me/14243353285?text=' + encodeURIComponent(msg), '_blank');
-
-  var btn = document.getElementById('form-submit');
-  btn.textContent = t[lang]['fin.success'];
-  btn.style.background = 'var(--success)';
-  btn.disabled = true;
-}
 
 // ── TRUST BAR ─────────────────────────────────────────────────────────────────
 // Years in business — computed so the figure never goes stale. The markup carries a
