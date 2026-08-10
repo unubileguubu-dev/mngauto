@@ -107,6 +107,24 @@
   }
   @media (min-width: 768px) { #since-banner { height: 38px; font-size: 17px; letter-spacing: 0.3em; } }
 
+  /* Quick links — hidden below 1100px, where the wordmark, five language
+     buttons and the call CTA already fill the bar. The hamburger covers those widths. */
+  .nav-links { display: none; }
+  @media (min-width: 1100px) {
+    .nav-links { display: flex; align-items: center; gap: 22px; margin-left: 28px; margin-right: auto; }
+    .nav-links a {
+      font-size: 13px; font-weight: 600; color: var(--ash);
+      white-space: nowrap; transition: color 0.15s; position: relative; padding: 4px 0;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 0;
+      height: 2px; background: var(--gold); transform: scaleX(0);
+      transition: transform 0.15s;
+    }
+    .nav-links a:hover::after { transform: scaleX(1); }
+  }
+
   #nav {
     position: fixed; top: 66px; left: 0; right: 0;
     z-index: 100;
@@ -518,6 +536,14 @@
       <div class="nav-logo-sub">Los Angeles, CA</div>
     </div>
   </a>
+  <div class="nav-links">
+    <a href="#inventory" data-i18n="nav.inventory"></a>
+    <a href="#sell" data-i18n="nav.sell"></a>
+    <a href="#shipping" data-i18n="nav.shipping"></a>
+    <a href="#team" data-i18n="nav.team"></a>
+    <a href="#reviews" data-i18n="nav.reviews"></a>
+    <a href="#contact" data-i18n="nav.contact"></a>
+  </div>
   <div class="nav-right">
     <div class="lang-toggle" role="group" aria-label="Language">
       <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
@@ -549,6 +575,8 @@
     <li><a href="#inventory" onclick="closeMenu()" data-i18n="nav.inventory"></a></li>
     <li><a href="#sell" onclick="closeMenu()" data-i18n="nav.sell"></a></li>
     <li><a href="#shipping" onclick="closeMenu()" data-i18n="nav.shipping"></a></li>
+    <li><a href="#team" onclick="closeMenu()" data-i18n="nav.team"></a></li>
+    <li><a href="#reviews" onclick="closeMenu()" data-i18n="nav.reviews"></a></li>
     <li><a href="#contact" onclick="closeMenu()" data-i18n="nav.contact"></a></li>
   </ul>
   <div class="mobile-menu-cta">
@@ -981,7 +1009,7 @@
       </div>
       <div class="sell-banner-cta">
         <a href="tel:+12133528955" class="btn btn-primary"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span data-i18n="sell.cta1">Get My Offer</span></a>
-        <a href="https://wa.me/14243353285?text=Hi!%20I%20want%20to%20sell%20my%20car" target="_blank" rel="noopener" class="btn btn-secondary" data-i18n="sell.cta2">WhatsApp Us</a>
+        <a href="https://m.me/mngautoclub" target="_blank" rel="noopener" class="btn btn-secondary"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.3 2 2 6.2 2 11.7c0 3.1 1.4 5.9 3.7 7.7v3.8l3.4-1.9c.9.3 1.9.4 2.9.4 5.7 0 10-4.2 10-9.7S17.7 2 12 2zm1 12.5l-2.5-2.7-5 2.7 5.5-5.8 2.6 2.7 4.9-2.7-5.5 5.8z"/></svg><span data-i18n="sell.cta2">Message on Facebook</span></a>
       </div>
     </div>
   </div>
@@ -1152,14 +1180,6 @@
         </figcaption>
       </figure>
     </div>
-    <div class="reviews-cta fade-up" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
-      <a class="btn btn-secondary btn-sm" target="_blank" rel="noopener"
-         href="https://www.google.com/search?q=MNG+Auto+Club+Glendale+CA+reviews"
-         data-i18n="reviews.readGoogle">Read Google Reviews</a>
-      <a class="btn btn-secondary btn-sm" target="_blank" rel="noopener"
-         href="https://facebook.com/MNGautoclub/reviews"
-         data-i18n="reviews.readFacebook">Read Facebook Reviews</a>
-    </div>
     <!-- REVIEW WIDGET SLOT — paste the embed snippet from your review widget here
          (Elfsight / Trustindex / EmbedSocial etc). It will pick up the section spacing. -->
     <div class="reviews-embed"></div>
@@ -1189,9 +1209,6 @@
           </a>
           <a href="https://youtube.com/@mngautoclub" class="social-btn" aria-label="YouTube" target="_blank" rel="noopener">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.54 6.42a2.78 2.78 0 00-1.95-1.96C18.88 4 12 4 12 4s-6.88 0-8.59.46a2.78 2.78 0 00-1.95 1.96A29 29 0 001 12a29 29 0 00.46 5.58A2.78 2.78 0 003.41 19.6C5.12 20 12 20 12 20s6.88 0 8.59-.46a2.78 2.78 0 001.95-1.95A29 29 0 0023 12a29 29 0 00-.46-5.58zM9.75 15.02V8.98L15.5 12l-5.75 3.02z"/></svg>
-          </a>
-          <a href="https://wa.me/14243353285" class="social-btn" aria-label="WhatsApp" target="_blank" rel="noopener">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
           </a>
         </div>
       </div>
@@ -1282,8 +1299,6 @@ const t = {
     'reviews.eyebrow':     'Reviews',
     'reviews.headline':    'What our customers say',
     'reviews.sub':         'Real reviews from the people we have sold to.',
-    'reviews.readGoogle':  'Read Google Reviews',
-    'reviews.readFacebook': 'Read Facebook Reviews',
 
     // NAV
     'nav.callBtn':    'Call Now',
@@ -1291,6 +1306,8 @@ const t = {
     'nav.sell':       'Sell / Trade',
     'nav.shipping':   'Shipping',
     'nav.contact':    'Contact',
+    'nav.team':       'Team',
+    'nav.reviews':    'Reviews',
     'nav.callNow':    'Call Us Now',
     'nav.fbMessage':  'Message on Facebook',
 
@@ -1333,7 +1350,7 @@ const t = {
     'sell.headline':     'We buy cars at the best price',
     'sell.sub':          'Sell outright or trade in towards your next car. Free appraisal, paid the same day.',
     'sell.cta1':         'Get My Offer',
-    'sell.cta2':         'WhatsApp Us',
+    'sell.cta2':         'Message on Facebook',
 
     // SHIPPING
     'ship.eyebrow':  'Shipping',
@@ -1363,8 +1380,6 @@ const t = {
     'reviews.eyebrow':     'Reseñas',
     'reviews.headline':    'Lo que dicen nuestros clientes',
     'reviews.sub':         'Reseñas reales de las personas a las que hemos vendido.',
-    'reviews.readGoogle':  'Leer reseñas de Google',
-    'reviews.readFacebook': 'Leer reseñas de Facebook',
 
     // NAV
     'nav.callBtn':    'Llamar ahora',
@@ -1372,6 +1387,8 @@ const t = {
     'nav.sell':       'Vender / Intercambiar',
     'nav.shipping':   'Envíos',
     'nav.contact':    'Contacto',
+    'nav.team':       'Equipo',
+    'nav.reviews':    'Reseñas',
     'nav.callNow':    'Llámanos ahora',
     'nav.fbMessage':  'Escríbenos por Facebook',
 
@@ -1413,7 +1430,7 @@ const t = {
     'sell.headline':     'Compramos autos al mejor precio',
     'sell.sub':          'Vende directamente o cámbialo por tu próximo auto. Tasación gratis, pago el mismo día.',
     'sell.cta1':         'Quiero mi oferta',
-    'sell.cta2':         'Escríbenos por WhatsApp',
+    'sell.cta2':         'Escríbenos por Facebook',
 
     // SHIPPING
     'ship.eyebrow':  'Envíos',
@@ -1443,8 +1460,6 @@ const t = {
     'reviews.eyebrow':     '후기',
     'reviews.headline':    '고객 후기',
     'reviews.sub':         '실제로 구매하신 분들이 남긴 후기입니다.',
-    'reviews.readGoogle':  '구글 리뷰 보기',
-    'reviews.readFacebook': '페이스북 리뷰 보기',
 
     // NAV
     'nav.callBtn':    '지금 전화',
@@ -1452,6 +1467,8 @@ const t = {
     'nav.sell':       '판매 / 트레이드',
     'nav.shipping':   '배송',
     'nav.contact':    '연락처',
+    'nav.team':       '팀',
+    'nav.reviews':    '후기',
     'nav.callNow':    '지금 전화하기',
     'nav.fbMessage':  '페이스북 메시지',
 
@@ -1493,7 +1510,7 @@ const t = {
     'sell.headline':     '차량을 최고가에 매입합니다',
     'sell.sub':          '바로 판매하거나 다음 차량으로 트레이드인 하세요. 무료 감정, 당일 지급.',
     'sell.cta1':         '견적 받기',
-    'sell.cta2':         'WhatsApp으로 문의',
+    'sell.cta2':         '페이스북 메시지',
 
     // SHIPPING
     'ship.eyebrow':  '배송',
@@ -1523,8 +1540,6 @@ const t = {
     'reviews.eyebrow':     '评价',
     'reviews.headline':    '客户评价',
     'reviews.sub':         '来自真实成交客户的评价。',
-    'reviews.readGoogle':  '查看谷歌评价',
-    'reviews.readFacebook': '查看 Facebook 评价',
 
     // NAV
     'nav.callBtn':    '立即致电',
@@ -1532,6 +1547,8 @@ const t = {
     'nav.sell':       '出售 / 置换',
     'nav.shipping':   '运输',
     'nav.contact':    '联系我们',
+    'nav.team':       '团队',
+    'nav.reviews':    '评价',
     'nav.callNow':    '立即致电',
     'nav.fbMessage':  'Facebook 私信',
 
@@ -1573,7 +1590,7 @@ const t = {
     'sell.headline':     '我们以最优价格收车',
     'sell.sub':          '可直接出售，也可置换下一辆车。免费估价，当天付款。',
     'sell.cta1':         '获取报价',
-    'sell.cta2':         'WhatsApp 联系',
+    'sell.cta2':         'Facebook 私信',
 
     // SHIPPING
     'ship.eyebrow':  '运输',
@@ -1603,8 +1620,6 @@ const t = {
     'reviews.eyebrow':     'Сэтгэгдэл',
     'reviews.headline':    'Үйлчлүүлэгчид юу гэж хэлдэг вэ',
     'reviews.sub':         'Бидний машин зарсан хүмүүсийн жинхэнэ сэтгэгдэл.',
-    'reviews.readGoogle':  'Google сэтгэгдэл унших',
-    'reviews.readFacebook': 'Facebook сэтгэгдэл унших',
 
     // NAV
     'nav.callBtn':    'Залгах',
@@ -1612,6 +1627,8 @@ const t = {
     'nav.sell':       'Зарах',
     'nav.shipping':   'Хүргэлт / Карго',
     'nav.contact':    'Холбоо барих',
+    'nav.team':       'Хамт олон',
+    'nav.reviews':    'Сэтгэгдэл',
     'nav.callNow':    'Залгах',
     'nav.fbMessage':  'Facebook мессеж',
 
@@ -1654,7 +1671,7 @@ const t = {
     'sell.headline':     'Бид машиныг хамгийн сайн үнээр авна',
     'sell.sub':          'Шууд зарах эсвэл дараагийн машиндаа солиулж болно. Үнэлгээ үнэгүй, тухайн өдөртөө төлнө.',
     'sell.cta1':         'Үнийн санал авах',
-    'sell.cta2':         'WhatsApp-аар холбогдох',
+    'sell.cta2':         'Facebook мессеж',
 
     // SHIPPING
     'ship.eyebrow':  'Тээвэрлэлт',
