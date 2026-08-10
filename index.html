@@ -399,6 +399,8 @@
     display: flex; align-items: center; justify-content: center;
     font-family: 'Saira', sans-serif; font-size: 13px; font-weight: 700; color: var(--gold-bright);
   }
+  .review-avatar.has-photo { background: none; padding: 0; overflow: hidden; }
+  .review-avatar.has-photo img { width: 100%; height: 100%; object-fit: cover; display: block; border-radius: 50%; }
   .review-who { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
   .review-name { font-size: 13px; font-weight: 600; color: var(--bone); }
   .review-when { font-size: 11px; color: var(--ash); }
@@ -835,7 +837,7 @@
         </div>
         <div class="car-body">
           <div class="car-title">2023 Toyota Highlander Platinum Hybrid</div>
-          <div class="car-meta"><span class="car-mileage">50,000 mi</span></div>
+          <div class="car-meta"><span class="car-mileage">51,778 mi</span></div>
           <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
           <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
         </div>
@@ -1248,36 +1250,48 @@
       </figure>
       <figure class="review">
         <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
-        <blockquote class="review-text">Billy at MNG AUTO is fantastic! Very kind, professional, helpful and trustworthy. I purchased my first vehicle from them and it was an incredibly pleasant experience. Highly recommend!</blockquote>
-        <figcaption class="review-by">
-          <span class="review-avatar" aria-hidden="true">A</span>
-          <span class="review-who">
-            <span class="review-name">analea de varona</span>
-            <span class="review-when">June 2026</span>
-          </span>
-          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
-        </figcaption>
-      </figure>
-      <figure class="review">
-        <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
-        <blockquote class="review-text">Billy is the best sales I ever had. The transaction was really smooth and he took care of all the details from start to the end. If you are looking for the car, find Billy from MNG</blockquote>
-        <figcaption class="review-by">
-          <span class="review-avatar" aria-hidden="true">K</span>
-          <span class="review-who">
-            <span class="review-name">kim Jason</span>
-            <span class="review-when">June 2026</span>
-          </span>
-          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
-        </figcaption>
-      </figure>
-      <figure class="review">
-        <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
         <blockquote class="review-text">If you’re planning to buy a Sienna or any car, I truly recommend this place. I purchased my Sienna from them. Super quick, professional service with no hassle. And they even connect you with a lawyer in case of an accident. A place you can trust! Highly recommend.</blockquote>
         <figcaption class="review-by">
-          <span class="review-avatar" aria-hidden="true">E</span>
+          <span class="review-avatar has-photo"><img src="images/reviews/enkhjargal.jpg" width="160" height="160" alt="Enkhjargal Sarankhuu" loading="lazy" decoding="async"></span>
           <span class="review-who">
             <span class="review-name">Enkhjargal Sarankhuu</span>
             <span class="review-when">December 2025</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
+        <blockquote class="review-text">I recently sold my car to MNG AUTO CLUB and I couldn’t be happier. After checking offers from Carvana and CarMax, MNG AUTO CLUB gave me the highest offer — no haggling, no pressure, just a straightforward and fair deal.</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar has-photo"><img src="images/reviews/munkhbat.jpg" width="160" height="160" alt="Munkhbat “Muba”" loading="lazy" decoding="async"></span>
+          <span class="review-who">
+            <span class="review-name">Munkhbat “Muba”</span>
+            <span class="review-when">2025</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
+        <blockquote class="review-text">This is hands down the best car dealership I’ve been to! They made sure I got the car I wanted without any pressure. They are honest and won’t push a deal that doesn’t feel right for the customer. I’d 100% recommend getting your car here.</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar has-photo"><img src="images/reviews/nomin.jpg" width="160" height="160" alt="Nomin Mendbaatar" loading="lazy" decoding="async"></span>
+          <span class="review-who">
+            <span class="review-name">Nomin Mendbaatar</span>
+            <span class="review-when">2025</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
+        <blockquote class="review-text">Great experience! The team was professional, helpful, and made the process easy. My car arrived fast, and I couldn’t be happier. Highly recommend!</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar has-photo"><img src="images/reviews/azami.jpg" width="160" height="160" alt="Azami B" loading="lazy" decoding="async"></span>
+          <span class="review-who">
+            <span class="review-name">Azami B</span>
+            <span class="review-when">2025</span>
           </span>
           <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
         </figcaption>
@@ -1289,18 +1303,6 @@
           <span class="review-avatar" aria-hidden="true">N</span>
           <span class="review-who">
             <span class="review-name">Nyambayar M</span>
-            <span class="review-when">2025</span>
-          </span>
-          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
-        </figcaption>
-      </figure>
-      <figure class="review">
-        <div class="review-rating" role="img" aria-label="Rated 5 out of 5">★★★★★</div>
-        <blockquote class="review-text">I had a great experience buying a used car. No pressure, and I never felt rushed. The process was smooth and easy. They’re trustworthy, knowledgeable, and helped me find the perfect vehicle for my needs. Very professional and polite. The final price was exactly as agreed, with no surprises.</blockquote>
-        <figcaption class="review-by">
-          <span class="review-avatar" aria-hidden="true">T</span>
-          <span class="review-who">
-            <span class="review-name">Tommy Bat Erdene</span>
             <span class="review-when">2025</span>
           </span>
           <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
