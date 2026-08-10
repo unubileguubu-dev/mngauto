@@ -375,6 +375,31 @@
   .inventory-footer { text-align: center; margin-top: 40px; }
 
   /* REVIEWS */
+  .reviews-list { display: grid; grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; }
+  @media (min-width: 700px)  { .reviews-list { grid-template-columns: 1fr 1fr; } }
+  @media (min-width: 1024px) { .reviews-list { grid-template-columns: repeat(3, 1fr); } }
+  .review {
+    background: var(--onyx); border: 1px solid var(--steel); border-radius: 10px;
+    padding: 22px; margin: 0; display: flex; flex-direction: column;
+  }
+  .review-text {
+    margin: 0 0 18px; font-size: 14px; line-height: 1.65; color: var(--bone);
+    quotes: '\201C' '\201D';
+  }
+  .review-text::before { content: open-quote; color: var(--gold); font-size: 22px; line-height: 0; vertical-align: -4px; margin-right: 2px; }
+  .review-text::after  { content: close-quote; color: var(--gold); font-size: 22px; line-height: 0; vertical-align: -4px; margin-left: 2px; }
+  .review-by { display: flex; align-items: center; gap: 9px; margin-top: auto; }
+  .review-avatar {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    background: rgba(201,162,75,0.16); border: 1px solid rgba(201,162,75,0.4);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Saira', sans-serif; font-size: 13px; font-weight: 700; color: var(--gold-bright);
+  }
+  .review-who { display: flex; flex-direction: column; line-height: 1.3; min-width: 0; }
+  .review-name { font-size: 13px; font-weight: 600; color: var(--bone); }
+  .review-when { font-size: 11px; color: var(--ash); }
+  .review-src-mark { margin-left: auto; width: 16px; height: 16px; flex-shrink: 0; opacity: 0.85; }
+
   #reviews { background: var(--carbon); }
   .reviews-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
   @media (min-width: 768px) { .reviews-grid { grid-template-columns: 1fr 1fr; } }
@@ -1202,25 +1227,81 @@
       <div class="gold-line"></div>
       <p style="margin-top:12px;" data-i18n="reviews.sub">Real reviews from the people we have sold to.</p>
     </div>
-    <div class="reviews-grid fade-up">
-      <div class="review-src">
-        <svg class="review-src-logo" viewBox="0 0 24 24"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
-        <div class="review-src-name" data-i18n="reviews.google">Google Reviews</div>
-        <div class="review-stars" aria-hidden="true">★★★★★</div>
-        <p class="review-note" data-i18n="reviews.note">Read what customers have written, or leave your own.</p>
-        <a class="btn btn-secondary btn-sm btn-full" target="_blank" rel="noopener"
-           href="https://www.google.com/search?q=MNG+Auto+Club+Glendale+CA+reviews"
-           data-i18n="reviews.readGoogle">Read Google Reviews</a>
-      </div>
-      <div class="review-src">
-        <svg class="review-src-logo" viewBox="0 0 24 24" fill="#1877F2"><path d="M24 12a12 12 0 10-13.9 11.9v-8.4H7v-3.5h3.1V9.4c0-3 1.8-4.7 4.6-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9V12h3.4l-.5 3.5h-2.9v8.4A12 12 0 0024 12z"/></svg>
-        <div class="review-src-name" data-i18n="reviews.facebook">Facebook Reviews</div>
-        <div class="review-stars" aria-hidden="true">★★★★★</div>
-        <p class="review-note" data-i18n="reviews.note">Read what customers have written, or leave your own.</p>
-        <a class="btn btn-secondary btn-sm btn-full" target="_blank" rel="noopener"
-           href="https://facebook.com/mngautoclub/reviews"
-           data-i18n="reviews.readFacebook">Read Facebook Reviews</a>
-      </div>
+    <div class="reviews-list fade-up">
+      <figure class="review">
+        <blockquote class="review-text">Amazing service from start to finish! Honest, trustworthy people, a great atmosphere, and an excellent price on the car. I highly recommend them to anyone looking for a smooth and enjoyable car-buying experience!</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar" aria-hidden="true">K</span>
+          <span class="review-who">
+            <span class="review-name">kim hayes</span>
+            <span class="review-when">July 2026</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <blockquote class="review-text">Billy at MNG AUTO is fantastic! Very kind, professional, helpful and trustworthy. I purchased my first vehicle from them and it was an incredibly pleasant experience. Highly recommend!</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar" aria-hidden="true">A</span>
+          <span class="review-who">
+            <span class="review-name">analea de varona</span>
+            <span class="review-when">June 2026</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <blockquote class="review-text">Billy is the best sales I ever had. The transaction was really smooth and he took care of all the details from start to the end. If you are looking for the car, find Billy from MNG</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar" aria-hidden="true">K</span>
+          <span class="review-who">
+            <span class="review-name">kim Jason</span>
+            <span class="review-when">June 2026</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <blockquote class="review-text">If you’re planning to buy a Sienna or any car, I truly recommend this place. I purchased my Sienna from them. Super quick, professional service with no hassle. And they even connect you with a lawyer in case of an accident. A place you can trust! Highly recommend.</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar" aria-hidden="true">E</span>
+          <span class="review-who">
+            <span class="review-name">Enkhjargal Sarankhuu</span>
+            <span class="review-when">December 2025</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <blockquote class="review-text">I ordered my first car to Mongolia, and the process was smooth from start to finish. The car arrived much faster than expected, and everything was exactly as promised. I’m more than happy with the service and highly recommend this dealership to anyone looking for a reliable and efficient experience!</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar" aria-hidden="true">N</span>
+          <span class="review-who">
+            <span class="review-name">Nyambayar M</span>
+            <span class="review-when">2025</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+      <figure class="review">
+        <blockquote class="review-text">I had a great experience buying a used car. No pressure, and I never felt rushed. The process was smooth and easy. They’re trustworthy, knowledgeable, and helped me find the perfect vehicle for my needs. Very professional and polite. The final price was exactly as agreed, with no surprises.</blockquote>
+        <figcaption class="review-by">
+          <span class="review-avatar" aria-hidden="true">T</span>
+          <span class="review-who">
+            <span class="review-name">Tommy Bat Erdene</span>
+            <span class="review-when">2025</span>
+          </span>
+          <svg class="review-src-mark" viewBox="0 0 24 24" aria-label="Google review" role="img"><path fill="#4285F4" d="M23 12.3c0-.8-.1-1.6-.2-2.3H12v4.5h6.2a5.3 5.3 0 01-2.3 3.5v2.9h3.7c2.2-2 3.4-5 3.4-8.6z"/><path fill="#34A853" d="M12 24c3.1 0 5.7-1 7.6-2.8l-3.7-2.9c-1 .7-2.3 1.1-3.9 1.1-3 0-5.5-2-6.4-4.7H1.8v3C3.7 21.4 7.6 24 12 24z"/><path fill="#FBBC05" d="M5.6 14.7a7.2 7.2 0 010-4.6v-3H1.8a12 12 0 000 10.6l3.8-3z"/><path fill="#EA4335" d="M12 4.8c1.7 0 3.2.6 4.4 1.7l3.3-3.3C17.7 1.2 15.1 0 12 0 7.6 0 3.7 2.6 1.8 6.1l3.8 3C6.5 6.4 9 4.8 12 4.8z"/></svg>
+        </figcaption>
+      </figure>
+    </div>
+    <div class="reviews-cta fade-up" style="display:flex;flex-wrap:wrap;gap:12px;justify-content:center;">
+      <a class="btn btn-secondary btn-sm" target="_blank" rel="noopener"
+         href="https://www.google.com/search?q=MNG+Auto+Club+Glendale+CA+reviews"
+         data-i18n="reviews.readGoogle">Read Google Reviews</a>
+      <a class="btn btn-secondary btn-sm" target="_blank" rel="noopener"
+         href="https://facebook.com/MNGautoclub/reviews"
+         data-i18n="reviews.readFacebook">Read Facebook Reviews</a>
     </div>
     <!-- REVIEW WIDGET SLOT — paste the embed snippet from your review widget here
          (Elfsight / Trustindex / EmbedSocial etc). It will pick up the section spacing. -->
@@ -1377,9 +1458,6 @@ const t = {
     'reviews.eyebrow':     'Reviews',
     'reviews.headline':    'What our customers say',
     'reviews.sub':         'Real reviews from the people we have sold to.',
-    'reviews.google':      'Google Reviews',
-    'reviews.facebook':    'Facebook Reviews',
-    'reviews.note':        'Read what customers have written, or leave your own.',
     'reviews.readGoogle':  'Read Google Reviews',
     'reviews.readFacebook': 'Read Facebook Reviews',
     'insta.eyebrow':       'Instagram',
@@ -1495,9 +1573,6 @@ const t = {
     'reviews.eyebrow':     'Reseñas',
     'reviews.headline':    'Lo que dicen nuestros clientes',
     'reviews.sub':         'Reseñas reales de las personas a las que hemos vendido.',
-    'reviews.google':      'Reseñas de Google',
-    'reviews.facebook':    'Reseñas de Facebook',
-    'reviews.note':        'Lee lo que han escrito los clientes, o deja la tuya.',
     'reviews.readGoogle':  'Leer reseñas de Google',
     'reviews.readFacebook': 'Leer reseñas de Facebook',
     'insta.eyebrow':       'Instagram',
@@ -1612,9 +1687,6 @@ const t = {
     'reviews.eyebrow':     '후기',
     'reviews.headline':    '고객 후기',
     'reviews.sub':         '실제로 구매하신 분들이 남긴 후기입니다.',
-    'reviews.google':      '구글 리뷰',
-    'reviews.facebook':    '페이스북 리뷰',
-    'reviews.note':        '고객들이 남긴 후기를 읽거나 직접 남겨보세요.',
     'reviews.readGoogle':  '구글 리뷰 보기',
     'reviews.readFacebook': '페이스북 리뷰 보기',
     'insta.eyebrow':       '인스타그램',
@@ -1729,9 +1801,6 @@ const t = {
     'reviews.eyebrow':     '评价',
     'reviews.headline':    '客户评价',
     'reviews.sub':         '来自真实成交客户的评价。',
-    'reviews.google':      '谷歌评价',
-    'reviews.facebook':    'Facebook 评价',
-    'reviews.note':        '看看客户怎么说，也欢迎留下您的评价。',
     'reviews.readGoogle':  '查看谷歌评价',
     'reviews.readFacebook': '查看 Facebook 评价',
     'insta.eyebrow':       'Instagram',
@@ -1846,9 +1915,6 @@ const t = {
     'reviews.eyebrow':     'Сэтгэгдэл',
     'reviews.headline':    'Үйлчлүүлэгчид юу гэж хэлдэг вэ',
     'reviews.sub':         'Бидний машин зарсан хүмүүсийн жинхэнэ сэтгэгдэл.',
-    'reviews.google':      'Google сэтгэгдэл',
-    'reviews.facebook':    'Facebook сэтгэгдэл',
-    'reviews.note':        'Үйлчлүүлэгчдийн бичсэнийг уншиж, өөрийнхөө сэтгэгдлийг үлдээгээрэй.',
     'reviews.readGoogle':  'Google сэтгэгдэл унших',
     'reviews.readFacebook': 'Facebook сэтгэгдэл унших',
     'insta.eyebrow':       'Instagram',
