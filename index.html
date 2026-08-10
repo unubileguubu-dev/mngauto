@@ -420,23 +420,6 @@
   .reviews-embed:empty { display: none; }
   .reviews-embed { margin-top: 28px; }
 
-  /* INSTAGRAM */
-  #instagram { background: var(--onyx); }
-  .ig-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  @media (min-width: 700px) { .ig-grid { grid-template-columns: repeat(6, 1fr); gap: 10px; } }
-  .ig-tile {
-    position: relative; aspect-ratio: 1 / 1; display: block;
-    background: linear-gradient(160deg, #1a1a20 0%, #0f0f14 100%);
-    border: 1px solid var(--steel); border-radius: 6px; overflow: hidden;
-    display: flex; align-items: center; justify-content: center;
-    transition: border-color 0.15s, transform 0.15s;
-  }
-  .ig-tile:hover { border-color: var(--gold); transform: translateY(-2px); }
-  .ig-tile svg { width: 22px; height: 22px; color: var(--ash); opacity: 0.35; }
-  .ig-tile img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .ig-footer { text-align: center; margin-top: 28px; }
-  .ig-embed:empty { display: none; }
-
   /* SELL — light relief section */
   #sell { background: var(--bone); }
   #sell .section-header h2, #sell .sell-tagline, #sell .sell-step-title, #sell .sell-box-val { color: var(--onyx); }
@@ -1319,39 +1302,6 @@
   </div>
 </section>
 
-<!-- INSTAGRAM -->
-<section id="instagram">
-  <div class="container">
-    <div class="section-header fade-up">
-      <p class="eyebrow" data-i18n="insta.eyebrow">Instagram</p>
-      <h2 data-i18n="insta.headline">Follow the latest arrivals</h2>
-      <div class="gold-line"></div>
-      <p style="margin-top:12px;" data-i18n="insta.sub">New cars, sold cars and everything in between.</p>
-    </div>
-    <!-- INSTAGRAM FEED SLOT — a live feed needs an access token or a feed widget.
-         Paste the widget embed here and delete the placeholder grid below. -->
-    <div class="ig-embed"></div>
-    <div class="ig-grid fade-up">
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-        <a class="ig-tile" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener" aria-label="Instagram post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
-    </div>
-    <div class="ig-footer fade-up">
-      <a class="btn btn-primary" href="https://instagram.com/mngautoclub" target="_blank" rel="noopener"
-         data-i18n="insta.follow">Follow @mngautoclub</a>
-    </div>
-  </div>
-</section>
-
 <!-- FOOTER -->
 <footer id="contact">
   <div class="container">
@@ -1412,7 +1362,7 @@
         </div>
         <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
-          <span style="color:var(--bone);font-size:13px;">Unubileg Batjarga<br><a href="tel:+19842698196" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">(984) 269-8196</a></span>
+          <span style="color:var(--bone);font-size:13px;">Unubileg Batjargal<br><a href="tel:+19842698196" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">(984) 269-8196</a></span>
         </div>
         <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
@@ -1464,16 +1414,12 @@ var LANGS = ['en', 'mn', 'es', 'ko', 'zh'];
 
 const t = {
   en: {
-    // REVIEWS + INSTAGRAM
+    // REVIEWS
     'reviews.eyebrow':     'Reviews',
     'reviews.headline':    'What our customers say',
     'reviews.sub':         'Real reviews from the people we have sold to.',
     'reviews.readGoogle':  'Read Google Reviews',
     'reviews.readFacebook': 'Read Facebook Reviews',
-    'insta.eyebrow':       'Instagram',
-    'insta.headline':      'Follow the latest arrivals',
-    'insta.sub':           'New cars, sold cars and everything in between.',
-    'insta.follow':        'Follow @mngautoclub',
 
     // NAV
     'nav.callBtn':    'Call Now',
@@ -1579,16 +1525,12 @@ const t = {
   },
 
   es: {
-    // REVIEWS + INSTAGRAM
+    // REVIEWS
     'reviews.eyebrow':     'Reseñas',
     'reviews.headline':    'Lo que dicen nuestros clientes',
     'reviews.sub':         'Reseñas reales de las personas a las que hemos vendido.',
     'reviews.readGoogle':  'Leer reseñas de Google',
     'reviews.readFacebook': 'Leer reseñas de Facebook',
-    'insta.eyebrow':       'Instagram',
-    'insta.headline':      'Sigue las últimas llegadas',
-    'insta.sub':           'Autos nuevos, autos vendidos y todo lo demás.',
-    'insta.follow':        'Sigue @mngautoclub',
 
     // NAV
     'nav.callBtn':    'Llamar ahora',
@@ -1693,16 +1635,12 @@ const t = {
   },
 
   ko: {
-    // REVIEWS + INSTAGRAM
+    // REVIEWS
     'reviews.eyebrow':     '후기',
     'reviews.headline':    '고객 후기',
     'reviews.sub':         '실제로 구매하신 분들이 남긴 후기입니다.',
     'reviews.readGoogle':  '구글 리뷰 보기',
     'reviews.readFacebook': '페이스북 리뷰 보기',
-    'insta.eyebrow':       '인스타그램',
-    'insta.headline':      '새로 들어온 차량 보기',
-    'insta.sub':           '입고 차량, 판매 완료 차량 등 소식을 전합니다.',
-    'insta.follow':        '@mngautoclub 팔로우',
 
     // NAV
     'nav.callBtn':    '지금 전화',
@@ -1807,16 +1745,12 @@ const t = {
   },
 
   zh: {
-    // REVIEWS + INSTAGRAM
+    // REVIEWS
     'reviews.eyebrow':     '评价',
     'reviews.headline':    '客户评价',
     'reviews.sub':         '来自真实成交客户的评价。',
     'reviews.readGoogle':  '查看谷歌评价',
     'reviews.readFacebook': '查看 Facebook 评价',
-    'insta.eyebrow':       'Instagram',
-    'insta.headline':      '关注最新到店车辆',
-    'insta.sub':           '新到车辆、已售车辆，以及更多动态。',
-    'insta.follow':        '关注 @mngautoclub',
 
     // NAV
     'nav.callBtn':    '立即致电',
@@ -1921,16 +1855,12 @@ const t = {
   },
 
   mn: {
-    // REVIEWS + INSTAGRAM
+    // REVIEWS
     'reviews.eyebrow':     'Сэтгэгдэл',
     'reviews.headline':    'Үйлчлүүлэгчид юу гэж хэлдэг вэ',
     'reviews.sub':         'Бидний машин зарсан хүмүүсийн жинхэнэ сэтгэгдэл.',
     'reviews.readGoogle':  'Google сэтгэгдэл унших',
     'reviews.readFacebook': 'Facebook сэтгэгдэл унших',
-    'insta.eyebrow':       'Instagram',
-    'insta.headline':      'Шинэ ирсэн машинуудыг дагаарай',
-    'insta.sub':           'Шинэ машин, зарагдсан машин болон бусад мэдээлэл.',
-    'insta.follow':        '@mngautoclub дагах',
 
     // NAV
     'nav.callBtn':    'Залгах',
