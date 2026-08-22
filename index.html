@@ -77,6 +77,51 @@
   .btn-full { width: 100%; }
 
   /* NAV */
+  /* MONGOLIA SHIPPING PROMO — top of page, above everything */
+  #ship-promo {
+    height: 140px;
+    display: flex; align-items: stretch; gap: 0;
+    background: linear-gradient(100deg, #14141a 0%, #1d1d25 50%, #14141a 100%);
+    border-bottom: 2px solid var(--gold);
+    text-decoration: none; overflow: hidden;
+  }
+  .promo-shot { width: 26%; max-width: 210px; flex-shrink: 0; overflow: hidden; }
+  .promo-shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .promo-shot.right { display: none; }
+  .promo-copy {
+    flex: 1; min-width: 0;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center; padding: 10px 14px; gap: 3px;
+  }
+  .promo-kicker {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--gold); display: flex; align-items: center; gap: 6px;
+  }
+  .promo-kicker::before, .promo-kicker::after {
+    content: ''; width: 14px; height: 1px; background: var(--gold); opacity: 0.6;
+  }
+  .promo-title {
+    font-family: 'Saira', sans-serif; font-weight: 800; line-height: 1.15;
+    font-size: 15px; color: var(--bone);
+  }
+  .promo-title em { font-style: normal; color: var(--gold-bright); }
+  .promo-sub { font-size: 11px; color: var(--ash); line-height: 1.35; }
+  .promo-cta {
+    margin-top: 4px; font-size: 11px; font-weight: 700; color: var(--onyx);
+    background: var(--gold); border-radius: 999px; padding: 4px 14px;
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  @media (min-width: 700px) {
+    #ship-promo { height: 144px; }
+    .promo-shot.right { display: block; }
+    .promo-copy { padding: 14px 24px; gap: 5px; }
+    .promo-title { font-size: 22px; }
+    .promo-sub { font-size: 13px; }
+    .promo-kicker { font-size: 11px; }
+    .promo-cta { font-size: 12px; padding: 5px 16px; }
+  }
+  @media (min-width: 1100px) { .promo-title { font-size: 26px; } }
+
   /* TOP BAR — thin, static (scrolls away). Nav sits below it, then pins to 0. */
   #top-bar {
     height: 32px; display: flex; align-items: center;
@@ -128,7 +173,7 @@
   }
 
   #nav {
-    position: fixed; top: 66px; left: 0; right: 0;
+    position: fixed; top: 206px; left: 0; right: 0;
     z-index: 100;
     padding: 0 20px;
     height: 68px;
@@ -139,6 +184,8 @@
     border-bottom: 1px solid transparent;
     transition: background 0.3s, border-color 0.3s;
   }
+  @media (min-width: 768px) { #nav { top: 214px; } }
+
   #nav.scrolled {
     top: 0;
     background: rgba(11,11,13,0.96);
@@ -210,7 +257,6 @@
       background-position: center 58%;
     }
   }
-  @media (min-width: 768px) { #nav { top: 70px; } }
   .hero-content {
     position: relative; z-index: 2;
     padding: 120px 20px 80px;
@@ -513,6 +559,18 @@
 </style>
 </head>
 <body>
+
+<!-- MONGOLIA SHIPPING PROMO -->
+<a id="ship-promo" href="#contact">
+  <div class="promo-shot"><img src="images/promo-lexus.jpg" width="420" height="240" alt="Lexus LX 700" fetchpriority="high"></div>
+  <div class="promo-copy">
+    <span class="promo-kicker" data-i18n="promo.kicker">Shipping to Mongolia</span>
+    <span class="promo-title" data-i18n-html="promo.title">Lexus LX 700, Mercedes-AMG or <em>any luxury car</em></span>
+    <span class="promo-sub" data-i18n="promo.sub">Shipped to Ulaanbaatar at the lowest price. Door to door, customs handled.</span>
+    <span class="promo-cta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span data-i18n="promo.cta">Get a shipping quote</span></span>
+  </div>
+  <div class="promo-shot right"><img src="images/promo-amg.jpg" width="420" height="240" alt="Mercedes-AMG" fetchpriority="high"></div>
+</a>
 
 <!-- TOP BAR -->
 <!-- The street address is deliberately NOT routed through the i18n tables: it has to stay
@@ -1255,6 +1313,12 @@ var LANGS = ['en', 'mn', 'es', 'ko', 'zh'];
 
 const t = {
   en: {
+    // MONGOLIA SHIPPING PROMO
+    'promo.kicker':    'Shipping to Mongolia',
+    'promo.title':     'Lexus LX 700, Mercedes-AMG or <em>any luxury car</em>',
+    'promo.sub':       'Shipped to Ulaanbaatar at the lowest price. Door to door, customs handled.',
+    'promo.cta':       'Get a shipping quote',
+
     // REVIEWS
     'reviews.eyebrow':     'Reviews',
     'reviews.headline':    'What our customers say',
@@ -1330,6 +1394,12 @@ const t = {
   },
 
   es: {
+    // MONGOLIA SHIPPING PROMO
+    'promo.kicker':    'Envío a Mongolia',
+    'promo.title':     'Lexus LX 700, Mercedes-AMG o <em>cualquier auto de lujo</em>',
+    'promo.sub':       'Enviado a Ulán Bator al mejor precio. Puerta a puerta, aduanas incluidas.',
+    'promo.cta':       'Cotizar el envío',
+
     // REVIEWS
     'reviews.eyebrow':     'Reseñas',
     'reviews.headline':    'Lo que dicen nuestros clientes',
@@ -1404,6 +1474,12 @@ const t = {
   },
 
   ko: {
+    // MONGOLIA SHIPPING PROMO
+    'promo.kicker':    '몽골 배송',
+    'promo.title':     'Lexus LX 700, Mercedes-AMG 등 <em>모든 고급 차량</em>',
+    'promo.sub':       '울란바토르까지 최저가 배송. 문 앞까지, 통관 대행.',
+    'promo.cta':       '배송 견적 받기',
+
     // REVIEWS
     'reviews.eyebrow':     '후기',
     'reviews.headline':    '고객 후기',
@@ -1478,6 +1554,12 @@ const t = {
   },
 
   zh: {
+    // MONGOLIA SHIPPING PROMO
+    'promo.kicker':    '运往蒙古',
+    'promo.title':     'Lexus LX 700、Mercedes-AMG 或<em>任何豪华车</em>',
+    'promo.sub':       '以最低价运至乌兰巴托。门到门，代办清关。',
+    'promo.cta':       '获取运输报价',
+
     // REVIEWS
     'reviews.eyebrow':     '评价',
     'reviews.headline':    '客户评价',
@@ -1552,6 +1634,12 @@ const t = {
   },
 
   mn: {
+    // MONGOLIA SHIPPING PROMO
+    'promo.kicker':    'Монгол руу тээвэрлэлт',
+    'promo.title':     'Lexus LX 700, Mercedes-AMG эсвэл <em>ямар ч тансаг машин</em>',
+    'promo.sub':       'Улаанбаатар хүртэл хамгийн хямд үнээр. Хаалганаас хаалга, гаалийн бүрдүүлэлттэй.',
+    'promo.cta':       'Тээврийн үнэ авах',
+
     // REVIEWS
     'reviews.eyebrow':     'Сэтгэгдэл',
     'reviews.headline':    'Үйлчлүүлэгчид юу гэж хэлдэг вэ',
@@ -1675,8 +1763,24 @@ function setLang(l) { applyLang(l); }
 
 // ── NAV SCROLL ────────────────────────────────────────────────────────────────
 var nav = document.getElementById('nav');
+
+// Three static bands sit above the fixed nav and their combined height varies with
+// viewport and content, so measure rather than hardcode an offset.
+function positionNav() {
+  if (nav.classList.contains('scrolled')) { nav.style.top = '0px'; return; }
+  var above = 0;
+  ['ship-promo', 'top-bar', 'since-banner'].forEach(function(id) {
+    var el = document.getElementById(id);
+    if (el) above += el.offsetHeight;
+  });
+  nav.style.top = above + 'px';
+}
+positionNav();
+window.addEventListener('resize', positionNav, { passive: true });
+window.addEventListener('load', positionNav);
 window.addEventListener('scroll', function() {
   nav.classList.toggle('scrolled', window.scrollY > 40);
+  positionNav();
 }, { passive: true });
 
 // ── MOBILE MENU ───────────────────────────────────────────────────────────────
