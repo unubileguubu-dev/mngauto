@@ -202,25 +202,18 @@
     .nav-logo-text, .nav-logo-sub { display: none; }
   }
   .nav-right { display: flex; align-items: center; gap: 16px; }
-  .lang-toggle {
-    display: flex; align-items: center;
-    background: var(--steel);
-    border-radius: 999px;
-    padding: 3px; gap: 2px;
+  .lang-switch {
+    padding: 9px 20px;
+    border-radius: 999px; border: none; cursor: pointer;
+    font-family: 'Saira', sans-serif;
+    font-size: 16px; font-weight: 800; letter-spacing: 0.08em;
+    background: var(--gold); color: var(--onyx);
+    transition: background 0.15s, transform 0.15s;
+    line-height: 1;
   }
-  .lang-btn {
-    padding: 4px 8px;
-    border-radius: 999px;
-    font-size: 12px; font-weight: 600;
-    cursor: pointer;
-    color: var(--ash);
-    background: transparent;
-    border: none;
-    font-family: 'Inter', sans-serif;
-    transition: background 0.15s, color 0.15s;
-  }
-  .lang-btn.active { background: var(--gold); color: var(--onyx); }
-  @media (min-width: 768px) { .lang-btn { padding: 4px 12px; } }
+  .lang-switch:hover { background: var(--gold-bright); transform: translateY(-1px); }
+  .lang-switch:focus-visible { outline: 2px solid var(--bone); outline-offset: 3px; }
+  @media (max-width: 600px) { .lang-switch { padding: 8px 16px; font-size: 15px; } }
   .nav-cta { display: none; }
   @media (min-width: 768px) { .nav-cta { display: flex; } }
   .hamburger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; background: none; border: none; }
@@ -607,13 +600,8 @@
     <a href="#contact" data-i18n="nav.contact"></a>
   </div>
   <div class="nav-right">
-    <div class="lang-toggle" role="group" aria-label="Language">
-      <button class="lang-btn active" id="lang-en" onclick="setLang('en')">EN</button>
-      <button class="lang-btn" id="lang-mn" onclick="setLang('mn')">МН</button>
-      <button class="lang-btn" id="lang-es" onclick="setLang('es')">ES</button>
-      <button class="lang-btn" id="lang-ko" onclick="setLang('ko')">KO</button>
-      <button class="lang-btn" id="lang-zh" onclick="setLang('zh')">ZH</button>
-    </div>
+    <button class="lang-switch" id="lang-switch" onclick="toggleLang()"
+            aria-label="Switch language">EN</button>
     <a href="tel:+12133528955" class="btn btn-primary btn-sm nav-cta">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
       <span data-i18n="nav.callBtn"></span>
@@ -1309,7 +1297,10 @@ window.addEventListener('load', function() {
 });
 // ── TRANSLATIONS ──────────────────────────────────────────────────────────────
 // Toggle order, and the whitelist everything else validates against.
-var LANGS = ['en', 'mn', 'es', 'ko', 'zh'];
+// Site runs in Mongolian by default; English is the single alternate.
+// The es/ko/zh tables below are kept but unreachable — drop a code back in
+// here and add a button to re-enable one.
+var LANGS = ['mn', 'en'];
 
 const t = {
   en: {
@@ -1735,15 +1726,18 @@ function applyLang(l) {
     if (t[l][key] != null) el.innerHTML = t[l][key];
   });
 
-  LANGS.forEach(function(code) {
-    var btn = document.getElementById('lang-' + code);
-    if (btn) btn.classList.toggle('active', l === code);
-  });
+  // the button advertises the language you would switch to, not the current one
+  var sw = document.getElementById('lang-switch');
+  if (sw) {
+    sw.textContent = (l === 'mn') ? 'EN' : 'МН';
+    sw.setAttribute('aria-label', (l === 'mn') ? 'Switch to English' : 'Монгол хэл рүү шилжих');
+  }
 
   try { localStorage.setItem('mng-lang', l); } catch(e) {}
 }
 
 function setLang(l) { applyLang(l); }
+function toggleLang() { applyLang(lang === 'mn' ? 'en' : 'mn'); }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 (function() {
@@ -1753,12 +1747,9 @@ function setLang(l) { applyLang(l); }
     applyLang(saved);
     return;
   }
-  var bl = (navigator.language || navigator.userLanguage || '').toLowerCase();
-  var match = 'en';
-  LANGS.forEach(function(code) {
-    if (code !== 'en' && bl.indexOf(code) === 0) match = code;
-  });
-  applyLang(match);
+  // Mongolian is the default for everyone; browser language is deliberately not
+  // consulted. English visitors switch with the button in the nav.
+  applyLang('mn');
 })();
 
 // ── NAV SCROLL ────────────────────────────────────────────────────────────────
