@@ -81,7 +81,7 @@
   /* MONGOLIA SHIPPING PROMO — top of page, above everything */
   #ship-promo {
     position: relative;
-    height: 244px;
+    height: 208px;
     display: flex; align-items: stretch; gap: 0;
     background: #14141a url('images/promo-bg.jpg') center 45% / cover no-repeat;
     border-bottom: 2px solid var(--gold);
@@ -107,20 +107,14 @@
     display: flex; flex-direction: column; justify-content: center; align-items: center;
     text-align: center; padding: 10px 12px; gap: 2px;
   }
-  .promo-kicker {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--gold); display: flex; align-items: center; gap: 6px;
-  }
-  .promo-kicker::before, .promo-kicker::after {
-    content: ''; width: 14px; height: 1px; background: var(--gold); opacity: 0.6;
-  }
   .promo-title {
-    font-family: 'Saira', sans-serif; font-weight: 800; line-height: 1.14;
-    font-size: 17px; color: var(--bone);
-    text-shadow: 0 2px 12px rgba(0,0,0,0.5);
+    font-family: 'Saira', sans-serif; font-weight: 800; line-height: 1.06;
+    font-size: 27px; color: var(--bone);
+    letter-spacing: 0.01em; text-transform: uppercase;
+    text-shadow: 0 2px 14px rgba(0,0,0,0.55);
   }
   .promo-title em { font-style: normal; color: var(--gold-bright); }
-  .promo-sub { font-size: 12px; color: var(--bone); opacity: 0.75; line-height: 1.38; }
+  .promo-sub { font-size: 12px; color: var(--gold-bright); opacity: 0.95; line-height: 1.4; font-weight: 600; }
   .promo-cta {
     margin-top: 6px; font-size: 12px; font-weight: 800; color: var(--onyx);
     background: var(--gold); border-radius: 999px; padding: 8px 20px;
@@ -130,15 +124,14 @@
   }
   #ship-promo:hover .promo-cta { background: var(--gold-bright); transform: translateY(-1px); }
   @media (min-width: 700px) {
-    #ship-promo { height: 232px; }
+    #ship-promo { height: 214px; }
     .promo-shot.right { display: block; }
     .promo-copy { padding: 18px 28px; gap: 7px; }
-    .promo-title { font-size: 32px; }
+    .promo-title { font-size: 46px; }
     .promo-sub { font-size: 15px; }
-    .promo-kicker { font-size: 13px; }
     .promo-cta { font-size: 15px; padding: 10px 26px; }
   }
-  @media (min-width: 1100px) { .promo-title { font-size: 38px; } }
+  @media (min-width: 1100px) { .promo-title { font-size: 56px; } }
 
   /* TOP BAR — thin, static (scrolls away). Nav sits below it, then pins to 0. */
   #top-bar {
@@ -191,7 +184,7 @@
   }
 
   #nav {
-    position: fixed; top: 310px; left: 0; right: 0;
+    position: fixed; top: 274px; left: 0; right: 0;
     z-index: 100;
     padding: 0 20px;
     height: 68px;
@@ -202,7 +195,7 @@
     border-bottom: 1px solid transparent;
     transition: background 0.3s, border-color 0.3s;
   }
-  @media (min-width: 768px) { #nav { top: 302px; } }
+  @media (min-width: 768px) { #nav { top: 284px; } }
 
   #nav.scrolled {
     top: 0;
@@ -575,8 +568,7 @@
 <a id="ship-promo" href="#contact">
   <div class="promo-shot"><img src="images/promo-lexus.jpg" width="420" height="240" alt="Lexus LX 700" fetchpriority="high"></div>
   <div class="promo-copy">
-    <span class="promo-kicker" data-i18n="promo.kicker">Shipping to Mongolia</span>
-    <span class="promo-title" data-i18n-html="promo.title">Lexus LX 700, Mercedes-AMG or <em>any luxury car</em></span>
+    <span class="promo-title" data-i18n="promo.title">Shipping to Mongolia</span>
     <span class="promo-sub" data-i18n="promo.sub">Shipped to Ulaanbaatar at the lowest price. Door to door, customs handled.</span>
     <span class="promo-cta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span data-i18n="promo.cta">Get a shipping quote</span></span>
   </div>
@@ -1323,10 +1315,9 @@ var LANGS = ['mn', 'en'];
 const t = {
   en: {
     // MONGOLIA SHIPPING PROMO
-    'promo.kicker':    'Shipping to Mongolia',
-    'promo.title':     'Lexus LX 700, Mercedes-AMG or <em>any luxury car</em>',
-    'promo.sub':       'Shipped to Ulaanbaatar at the lowest price. Door to door, customs handled.',
-    'promo.cta':       'Get a shipping quote',
+    'promo.title':     'Shipping to Mongolia',
+    'promo.sub':       'Lexus, Mercedes-AMG or any luxury car — lowest price',
+    'promo.cta':       'Get a quote',
 
     // REVIEWS
     'reviews.eyebrow':     'Reviews',
@@ -1404,10 +1395,9 @@ const t = {
 
   es: {
     // MONGOLIA SHIPPING PROMO
-    'promo.kicker':    'Envío a Mongolia',
-    'promo.title':     'Lexus LX 700, Mercedes-AMG o <em>cualquier auto de lujo</em>',
-    'promo.sub':       'Enviado a Ulán Bator al mejor precio. Puerta a puerta, aduanas incluidas.',
-    'promo.cta':       'Cotizar el envío',
+    'promo.title':     'Envío a Mongolia',
+    'promo.sub':       'Lexus, Mercedes-AMG o cualquier auto de lujo — el mejor precio',
+    'promo.cta':       'Cotizar',
 
     // REVIEWS
     'reviews.eyebrow':     'Reseñas',
@@ -1484,10 +1474,9 @@ const t = {
 
   ko: {
     // MONGOLIA SHIPPING PROMO
-    'promo.kicker':    '몽골 배송',
-    'promo.title':     'Lexus LX 700, Mercedes-AMG 등 <em>모든 고급 차량</em>',
-    'promo.sub':       '울란바토르까지 최저가 배송. 문 앞까지, 통관 대행.',
-    'promo.cta':       '배송 견적 받기',
+    'promo.title':     '몽골 배송',
+    'promo.sub':       'Lexus, Mercedes-AMG 등 고급 차량 — 최저가',
+    'promo.cta':       '견적 받기',
 
     // REVIEWS
     'reviews.eyebrow':     '후기',
@@ -1564,10 +1553,9 @@ const t = {
 
   zh: {
     // MONGOLIA SHIPPING PROMO
-    'promo.kicker':    '运往蒙古',
-    'promo.title':     'Lexus LX 700、Mercedes-AMG 或<em>任何豪华车</em>',
-    'promo.sub':       '以最低价运至乌兰巴托。门到门，代办清关。',
-    'promo.cta':       '获取运输报价',
+    'promo.title':     '运往蒙古',
+    'promo.sub':       'Lexus、Mercedes-AMG 等豪华车 — 最低价',
+    'promo.cta':       '获取报价',
 
     // REVIEWS
     'reviews.eyebrow':     '评价',
@@ -1644,10 +1632,9 @@ const t = {
 
   mn: {
     // MONGOLIA SHIPPING PROMO
-    'promo.kicker':    'Монгол руу тээвэрлэлт',
-    'promo.title':     'Lexus LX 700, Mercedes-AMG эсвэл <em>ямар ч тансаг машин</em>',
-    'promo.sub':       'Улаанбаатар хүртэл хамгийн хямд үнээр. Хаалганаас хаалга, гаалийн бүрдүүлэлттэй.',
-    'promo.cta':       'Тээврийн үнэ авах',
+    'promo.title':     'Монгол руу тээвэрлэлт',
+    'promo.sub':       'Lexus, Mercedes-AMG, ямар ч тансаг машин — хамгийн хямд үнээр',
+    'promo.cta':       'Үнэ авах',
 
     // REVIEWS
     'reviews.eyebrow':     'Сэтгэгдэл',
