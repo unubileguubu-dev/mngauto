@@ -1738,7 +1738,7 @@ function applyLang(l) {
     sw.setAttribute('aria-label', (l === 'mn') ? 'Switch to English' : 'Монгол хэл рүү шилжих');
   }
 
-  try { localStorage.setItem('mng-lang', l); } catch(e) {}
+  try { sessionStorage.setItem('mng-lang', l); } catch(e) {}
 }
 
 function setLang(l) { applyLang(l); }
@@ -1746,15 +1746,16 @@ function toggleLang() { applyLang(lang === 'mn' ? 'en' : 'mn'); }
 
 // ── INIT ──────────────────────────────────────────────────────────────────────
 (function() {
+  // The site always opens in Mongolian. A choice made with the toggle lasts for
+  // the current visit only, so switching to English does not carry over to the
+  // next time someone opens the site.
   var saved = '';
-  try { saved = localStorage.getItem('mng-lang') || ''; } catch(e) {}
-  if (LANGS.indexOf(saved) !== -1) {
-    applyLang(saved);
-    return;
-  }
-  // Mongolian is the default for everyone; browser language is deliberately not
-  // consulted. English visitors switch with the button in the nav.
-  applyLang('mn');
+  try { saved = sessionStorage.getItem('mng-lang') || ''; } catch(e) {}
+  applyLang(LANGS.indexOf(saved) !== -1 ? saved : 'mn');
+
+  // Clear the old persistent preference left by earlier versions, which would
+  // otherwise sit in browsers forever with nothing reading it.
+  try { localStorage.removeItem('mng-lang'); } catch(e) {}
 })();
 
 // ── NAV SCROLL ────────────────────────────────────────────────────────────────
