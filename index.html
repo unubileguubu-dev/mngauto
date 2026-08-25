@@ -487,6 +487,19 @@
   }
   @media (min-width: 768px) { .ship-line { font-size: 19px; } }
   .ship-line svg { width: 20px; height: 20px; color: var(--gold); flex-shrink: 0; }
+  .ship-call {
+    margin: 12px 0 0; text-align: center;
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 10px;
+    font-size: 13px; color: var(--ash);
+  }
+  .ship-call a {
+    display: inline-flex; align-items: center; gap: 7px;
+    font-family: 'Saira', sans-serif; font-size: 17px; font-weight: 800;
+    color: var(--onyx); background: var(--gold);
+    padding: 7px 16px; border-radius: 999px; transition: background 0.15s;
+  }
+  .ship-call a:hover { background: var(--gold-bright); }
+  @media (min-width: 768px) { .ship-call { font-size: 14px; } .ship-call a { font-size: 19px; } }
 
   /* TEAM — two-column split, not a card grid */
   #team { background: var(--carbon); }
@@ -565,12 +578,12 @@
 <body>
 
 <!-- MONGOLIA SHIPPING PROMO -->
-<a id="ship-promo" href="#contact">
+<a id="ship-promo" href="tel:+97672124411">
   <div class="promo-shot"><img src="images/promo-lexus.jpg" width="420" height="240" alt="Lexus LX 700" fetchpriority="high"></div>
   <div class="promo-copy">
     <span class="promo-title" data-i18n="promo.title">Shipping to Mongolia</span>
     <span class="promo-sub" data-i18n="promo.sub">Shipped to Ulaanbaatar at the lowest price. Door to door, customs handled.</span>
-    <span class="promo-cta"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 3v5h-7z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg><span data-i18n="promo.cta">Get a shipping quote</span></span>
+    <span class="promo-cta"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg><span dir="ltr">+976 7212 4411</span></span>
   </div>
   <div class="promo-shot right"><img src="images/promo-cargo.jpg" width="420" height="240" alt="Container ship bound for Mongolia" fetchpriority="high"></div>
 </a>
@@ -1060,6 +1073,10 @@
     <p class="ship-line fade-up">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg><span data-i18n="ship.headline">We ship to all 50 states and to Mongolia</span>
     </p>
+    <p class="ship-call fade-up">
+      <span data-i18n="ship.callLabel">Shipping to Mongolia</span>
+      <a href="tel:+97672124411" dir="ltr"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg> +976 7212 4411</a>
+    </p>
   </div>
 </section>
 
@@ -1298,6 +1315,10 @@
           <span style="color:var(--bone);font-size:13px;"><span data-i18n="name.unubileg">Unubileg Batjargal</span><br><a href="tel:+19842698196" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">(984) 269-8196</a></span>
         </div>
         <div class="footer-contact-item">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92z"/></svg>
+          <span style="color:var(--bone);font-size:13px;"><span data-i18n="contact.mongolia">Mongolia</span><br><a href="tel:+97672124411" style="color:var(--ash);transition:color 0.15s;" onmouseover="this.style.color='var(--gold)'" onmouseout="this.style.color='var(--ash)'">+976 7212 4411</a></span>
+        </div>
+        <div class="footer-contact-item">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           <span data-i18n-html="footer.hours"></span>
         </div>
@@ -1350,6 +1371,10 @@ var LANGS = ['mn', 'en'];
 
 const t = {
   en: {
+    'ship.callLabel': 'Shipping to Mongolia',
+
+    'contact.mongolia': 'Mongolia',
+
     // REVIEWS — verbatim quotes; mn is a faithful translation
     'rev.1.when': 'July 2026',
     'rev.1.text': 'Amazing service from start to finish! Honest, trustworthy people, a great atmosphere, and an excellent price on the car. I highly recommend them to anyone looking for a smooth and enjoyable car-buying experience!',
@@ -1373,7 +1398,6 @@ const t = {
     // MONGOLIA SHIPPING PROMO
     'promo.title':     'Shipping to Mongolia',
     'promo.sub':       'Lexus, Mercedes-AMG or any luxury car — lowest price',
-    'promo.cta':       'Get a quote',
 
     // REVIEWS
     'reviews.eyebrow':     'Reviews',
@@ -1450,6 +1474,10 @@ const t = {
   },
 
   es: {
+    'ship.callLabel': 'Envío a Mongolia',
+
+    'contact.mongolia': 'Mongolia',
+
     // REVIEWS — verbatim quotes; mn is a faithful translation
     'rev.1.when': 'July 2026',
     'rev.1.text': 'Amazing service from start to finish! Honest, trustworthy people, a great atmosphere, and an excellent price on the car. I highly recommend them to anyone looking for a smooth and enjoyable car-buying experience!',
@@ -1473,7 +1501,6 @@ const t = {
     // MONGOLIA SHIPPING PROMO
     'promo.title':     'Envío a Mongolia',
     'promo.sub':       'Lexus, Mercedes-AMG o cualquier auto de lujo — el mejor precio',
-    'promo.cta':       'Cotizar',
 
     // REVIEWS
     'reviews.eyebrow':     'Reseñas',
@@ -1549,6 +1576,10 @@ const t = {
   },
 
   ko: {
+    'ship.callLabel': '몽골 배송',
+
+    'contact.mongolia': '몽골',
+
     // REVIEWS — verbatim quotes; mn is a faithful translation
     'rev.1.when': 'July 2026',
     'rev.1.text': 'Amazing service from start to finish! Honest, trustworthy people, a great atmosphere, and an excellent price on the car. I highly recommend them to anyone looking for a smooth and enjoyable car-buying experience!',
@@ -1572,7 +1603,6 @@ const t = {
     // MONGOLIA SHIPPING PROMO
     'promo.title':     '몽골 배송',
     'promo.sub':       'Lexus, Mercedes-AMG 등 고급 차량 — 최저가',
-    'promo.cta':       '견적 받기',
 
     // REVIEWS
     'reviews.eyebrow':     '후기',
@@ -1648,6 +1678,10 @@ const t = {
   },
 
   zh: {
+    'ship.callLabel': '运往蒙古',
+
+    'contact.mongolia': '蒙古',
+
     // REVIEWS — verbatim quotes; mn is a faithful translation
     'rev.1.when': 'July 2026',
     'rev.1.text': 'Amazing service from start to finish! Honest, trustworthy people, a great atmosphere, and an excellent price on the car. I highly recommend them to anyone looking for a smooth and enjoyable car-buying experience!',
@@ -1671,7 +1705,6 @@ const t = {
     // MONGOLIA SHIPPING PROMO
     'promo.title':     '运往蒙古',
     'promo.sub':       'Lexus、Mercedes-AMG 等豪华车 — 最低价',
-    'promo.cta':       '获取报价',
 
     // REVIEWS
     'reviews.eyebrow':     '评价',
@@ -1747,6 +1780,10 @@ const t = {
   },
 
   mn: {
+    'ship.callLabel': 'Монгол руу тээвэрлэлт',
+
+    'contact.mongolia': 'Монгол',
+
     // REVIEWS — verbatim quotes; mn is a faithful translation
     'rev.1.when': '2026 оны 7-р сар',
     'rev.1.text': 'Эхнээс нь дуустал гайхалтай үйлчилгээ! Шударга, найдвартай хүмүүс, тааламжтай уур амьсгал, машины үнэ маш таатай. Машин авах гэж байгаа хэн бүхэнд зөвлөж байна!',
@@ -1770,7 +1807,6 @@ const t = {
     // MONGOLIA SHIPPING PROMO
     'promo.title':     'Монгол руу тээвэрлэлт',
     'promo.sub':       'Lexus, Mercedes-AMG, ямар ч тансаг машин — хамгийн хямд үнээр',
-    'promo.cta':       'Үнэ авах',
 
     // REVIEWS
     'reviews.eyebrow':     'Сэтгэгдэл',
