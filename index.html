@@ -337,9 +337,11 @@
 
   /* INVENTORY */
   #inventory { background: var(--onyx); }
-  .inventory-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
-  @media (min-width: 600px) { .inventory-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (min-width: 900px) { .inventory-grid { grid-template-columns: repeat(2, 1fr); } }
+  /* Two across on phones, three across on desktop. The phone gap is tighter so
+     two cards still breathe on a 360px screen. */
+  .inventory-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  @media (min-width: 600px) { .inventory-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; } }
+  @media (min-width: 900px) { .inventory-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
   /* Cards stretch to the tallest in their row, and the body is a column so the
      CTA pins to the bottom — otherwise a card with an extra detail line pushes
      its button out of line with its neighbour. */
@@ -573,7 +575,21 @@
   .mobile-menu-links a { display: block; font-family: 'Saira', sans-serif; font-size: 26px; font-weight: 700; color: var(--bone); padding: 12px 0; border-bottom: 1px solid var(--steel); transition: color 0.15s; }
   .mobile-menu-links a:hover { color: var(--gold); }
   .mobile-menu-cta { display: flex; flex-direction: column; gap: 12px; margin-top: 32px; }
-</style>
+
+  /* Two cards on a phone leaves ~170px each, so the card type scales down below
+     600px to keep titles to two lines and the CTA on one. */
+  @media (max-width: 599px) {
+    .car-body { padding: 11px; }
+    .car-title { font-size: 14px; line-height: 1.25; margin-bottom: 4px; }
+    .car-meta { gap: 8px; margin-bottom: 9px; min-height: 17px; }
+    .car-mileage { font-size: 11px; }
+    .car-price { font-size: 17px; }
+    .car-card .btn-sm { height: 38px; padding: 0 10px; font-size: 12px; }
+    .car-badge-instock, .car-badge-sold { font-size: 9px; padding: 3px 7px; top: 8px; left: 8px; }
+    .slider-btn { width: 26px; height: 42px; font-size: 19px; }
+    .slider-count { font-size: 10px; padding: 1px 6px; bottom: 7px; right: 7px; }
+  }
+  </style>
 </head>
 <body>
 
@@ -752,7 +768,45 @@
 
       <!-- NEWEST FIRST. Add a new listing directly below this line, not at the bottom. -->
 
-      <!-- Card 1: 2019 Jeep Wrangler Unlimited Rubicon -->
+      <!-- Card 1: 2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe -->
+      <div class="car-card fade-up">
+        <div class="car-photo">
+          <div class="car-slider">
+            <video poster="video/gle2024-a-poster.jpg" muted loop playsinline preload="none"
+                   aria-label="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe walkaround video">
+              <source src="video/gle2024-a.mp4" type="video/mp4">
+            </video>
+            <video poster="video/gle2024-b-poster.jpg" muted loop playsinline preload="none"
+                   aria-label="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe walkaround video">
+              <source src="video/gle2024-b.mp4" type="video/mp4">
+            </video>
+            <img src="images/mercedes-gle-2024/01.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/02.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/03.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/04.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/05.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/06.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/07.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/08.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/09.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/10.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+            <img src="images/mercedes-gle-2024/11.jpg" alt="2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe" loading="lazy">
+          </div>
+          <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
+          <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
+          <div class="slider-count">1 / 13</div>
+          <div class="car-photo-scrim"></div>
+          <div class="car-badge-instock" data-i18n="inv.badge"></div>
+        </div>
+        <div class="car-body">
+          <div class="car-title">2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe</div>
+          <div class="car-meta"><span class="car-mileage">14,217 mi &middot; 4D Coupe</span></div>
+          <div class="car-price">$74,800</div>
+          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+        </div>
+      </div>
+
+      <!-- Card 2: 2019 Jeep Wrangler Unlimited Rubicon -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -796,7 +850,7 @@
         </div>
       </div>
 
-      <!-- Card 2: 2020 Jeep Wrangler Unlimited Sport S -->
+      <!-- Card 3: 2020 Jeep Wrangler Unlimited Sport S -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -849,7 +903,7 @@
         </div>
       </div>
 
-      <!-- Card 3: 2023 Mercedes-Benz S 580e 4MATIC -->
+      <!-- Card 4: 2023 Mercedes-Benz S 580e 4MATIC -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -881,7 +935,7 @@
         </div>
       </div>
 
-      <!-- Card 4: 2026 Toyota Prius LE -->
+      <!-- Card 5: 2026 Toyota Prius LE -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -921,7 +975,7 @@
         </div>
       </div>
 
-      <!-- Card 5: 2022 Lexus RX -->
+      <!-- Card 6: 2022 Lexus RX -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -950,7 +1004,7 @@
       </div>
 
 
-      <!-- Card 6: 2025 Toyota Tacoma -->
+      <!-- Card 7: 2025 Toyota Tacoma -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -992,7 +1046,7 @@
         </div>
       </div>
 
-      <!-- Card 7: 2022 BMW X4 M -->
+      <!-- Card 8: 2022 BMW X4 M -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1028,7 +1082,7 @@
       </div>
 
 
-      <!-- Card 8: 2023 Toyota Highlander Platinum Hybrid -->
+      <!-- Card 9: 2023 Toyota Highlander Platinum Hybrid -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1062,7 +1116,7 @@
         </div>
       </div>
 
-      <!-- Card 9: 2002 Honda S2000 Turbo -->
+      <!-- Card 10: 2002 Honda S2000 Turbo -->
       <div class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1106,7 +1160,7 @@
 
 
 
-      <!-- Card 10: 2016 BMW M435i -->
+      <!-- Card 11: 2016 BMW M435i -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1138,7 +1192,7 @@
         </div>
       </div>
 
-      <!-- Card 11: 2026 Toyota Camry SE -->
+      <!-- Card 12: 2026 Toyota Camry SE -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1180,7 +1234,7 @@
 
 
 
-      <!-- Card 12: 2022 Tesla Model Y Performance AWD — SOLD -->
+      <!-- Card 13: 2022 Tesla Model Y Performance AWD -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1220,7 +1274,7 @@
         </div>
       </div>
 
-      <!-- Card 13: 2019 Ford F-150 Lariat SuperCrew 4WD — SOLD -->
+      <!-- Card 14: 2019 Ford F-150 Lariat SuperCrew 4WD -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1260,7 +1314,7 @@
         </div>
       </div>
 
-      <!-- Card 14: 2025 Lexus TX 350 Premium — SOLD -->
+      <!-- Card 15: 2025 Lexus TX 350 Premium -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1295,7 +1349,7 @@
         </div>
       </div>
 
-      <!-- Card 15: 2017 Honda CR-V — SOLD -->
+      <!-- Card 16: 2017 Honda CR-V -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1336,7 +1390,7 @@
         </div>
       </div>
 
-      <!-- Card 16: 2021 Toyota Camry LE Hybrid — SOLD -->
+      <!-- Card 17: 2021 Toyota Camry LE Hybrid -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1370,7 +1424,7 @@
         </div>
       </div>
 
-      <!-- Card 17: 2025 RAM ProMaster 3500 — SOLD -->
+      <!-- Card 18: 2025 RAM ProMaster 3500 -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1402,7 +1456,7 @@
         </div>
       </div>
 
-      <!-- Card 18: 2025 Toyota Corolla LE Hybrid — SOLD -->
+      <!-- Card 19: 2025 Toyota Corolla LE Hybrid -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1441,7 +1495,7 @@
         </div>
       </div>
 
-      <!-- Card 19: 2023 BMW 3 Series 330e — SOLD -->
+      <!-- Card 20: 2023 BMW 3 Series 330e -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
@@ -1476,7 +1530,7 @@
         </div>
       </div>
 
-      <!-- Card 20: 2026 Toyota Camry SE (Black) — SOLD -->
+      <!-- Card 21: 2026 Toyota Camry SE (Black) -->
       <div class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
