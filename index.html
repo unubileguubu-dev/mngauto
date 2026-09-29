@@ -2176,7 +2176,8 @@ if (history.scrollRestoration) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
 document.documentElement.scrollTop = 0;
 document.body.scrollTop = 0;
-if (window.location.hash) history.replaceState(null, '', window.location.pathname);
+// a #car/ link is a deep link into a listing, so it has to survive the scroll reset
+if (window.location.hash && window.location.hash.indexOf('#car/') !== 0) history.replaceState(null, '', window.location.pathname);
 window.addEventListener('load', function() {
   window.scrollTo(0, 0);
   document.documentElement.scrollTop = 0;
