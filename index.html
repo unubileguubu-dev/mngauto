@@ -365,6 +365,7 @@
   .car-card .car-body .btn { margin-top: auto; }
   .car-title { min-height: 2.6em; }
   .car-meta { min-height: 21px; }
+  .car-card { cursor: pointer; }
   .car-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .car-photo { position: relative; aspect-ratio: 4/3; background: var(--steel); overflow: hidden; }
   .car-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
@@ -3224,15 +3225,38 @@ var CAR_SPECS = {"2023-mercedes-benz-s-580e-4matic": {"body": "sedan4","drive": 
     if (lastFocus && lastFocus.focus) lastFocus.focus();
   }
 
-  // open from the card button, and keep the URL shareable
-  document.addEventListener('click', function(e) {
-    var btn = e.target.closest ? e.target.closest('.car-details') : null;
-    if (!btn) return;
-    var card = btn.closest('.car-card');
-    if (!card) return;
-    e.preventDefault();
+  // A swipe across the photo strip must not count as a tap on the card, so
+  // track how far the pointer travelled between press and release.
+  var pDown = false, pX = 0, pY = 0, pMoved = false;
+  document.addEventListener('pointerdown', function(e) {
+    pDown = true; pX = e.clientX; pY = e.clientY; pMoved = false;
+  }, true);
+  document.addEventListener('pointermove', function(e) {
+    if (pDown && (Math.abs(e.clientX - pX) > 10 || Math.abs(e.clientY - pY) > 10)) pMoved = true;
+  }, true);
+  document.addEventListener('pointerup', function() { pDown = false; }, true);
+
+  function openCard(card) {
     var id = card.getAttribute('data-car');
     if (open(id)) history.replaceState(null, '', '#car/' + id);
+  }
+
+  // Anywhere on the card opens it. The details button, the slider arrows and any
+  // other real control keep their own behaviour.
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest) return;
+    var btn = e.target.closest('.car-details');
+    if (btn) {
+      var c = btn.closest('.car-card');
+      if (c) { e.preventDefault(); openCard(c); }
+      return;
+    }
+    var card = e.target.closest('.car-card[data-car]');
+    if (!card) return;
+    if (pMoved) return;                                  // that was a swipe
+    if (e.target.closest('a, button')) return;           // a control handled it
+    if (window.getSelection && String(window.getSelection())) return;
+    openCard(card);
   });
 
   document.getElementById('cd-close').addEventListener('click', close);
