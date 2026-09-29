@@ -427,6 +427,94 @@
   .car-vin { font-size: 11px; color: var(--ash); opacity: 0.7; margin: -8px 0 12px;
     letter-spacing: 0.04em; overflow-wrap: anywhere; }
   .car-vin span { font-variant-numeric: tabular-nums; }
+
+  /* ---- Car detail overlay ------------------------------------------------
+     Opens over the page rather than routing to a separate file: the site is
+     one static document, so a per-car page would mean 25 near-identical
+     copies. The slides are cloned from the card, so videos come along too. */
+  .cd-open { overflow: hidden; }
+  #car-detail[hidden] { display: none !important; }
+  #car-detail {
+    position: fixed; inset: 0; z-index: 200;
+    background: rgba(7,7,9,0.88); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px);
+    display: flex; align-items: flex-start; justify-content: center;
+    overflow-y: auto; overscroll-behavior: contain; padding: 0;
+  }
+  .cd-panel {
+    background: var(--carbon); border: 1px solid var(--steel);
+    width: 100%; max-width: 1040px; margin: 0 auto; min-height: 100%;
+    display: flex; flex-direction: column;
+  }
+  .cd-head {
+    position: sticky; top: 0; z-index: 3;
+    display: flex; align-items: center; gap: 12px;
+    padding: 12px 14px; background: var(--carbon); border-bottom: 1px solid var(--steel);
+  }
+  .cd-head h2 { font-family: 'Saira', sans-serif; font-size: 16px; font-weight: 700;
+    color: var(--bone); margin: 0; flex: 1 1 auto; line-height: 1.25; }
+  .cd-close { flex: 0 0 auto; width: 40px; height: 40px; border-radius: 50%;
+    background: var(--steel); color: var(--bone); border: none; cursor: pointer;
+    font-size: 22px; line-height: 1; display: flex; align-items: center; justify-content: center; }
+  .cd-close:hover, .cd-close:focus-visible { background: var(--gold); color: #17130a; outline: none; }
+
+  /* stage */
+  .cd-stage { position: relative; background: #000; aspect-ratio: 4/3; width: 100%; overflow: hidden; }
+  .cd-track { display: flex; height: 100%; width: 100%; will-change: transform;
+    transition: transform 0.28s cubic-bezier(.22,.61,.36,1); touch-action: pan-y; }
+  .cd-track > * { flex: 0 0 100%; width: 100%; height: 100%; object-fit: contain; display: block; background: #000; }
+  .cd-nav { position: absolute; top: 50%; transform: translateY(-50%); z-index: 2;
+    width: 44px; height: 64px; border: none; cursor: pointer; padding: 0;
+    background: rgba(0,0,0,0.5); color: #fff; font-size: 28px; line-height: 1;
+    display: flex; align-items: center; justify-content: center; }
+  .cd-nav:hover, .cd-nav:focus-visible { background: rgba(0,0,0,0.78); outline: none; }
+  .cd-prev { left: 0; border-radius: 0 6px 6px 0; }
+  .cd-next { right: 0; border-radius: 6px 0 0 6px; }
+  .cd-counter { position: absolute; right: 12px; bottom: 12px; z-index: 2;
+    background: rgba(0,0,0,0.62); color: rgba(255,255,255,0.94); font-size: 12px;
+    padding: 3px 10px; border-radius: 999px; font-variant-numeric: tabular-nums; }
+
+  /* thumbnails */
+  .cd-thumbs { display: flex; gap: 6px; overflow-x: auto; padding: 8px 10px;
+    border-bottom: 1px solid var(--steel); scrollbar-width: thin; }
+  .cd-thumbs button { flex: 0 0 auto; width: 74px; height: 56px; padding: 0; cursor: pointer;
+    border: 2px solid transparent; border-radius: 4px; overflow: hidden; background: #000; position: relative; }
+  .cd-thumbs button[aria-current="true"] { border-color: var(--gold); }
+  .cd-thumbs img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .cd-thumbs .cd-isvid::after { content: '▶'; position: absolute; inset: 0; display: flex;
+    align-items: center; justify-content: center; color: #fff; font-size: 15px;
+    background: rgba(0,0,0,0.38); }
+
+  /* body */
+  .cd-body { padding: 18px 16px 40px; }
+  .cd-price { font-family: 'Saira', sans-serif; font-size: 26px; font-weight: 700;
+    color: var(--gold-bright); font-variant-numeric: tabular-nums; }
+  .cd-soldflag[hidden] { display: none; }
+  .cd-soldflag { display: inline-block; margin-left: 10px; vertical-align: middle;
+    background: var(--mongol-red); color: #fff; font-size: 11px; font-weight: 700;
+    padding: 4px 10px; border-radius: 999px; letter-spacing: 0.06em; }
+  .cd-sub { color: var(--ash); font-size: 14px; margin: 4px 0 18px; }
+  .cd-specs { width: 100%; border-collapse: collapse; }
+  .cd-specs th, .cd-specs td { text-align: left; padding: 9px 2px; border-bottom: 1px solid var(--steel);
+    font-size: 14px; vertical-align: top; }
+  .cd-specs th { color: var(--ash); font-weight: 500; width: 44%; padding-right: 12px; }
+  .cd-specs td { color: var(--bone); overflow-wrap: anywhere; }
+  .cd-feat { margin: 20px 0 0; padding: 0; list-style: none; display: flex; flex-wrap: wrap; gap: 7px; }
+  .cd-feat li { font-size: 12px; color: var(--bone); background: rgba(201,162,75,0.10);
+    border: 1px solid rgba(201,162,75,0.32); border-radius: 999px; padding: 5px 11px; }
+  .cd-cta { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+  .cd-cta .btn { flex: 1 1 190px; }
+  .cd-note { margin-top: 18px; font-size: 11.5px; color: var(--ash); opacity: 0.75; line-height: 1.6; }
+
+  @media (min-width: 900px) {
+    #car-detail { padding: 28px 20px; }
+    /* margin:auto rather than align-items:center - centring a panel taller than
+       the viewport would clip its header off the top with no way to scroll up. */
+    .cd-panel { border-radius: 10px; min-height: 0; margin: auto; }
+    .cd-head { padding: 14px 20px; }
+    .cd-head h2 { font-size: 20px; }
+    .cd-body { padding: 22px 20px 30px; }
+    .cd-specs th, .cd-specs td { font-size: 14.5px; }
+  }
   .car-price { font-family: 'Saira', sans-serif; font-size: 22px; font-weight: 700; color: var(--gold-bright); margin-bottom: 4px; font-variant-numeric: tabular-nums; }
   .car-monthly { font-size: 12px; color: var(--ash); margin-bottom: 14px; }
   .inventory-footer { text-align: center; margin-top: 40px; }
@@ -787,7 +875,7 @@
       <!-- NEWEST FIRST. Add a new listing directly below this line, not at the bottom. -->
 
       <!-- Card 1: 2023 Mercedes-Benz S 580e 4MATIC -->
-      <div class="car-card fade-up">
+      <div data-car="2023-mercedes-benz-s-580e-4matic" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <video poster="video/s580e-a-poster.jpg" muted loop playsinline preload="none"
@@ -814,12 +902,12 @@
           <div class="car-meta"><span class="car-mileage">40,095 mi · 4D Sedan</span></div>
           <div class="car-vin">VIN <span>W1K6G6KB1PA202475</span></div>
           <div class="car-price">$77,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 2: 2020 Jeep Wrangler Unlimited Sport S -->
-      <div class="car-card fade-up">
+      <div data-car="2020-jeep-wrangler-unlimited-sport-s" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <video poster="video/jeep2020-a-poster.jpg" muted loop playsinline preload="none"
@@ -868,12 +956,12 @@
           <div class="car-meta"><span class="car-mileage">46,814 mi · 3.6L V6 · Black</span></div>
           <div class="car-vin">VIN <span>1C4HJXDG8LW300614</span></div>
           <div class="car-price">$25,800</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 3: 2026 Toyota Prius LE -->
-      <div class="car-card fade-up">
+      <div data-car="2026-toyota-prius-le" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <video poster="video/prius2026-a-poster.jpg" muted loop playsinline preload="none"
@@ -909,12 +997,12 @@
           <div class="car-meta"><span class="car-mileage">13,000 mi</span></div>
           <div class="car-vin">VIN <span>JTDACAAU5T3079543</span></div>
           <div class="car-price">$29,200</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 4: 2019 Jeep Wrangler Unlimited Rubicon -->
-      <div class="car-card fade-up">
+      <div data-car="2019-jeep-wrangler-unlimited-rubicon" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <video poster="video/jeep2019-a-poster.jpg" muted loop playsinline preload="none"
@@ -954,12 +1042,12 @@
           <div class="car-meta"><span class="car-mileage">37,165 mi · V6 · Gray</span></div>
           <div class="car-vin">VIN <span>1C4HJXFG1KW599911</span></div>
           <div class="car-price">$34,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 5: 2023 Lexus IS 350 F Sport -->
-      <div class="car-card fade-up">
+      <div data-car="2023-lexus-is-350-f-sport" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/lexus-is-2023/01.jpg" alt="2023 Lexus IS 350 F Sport" loading="lazy">
@@ -982,12 +1070,12 @@
           <div class="car-meta"><span class="car-mileage">53,000 mi &middot; 4D Sedan &middot; White</span></div>
           <div class="car-vin">VIN <span>JTHGZ1E21P5028163</span></div>
           <div class="car-price">$42,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 6: 2025 Toyota RAV4 XLE AWD Hybrid -->
-      <div class="car-card fade-up">
+      <div data-car="2025-toyota-rav4-xle-awd-hybrid" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-rav4-2025/02.jpg" alt="2025 Toyota RAV4 XLE AWD Hybrid" loading="lazy">
@@ -1019,12 +1107,12 @@
           <div class="car-meta"><span class="car-mileage">41,364 mi &middot; 4D SUV &middot; Hybrid AWD</span></div>
           <div class="car-vin">VIN <span>4T3RWRFV5SU196870</span></div>
           <div class="car-price">$31,800</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 7: 2022 Lexus RX 450h AWD Hybrid -->
-      <div class="car-card fade-up">
+      <div data-car="2022-lexus-rx-450h-awd-hybrid" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/lexus-rx-2022/05.jpg" alt="2022 Lexus RX 450h AWD Hybrid" loading="lazy">
@@ -1050,37 +1138,37 @@
           <div class="car-title">2022 Lexus RX 450h AWD Hybrid</div>
           <div class="car-meta"><span class="car-mileage">107,000 mi &middot; 4D SUV &middot; AWD Hybrid</span></div>
           <div class="car-price">$33,500</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 8: 2025 Toyota Tacoma -->
-      <div class="car-card fade-up">
+      <div data-car="2025-toyota-tacoma" class="car-card fade-up">
         <div class="car-photo">
           <div class="car-slider">
-            <img src="images/toyota-tacoma/01.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/02.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/03.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/04.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/05.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/06.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/07.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/08.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/09.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/10.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/11.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/12.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/13.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/14.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/15.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/16.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/17.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/18.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/19.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/20.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/21.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/22.jpg" alt="2025 Toyota Tacoma" loading="lazy">
-            <img src="images/toyota-tacoma/23.jpg" alt="2025 Toyota Tacoma" loading="lazy">
+            <img src="images/toyota-tacoma/01.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/02.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/03.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/04.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/05.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/06.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/07.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/08.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/09.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/10.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/11.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/12.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/13.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/14.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/15.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/16.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/17.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/18.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/19.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/20.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/21.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/22.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
+            <img src="images/toyota-tacoma/23.jpg" alt="2025 Toyota Tacoma Trailhunter" loading="lazy">
           </div>
           <button class="slider-btn slider-prev" aria-label="Previous photo">&#8249;</button>
           <button class="slider-btn slider-next" aria-label="Next photo">&#8250;</button>
@@ -1089,16 +1177,16 @@
           <div class="car-badge-instock" data-i18n="inv.badge"></div>
         </div>
         <div class="car-body">
-          <div class="car-title">2025 Toyota Tacoma</div>
-          <div class="car-meta"><span class="car-mileage">Black</span></div>
+          <div class="car-title">2025 Toyota Tacoma Trailhunter</div>
+          <div class="car-meta"><span class="car-mileage">4WD &middot; Double Cab &middot; i-FORCE MAX &middot; Black</span></div>
           <div class="car-vin">VIN <span>3TYLC5LN6ST028138</span></div>
           <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 9: 2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe -->
-      <div class="car-card sold fade-up">
+      <div data-car="2024-mercedes-benz-amg-gle-53-4matic-coupe" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <video poster="video/gle2024-b-poster.jpg" muted loop playsinline preload="none"
@@ -1132,12 +1220,12 @@
           <div class="car-title">2024 Mercedes-Benz AMG GLE 53 4MATIC+ Coupe</div>
           <div class="car-meta"><span class="car-mileage">14,217 mi &middot; 4D Coupe</span></div>
           <div class="car-price">$74,800</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 10: 2023 Toyota Highlander Platinum Hybrid -->
-      <div class="car-card sold fade-up">
+      <div data-car="2023-toyota-highlander-platinum-hybrid" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-highlander/03.jpg" alt="2023 Toyota Highlander Platinum Hybrid" loading="lazy">
@@ -1167,12 +1255,12 @@
           <div class="car-title">2023 Toyota Highlander Platinum Hybrid</div>
           <div class="car-meta"><span class="car-mileage">51,778 mi</span></div>
           <div class="car-price">$44,800</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 11: 2026 Toyota Camry SE Hybrid -->
-      <div class="car-card sold fade-up">
+      <div data-car="2026-toyota-camry-se-hybrid" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-camry-2026-hybrid/01.jpg" alt="2026 Toyota Camry SE Hybrid" loading="lazy">
@@ -1214,12 +1302,12 @@
           <div class="car-title">2026 Toyota Camry SE Hybrid</div>
           <div class="car-meta"><span class="car-mileage">50 mi &middot; 4D Sedan &middot; FWD Hybrid &middot; Grey</span></div>
           <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 12: 2019 Lexus RX 450hL Premium AWD Hybrid -->
-      <div class="car-card sold fade-up">
+      <div data-car="2019-lexus-rx-450hl-premium-awd-hybrid" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/lexus-rx-2019/04.jpg" alt="2019 Lexus RX 450hL Premium AWD Hybrid" loading="lazy">
@@ -1262,12 +1350,12 @@
           <div class="car-meta"><span class="car-mileage">54,429 mi &middot; 4D SUV &middot; AWD Hybrid</span></div>
           <div class="car-vin">VIN <span>JTJDGKCA5K2008774</span></div>
           <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 13: 2002 Honda S2000 Turbo -->
-      <div class="car-card sold fade-up">
+      <div data-car="2002-honda-s2000-turbo" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/honda-s2000/01.jpg" alt="2002 Honda S2000 Turbo" loading="lazy">
@@ -1307,12 +1395,12 @@
           <div class="car-meta"><span class="car-mileage">55,000 mi · 6-Speed Manual · Convertible</span></div>
           <div class="car-price">$29,000 OBO</div>
           <div class="car-monthly">Clean title · Turbocharged · Performance exhaust · Recently serviced</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 14: 2022 BMW X4 M -->
-      <div class="car-card sold fade-up">
+      <div data-car="2022-bmw-x4-m" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/bmw-x4/01.jpg" alt="2022 BMW X4 M" loading="lazy">
@@ -1343,12 +1431,12 @@
           <div class="car-title">2022 BMW X4 M</div>
           <div class="car-meta"><span class="car-mileage">41,892 mi</span></div>
           <div class="car-price">$54,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 15: 2016 BMW M435i -->
-      <div class="car-card sold fade-up">
+      <div data-car="2016-bmw-m435i" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/bmw-4series/01.jpg" alt="2016 BMW M435i" loading="lazy">
@@ -1375,12 +1463,12 @@
           <div class="car-title">2016 BMW M435i</div>
           <div class="car-meta"><span class="car-mileage">70,196 mi</span></div>
           <div class="car-price">$12,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 16: 2026 Toyota Camry SE -->
-      <div class="car-card sold fade-up">
+      <div data-car="2026-toyota-camry-se" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-camry-white/01.jpg" alt="2026 Toyota Camry SE" loading="lazy">
@@ -1413,12 +1501,12 @@
           <div class="car-title">2026 Toyota Camry SE</div>
           <div class="car-meta"><span class="car-mileage">700 mi · White</span></div>
           <div class="car-price">$35,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 17: 2022 Tesla Model Y Performance AWD -->
-      <div class="car-card sold fade-up">
+      <div data-car="2022-tesla-model-y-performance-awd" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/tesla-model-y/01.jpg" alt="2022 Tesla Model Y Performance AWD" loading="lazy">
@@ -1453,12 +1541,12 @@
           <div class="car-title">2022 Tesla Model Y Performance AWD</div>
           <div class="car-meta"><span class="car-mileage">36,919 mi</span></div>
           <div class="car-price">$35,800</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 18: 2019 Ford F-150 Lariat SuperCrew 4WD -->
-      <div class="car-card sold fade-up">
+      <div data-car="2019-ford-f-150-lariat-supercrew-4wd" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/ford-f150/01.jpg" alt="2019 Ford F-150 Lariat SuperCrew 4WD" loading="lazy">
@@ -1493,12 +1581,12 @@
           <div class="car-title">2019 Ford F-150 Lariat SuperCrew 4WD</div>
           <div class="car-meta"><span class="car-mileage">133,585 mi · 3.5L V6</span></div>
           <div class="car-price">$22,800</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 19: 2025 Lexus TX 350 Premium -->
-      <div class="car-card sold fade-up">
+      <div data-car="2025-lexus-tx-350-premium" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/lexus-tx/01.jpg" alt="2025 Lexus TX 350 Premium" loading="lazy">
@@ -1528,12 +1616,12 @@
           <div class="car-title">2025 Lexus TX 350 Premium</div>
           <div class="car-meta"><span class="car-mileage">8,811 mi</span></div>
           <div class="car-price" data-i18n="inv.callPrice">Call for Price</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 20: 2017 Honda CR-V -->
-      <div class="car-card sold fade-up">
+      <div data-car="2017-honda-cr-v" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/honda-crv/01.jpg" alt="2017 Honda CR-V" loading="lazy">
@@ -1569,12 +1657,12 @@
           <div class="car-title">2017 Honda CR-V</div>
           <div class="car-meta"><span class="car-mileage">107,551 mi</span></div>
           <div class="car-price">$17,500</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 21: 2021 Toyota Camry LE Hybrid -->
-      <div class="car-card sold fade-up">
+      <div data-car="2021-toyota-camry-le-hybrid" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-camry-2021/01.jpg" alt="2021 Toyota Camry LE Hybrid" loading="lazy">
@@ -1603,12 +1691,12 @@
           <div class="car-title">2021 Toyota Camry LE Hybrid</div>
           <div class="car-meta"><span class="car-mileage">118,387 mi</span></div>
           <div class="car-price">$17,500</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 22: 2025 RAM ProMaster 3500 -->
-      <div class="car-card sold fade-up">
+      <div data-car="2025-ram-promaster-3500" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/ram-promaster/01.jpg" alt="2025 RAM ProMaster 3500" loading="lazy">
@@ -1635,12 +1723,12 @@
           <div class="car-title">2025 RAM ProMaster 3500</div>
           <div class="car-meta"><span class="car-mileage">28,559 mi · High Roof 159"</span></div>
           <div class="car-price">$38,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 23: 2025 Toyota Corolla LE Hybrid -->
-      <div class="car-card sold fade-up">
+      <div data-car="2025-toyota-corolla-le-hybrid" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-corolla/01.jpg" alt="2025 Toyota Corolla LE Hybrid" loading="lazy">
@@ -1674,12 +1762,12 @@
           <div class="car-title">2025 Toyota Corolla LE Hybrid</div>
           <div class="car-meta"><span class="car-mileage">38,791 mi</span></div>
           <div class="car-price">$22,900</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 24: 2023 BMW 3 Series 330e -->
-      <div class="car-card sold fade-up">
+      <div data-car="2023-bmw-3-series-330e" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/bmw-330e/01.jpg" alt="2023 BMW 3 Series 330e" loading="lazy">
@@ -1709,12 +1797,12 @@
           <div class="car-title">2023 BMW 3 Series 330e</div>
           <div class="car-meta"><span class="car-mileage">20,512 mi</span></div>
           <div class="car-price">$34,000</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
       <!-- Card 25: 2026 Toyota Camry SE (Black) -->
-      <div class="car-card sold fade-up">
+      <div data-car="2026-toyota-camry-se-black" class="car-card sold fade-up">
         <div class="car-photo">
           <div class="car-slider">
             <img src="images/toyota-camry/01.jpg" alt="2026 Toyota Camry SE (Black)" loading="lazy">
@@ -1747,7 +1835,7 @@
           <div class="car-title">2026 Toyota Camry SE (Black)</div>
           <div class="car-meta"><span class="car-mileage">47 mi · Black</span></div>
           <div class="car-price">$34,500</div>
-          <a href="#contact" class="btn btn-secondary btn-sm btn-full" data-i18n="inv.details"></a>
+          <a href="#" class="btn btn-secondary btn-sm btn-full car-details" data-i18n="inv.details"></a>
         </div>
       </div>
 
@@ -2056,6 +2144,33 @@
   </a>
 </div>
 
+<!-- CAR DETAIL OVERLAY -->
+<div id="car-detail" hidden role="dialog" aria-modal="true" aria-labelledby="cd-title">
+  <div class="cd-panel" role="document">
+    <div class="cd-head">
+      <h2 id="cd-title"></h2>
+      <button type="button" class="cd-close" id="cd-close" aria-label="Close">&times;</button>
+    </div>
+    <div class="cd-stage">
+      <div class="cd-track" id="cd-track"></div>
+      <button type="button" class="cd-nav cd-prev" id="cd-prev" aria-label="Previous">&#8249;</button>
+      <button type="button" class="cd-nav cd-next" id="cd-next" aria-label="Next">&#8250;</button>
+      <div class="cd-counter" id="cd-counter"></div>
+    </div>
+    <div class="cd-thumbs" id="cd-thumbs"></div>
+    <div class="cd-body">
+      <div><span class="cd-price" id="cd-price"></span><span class="cd-soldflag" id="cd-sold" hidden data-i18n="inv.sold">Sold</span></div>
+      <p class="cd-sub" id="cd-sub"></p>
+      <table class="cd-specs"><tbody id="cd-specs"></tbody></table>
+      <ul class="cd-feat" id="cd-feat"></ul>
+      <div class="cd-cta">
+        <a class="btn btn-primary" id="cd-call" href="tel:+12133528955"></a>
+        <a class="btn btn-secondary" id="cd-msg" href="https://m.me/mngautoclub" target="_blank" rel="noopener"></a>
+      </div>
+      <p class="cd-note" data-i18n="cd.note"></p>
+    </div>
+  </div>
+</div>
 <script>
 if (history.scrollRestoration) history.scrollRestoration = 'manual';
 window.scrollTo(0, 0);
@@ -2142,6 +2257,37 @@ const t = {
     'inv.badge':            'In Stock',
     'inv.sold':             'Sold',
     'inv.details':          'See Details',
+    'cd.l.vin':              'VIN',
+    'cd.l.mileage':          'Mileage',
+    'cd.l.body':             'Body style',
+    'cd.l.drive':            'Drivetrain',
+    'cd.l.engine':           'Engine',
+    'cd.l.power':            'Power',
+    'cd.l.torqueless':       '0–60 mph',
+    'cd.l.trans':            'Transmission',
+    'cd.l.fuel':             'Fuel',
+    'cd.l.battery':          'Battery',
+    'cd.l.mpg':              'EPA fuel economy',
+    'cd.l.tow':              'Towing capacity',
+    'cd.l.seats':            'Seating',
+    'cd.l.color':            'Exterior color',
+    'cd.v.sedan4':           '4-door sedan',
+    'cd.v.suv4':             '4-door SUV',
+    'cd.v.liftback':         '4-door liftback',
+    'cd.v.pickup':           'Double Cab pickup',
+    'cd.v.awd':              'All-wheel drive',
+    'cd.v.awd4matic':        '4MATIC all-wheel drive',
+    'cd.v.4wd':              'Four-wheel drive',
+    'cd.v.fwd':              'Front-wheel drive',
+    'cd.v.gas':              'Gasoline',
+    'cd.v.hybrid':           'Hybrid',
+    'cd.v.phev':             'Plug-in hybrid',
+    'cd.v.black':            'Black',
+    'cd.v.white':            'White',
+    'cd.v.gray':             'Gray',
+    'cd.call':               'Call about this car',
+    'cd.msg':                'Message us',
+    'cd.note':               'Specifications are manufacturer figures for this year and trim, given for guidance. Mileage and condition are as listed. Please confirm the details with us before purchase.',
     'inv.cta':              'Call to See Full Inventory',
 
 
@@ -2247,6 +2393,37 @@ const t = {
     'inv.badge':            'Disponible',
     'inv.sold':             'Vendido',
     'inv.details':          'Ver detalles',
+    'cd.l.vin':              'VIN',
+    'cd.l.mileage':          'Mileage',
+    'cd.l.body':             'Body style',
+    'cd.l.drive':            'Drivetrain',
+    'cd.l.engine':           'Engine',
+    'cd.l.power':            'Power',
+    'cd.l.torqueless':       '0–60 mph',
+    'cd.l.trans':            'Transmission',
+    'cd.l.fuel':             'Fuel',
+    'cd.l.battery':          'Battery',
+    'cd.l.mpg':              'EPA fuel economy',
+    'cd.l.tow':              'Towing capacity',
+    'cd.l.seats':            'Seating',
+    'cd.l.color':            'Exterior color',
+    'cd.v.sedan4':           '4-door sedan',
+    'cd.v.suv4':             '4-door SUV',
+    'cd.v.liftback':         '4-door liftback',
+    'cd.v.pickup':           'Double Cab pickup',
+    'cd.v.awd':              'All-wheel drive',
+    'cd.v.awd4matic':        '4MATIC all-wheel drive',
+    'cd.v.4wd':              'Four-wheel drive',
+    'cd.v.fwd':              'Front-wheel drive',
+    'cd.v.gas':              'Gasoline',
+    'cd.v.hybrid':           'Hybrid',
+    'cd.v.phev':             'Plug-in hybrid',
+    'cd.v.black':            'Black',
+    'cd.v.white':            'White',
+    'cd.v.gray':             'Gray',
+    'cd.call':               'Call about this car',
+    'cd.msg':                'Message us',
+    'cd.note':               'Specifications are manufacturer figures for this year and trim, given for guidance. Mileage and condition are as listed. Please confirm the details with us before purchase.',
     'inv.cta':              'Llama para ver todo el inventario',
 
 
@@ -2351,6 +2528,37 @@ const t = {
     'inv.badge':            '재고 있음',
     'inv.sold':             '판매 완료',
     'inv.details':          '자세히 보기',
+    'cd.l.vin':              'VIN',
+    'cd.l.mileage':          'Mileage',
+    'cd.l.body':             'Body style',
+    'cd.l.drive':            'Drivetrain',
+    'cd.l.engine':           'Engine',
+    'cd.l.power':            'Power',
+    'cd.l.torqueless':       '0–60 mph',
+    'cd.l.trans':            'Transmission',
+    'cd.l.fuel':             'Fuel',
+    'cd.l.battery':          'Battery',
+    'cd.l.mpg':              'EPA fuel economy',
+    'cd.l.tow':              'Towing capacity',
+    'cd.l.seats':            'Seating',
+    'cd.l.color':            'Exterior color',
+    'cd.v.sedan4':           '4-door sedan',
+    'cd.v.suv4':             '4-door SUV',
+    'cd.v.liftback':         '4-door liftback',
+    'cd.v.pickup':           'Double Cab pickup',
+    'cd.v.awd':              'All-wheel drive',
+    'cd.v.awd4matic':        '4MATIC all-wheel drive',
+    'cd.v.4wd':              'Four-wheel drive',
+    'cd.v.fwd':              'Front-wheel drive',
+    'cd.v.gas':              'Gasoline',
+    'cd.v.hybrid':           'Hybrid',
+    'cd.v.phev':             'Plug-in hybrid',
+    'cd.v.black':            'Black',
+    'cd.v.white':            'White',
+    'cd.v.gray':             'Gray',
+    'cd.call':               'Call about this car',
+    'cd.msg':                'Message us',
+    'cd.note':               'Specifications are manufacturer figures for this year and trim, given for guidance. Mileage and condition are as listed. Please confirm the details with us before purchase.',
     'inv.cta':              '전체 재고 문의하기',
 
 
@@ -2455,6 +2663,37 @@ const t = {
     'inv.badge':            '现车',
     'inv.sold':             '已售出',
     'inv.details':          '查看详情',
+    'cd.l.vin':              'VIN',
+    'cd.l.mileage':          'Mileage',
+    'cd.l.body':             'Body style',
+    'cd.l.drive':            'Drivetrain',
+    'cd.l.engine':           'Engine',
+    'cd.l.power':            'Power',
+    'cd.l.torqueless':       '0–60 mph',
+    'cd.l.trans':            'Transmission',
+    'cd.l.fuel':             'Fuel',
+    'cd.l.battery':          'Battery',
+    'cd.l.mpg':              'EPA fuel economy',
+    'cd.l.tow':              'Towing capacity',
+    'cd.l.seats':            'Seating',
+    'cd.l.color':            'Exterior color',
+    'cd.v.sedan4':           '4-door sedan',
+    'cd.v.suv4':             '4-door SUV',
+    'cd.v.liftback':         '4-door liftback',
+    'cd.v.pickup':           'Double Cab pickup',
+    'cd.v.awd':              'All-wheel drive',
+    'cd.v.awd4matic':        '4MATIC all-wheel drive',
+    'cd.v.4wd':              'Four-wheel drive',
+    'cd.v.fwd':              'Front-wheel drive',
+    'cd.v.gas':              'Gasoline',
+    'cd.v.hybrid':           'Hybrid',
+    'cd.v.phev':             'Plug-in hybrid',
+    'cd.v.black':            'Black',
+    'cd.v.white':            'White',
+    'cd.v.gray':             'Gray',
+    'cd.call':               'Call about this car',
+    'cd.msg':                'Message us',
+    'cd.note':               'Specifications are manufacturer figures for this year and trim, given for guidance. Mileage and condition are as listed. Please confirm the details with us before purchase.',
     'inv.cta':              '致电查看全部车辆',
 
 
@@ -2559,6 +2798,37 @@ const t = {
     'inv.badge':            'Бэлэн байгаа',
     'inv.sold':             'Зарагдсан',
     'inv.details':          'Дэлгэрэнгүй',
+    'cd.l.vin':              'VIN',
+    'cd.l.mileage':          'Гүйлт',
+    'cd.l.body':             'Их бие',
+    'cd.l.drive':            'Хөтлөгч',
+    'cd.l.engine':           'Хөдөлгүүр',
+    'cd.l.power':            'Хүч',
+    'cd.l.torqueless':       '0–60 миль/ц',
+    'cd.l.trans':            'Хурдны хайрцаг',
+    'cd.l.fuel':             'Түлш',
+    'cd.l.battery':          'Батерей',
+    'cd.l.mpg':              'Түлшний зарцуулалт (EPA)',
+    'cd.l.tow':              'Чирэх хүчин чадал',
+    'cd.l.seats':            'Суудал',
+    'cd.l.color':            'Өнгө',
+    'cd.v.sedan4':           '4 хаалгатай седан',
+    'cd.v.suv4':             '4 хаалгатай SUV',
+    'cd.v.liftback':         '4 хаалгатай лифтбэк',
+    'cd.v.pickup':           'Double Cab пикап',
+    'cd.v.awd':              'Бүх дугуй хөтлөгч',
+    'cd.v.awd4matic':        '4MATIC бүх дугуй хөтлөгч',
+    'cd.v.4wd':              'Дөрвөн дугуй хөтлөгч',
+    'cd.v.fwd':              'Урд дугуй хөтлөгч',
+    'cd.v.gas':              'Бензин',
+    'cd.v.hybrid':           'Хайбрид',
+    'cd.v.phev':             'Цэнэглэдэг хайбрид',
+    'cd.v.black':            'Хар',
+    'cd.v.white':            'Цагаан',
+    'cd.v.gray':             'Саарал',
+    'cd.call':               'Энэ машины талаар залгах',
+    'cd.msg':                'Мессеж бичих',
+    'cd.note':               'Үзүүлэлтүүд нь үйлдвэрлэгчийн тухайн он, хувилбарын албан ёсны мэдээлэл бөгөөд лавлагаа болгон өгөв. Гүйлт болон машины байдал нь жагсаалтад заасны дагуу. Худалдан авахаасаа өмнө бидэнтэй тодруулна уу.',
     'inv.cta':              'Бүх машинаа харах',
 
 
@@ -2803,6 +3073,209 @@ document.querySelectorAll('.car-photo').forEach(function(photo) {
     }
   ]
 }
+</script>
+<script>
+/* ---- Car detail overlay -------------------------------------------------
+   Specs below were checked against manufacturer and EPA figures. A car with
+   no entry still opens - it shows its gallery and whatever the card knows -
+   rather than inventing numbers. */
+var CAR_SPECS = {"2023-mercedes-benz-s-580e-4matic": {"body": "sedan4","drive": "awd4matic","engine": "3.0L turbo inline-6 plug-in hybrid","power": "510 hp combined","trans": "9-speed automatic","fuel": "phev","battery": "21.5 kWh","seats": "5","color": "black","feat": ["4MATIC","Plug-in hybrid","Burmester audio","Panoramic roof","Heated seats"]},"2020-jeep-wrangler-unlimited-sport-s": {"body": "suv4","drive": "4wd","engine": "3.6L Pentastar V6","power": "285 hp / 260 lb-ft","trans": "8-speed automatic","fuel": "gas","mpg": "18 city / 22 hwy","seats": "5","color": "black","feat": ["4x4","Removable top","Tow package"]},"2026-toyota-prius-le": {"body": "liftback","drive": "fwd","engine": "2.0L 4-cyl hybrid (THS 5)","power": "194 hp combined","trans": "eCVT","fuel": "hybrid","mpg": "57 city / 56 hwy / 57 combined","seats": "5","feat": ["Toyota Safety Sense 3.0","Apple CarPlay","Android Auto","Backup camera"]},"2019-jeep-wrangler-unlimited-rubicon": {"body": "suv4","drive": "4wd","engine": "3.6L Pentastar V6","power": "285 hp / 260 lb-ft","trans": "8-speed automatic","fuel": "gas","mpg": "20 combined","seats": "5","color": "gray","tow": "3,500 lb","feat": ["Rock-Trac 4x4","Locking differentials","Removable top","Tow package"]},"2023-lexus-is-350-f-sport": {"body": "sedan4","drive": "awd","engine": "3.5L V6","power": "311 hp / 280 lb-ft","trans": "6-speed automatic","fuel": "gas","mpg": "19 city / 26 hwy / 22 combined","seats": "5","color": "white","zero": "5.7 s","feat": ["F Sport package","Red leather interior","Adaptive suspension","Lexus Safety System+"]},"2025-toyota-rav4-xle-awd-hybrid": {"body": "suv4","drive": "awd","engine": "2.5L 4-cyl hybrid","power": "219 hp combined","trans": "eCVT","fuel": "hybrid","mpg": "41 city / 38 hwy / 39 combined","seats": "5","color": "black","feat": ["Electronic on-demand AWD","Toyota Safety Sense 2.5","Apple CarPlay","Android Auto"]},"2022-lexus-rx-450h-awd-hybrid": {"body": "suv4","drive": "awd","engine": "3.5L V6 hybrid","power": "308 hp combined","trans": "eCVT","fuel": "hybrid","mpg": "31 city / 28 hwy / 30 combined","seats": "5","color": "black","feat": ["AWD hybrid","Leather interior","Sunroof","Lexus Safety System+"]},"2025-toyota-tacoma": {"body": "pickup","drive": "4wd","engine": "2.4L turbo i-FORCE MAX hybrid","power": "326 hp / 465 lb-ft","trans": "8-speed automatic","fuel": "hybrid","mpg": "22 city / 24 hwy","seats": "5","color": "black","feat": ["Trailhunter","ARB steel rear bumper","Snorkel air intake","Rock rails","Steel skid plates"]},"2019-lexus-rx-450hl-premium-awd-hybrid": {"body": "suv4","drive": "awd","engine": "3.5L V6 hybrid","power": "308 hp combined","trans": "eCVT","fuel": "hybrid","seats": "7","color": "black","feat": ["Three-row 450hL","Premium package","AWD hybrid"]}};
+
+(function() {
+  var modal   = document.getElementById('car-detail');
+  if (!modal) return;
+  var track   = document.getElementById('cd-track'),
+      thumbs  = document.getElementById('cd-thumbs'),
+      counter = document.getElementById('cd-counter'),
+      titleEl = document.getElementById('cd-title'),
+      priceEl = document.getElementById('cd-price'),
+      soldEl  = document.getElementById('cd-sold'),
+      subEl   = document.getElementById('cd-sub'),
+      specsEl = document.getElementById('cd-specs'),
+      featEl  = document.getElementById('cd-feat'),
+      callEl  = document.getElementById('cd-call'),
+      msgEl   = document.getElementById('cd-msg');
+  var idx = 0, count = 0, openCar = null, lastFocus = null;
+
+  function T(key, fallback) {
+    var tab = (typeof t !== 'undefined' && t[lang]) ? t[lang] : null;
+    return (tab && tab[key] != null) ? tab[key] : fallback;
+  }
+
+  function show(i) {
+    if (count === 0) return;
+    idx = Math.max(0, Math.min(count - 1, i));
+    track.style.transform = 'translateX(' + (-idx * 100) + '%)';
+    counter.textContent = (idx + 1) + ' / ' + count;
+    [].forEach.call(thumbs.children, function(b, n) {
+      b.setAttribute('aria-current', n === idx ? 'true' : 'false');
+      if (n === idx) {
+        var l = b.offsetLeft, r = l + b.offsetWidth;
+        if (l < thumbs.scrollLeft) thumbs.scrollLeft = l - 8;
+        else if (r > thumbs.scrollLeft + thumbs.clientWidth) thumbs.scrollLeft = r - thumbs.clientWidth + 8;
+      }
+    });
+    // only the visible video may play
+    [].forEach.call(track.children, function(el, n) {
+      if (el.tagName === 'VIDEO') {
+        if (n === idx) { var pr = el.play(); if (pr && pr.catch) pr.catch(function(){}); }
+        else if (!el.paused) el.pause();
+      }
+    });
+  }
+
+  function buildGallery(card) {
+    track.innerHTML = ''; thumbs.innerHTML = '';
+    var slides = [].slice.call(card.querySelectorAll('.car-slider > *'));
+    count = slides.length;
+    slides.forEach(function(src, n) {
+      var node = src.cloneNode(true);
+      node.removeAttribute('loading');
+      if (node.tagName === 'IMG') { node.loading = n < 2 ? 'eager' : 'lazy'; }
+      if (node.tagName === 'VIDEO') { node.controls = true; node.muted = true; node.setAttribute('playsinline',''); node.preload = 'none'; }
+      track.appendChild(node);
+
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.setAttribute('aria-label', (n + 1) + '');
+      var im = document.createElement('img');
+      im.src = src.tagName === 'VIDEO' ? (src.getAttribute('poster') || '') : src.getAttribute('src');
+      im.alt = '';
+      im.loading = 'lazy';
+      b.appendChild(im);
+      if (src.tagName === 'VIDEO') b.className = 'cd-isvid';
+      b.addEventListener('click', function() { show(n); });
+      thumbs.appendChild(b);
+    });
+  }
+
+  function row(label, value) {
+    if (!value) return '';
+    return '<tr><th>' + label + '</th><td>' + value + '</td></tr>';
+  }
+
+  function fill(card) {
+    var id    = card.getAttribute('data-car'),
+        sp    = CAR_SPECS[id] || {},
+        sold  = card.classList.contains('sold'),
+        title = card.querySelector('.car-title').textContent,
+        price = card.querySelector('.car-price').textContent,
+        meta  = card.querySelector('.car-mileage') ? card.querySelector('.car-mileage').textContent : '',
+        vinEl = card.querySelector('.car-vin span');
+
+    titleEl.textContent = title;
+    priceEl.textContent = price;
+    soldEl.hidden = !sold;
+    subEl.textContent = meta;
+
+    var enumVal = function(k, v) { return v ? T('cd.v.' + v, v) : ''; };
+    var html = '';
+    html += row(T('cd.l.vin','VIN'), vinEl ? vinEl.textContent : '');
+    var mi = (meta.split('\u00b7').map(function(x){return x.trim();})
+              .filter(function(x){ return /\d\s*mi\b/i.test(x) || /^[\d,]+\s*mi/i.test(x); })[0]) || '';
+    html += row(T('cd.l.mileage','Mileage'), mi);
+    html += row(T('cd.l.body','Body'), enumVal('body', sp.body));
+    html += row(T('cd.l.drive','Drivetrain'), enumVal('drive', sp.drive));
+    html += row(T('cd.l.engine','Engine'), sp.engine);
+    html += row(T('cd.l.power','Power'), sp.power);
+    html += row(T('cd.l.torqueless','0-60 mph'), sp.zero);
+    html += row(T('cd.l.trans','Transmission'), sp.trans);
+    html += row(T('cd.l.fuel','Fuel'), enumVal('fuel', sp.fuel));
+    html += row(T('cd.l.battery','Battery'), sp.battery);
+    html += row(T('cd.l.mpg','EPA fuel economy'), sp.mpg);
+    html += row(T('cd.l.tow','Towing'), sp.tow);
+    html += row(T('cd.l.seats','Seating'), sp.seats);
+    html += row(T('cd.l.color','Exterior'), enumVal('color', sp.color));
+    specsEl.innerHTML = html;
+
+    featEl.innerHTML = '';
+    (sp.feat || []).forEach(function(f) {
+      var li = document.createElement('li'); li.textContent = f; featEl.appendChild(li);
+    });
+
+    callEl.textContent = T('cd.call', 'Call about this car');
+    msgEl.textContent  = T('cd.msg', 'Message us');
+  }
+
+  function open(id) {
+    var card = document.querySelector('.car-card[data-car="' + id + '"]');
+    if (!card) return false;
+    lastFocus = document.activeElement;
+    openCar = id;
+    buildGallery(card);
+    fill(card);
+    modal.hidden = false;
+    document.body.classList.add('cd-open');
+    show(0);
+    document.getElementById('cd-close').focus();
+    return true;
+  }
+
+  function close() {
+    [].forEach.call(track.children, function(el) { if (el.tagName === 'VIDEO' && !el.paused) el.pause(); });
+    modal.hidden = true;
+    document.body.classList.remove('cd-open');
+    track.innerHTML = ''; thumbs.innerHTML = '';
+    openCar = null;
+    if (location.hash.indexOf('#car/') === 0) {
+      history.replaceState(null, '', location.pathname + location.search);
+    }
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+
+  // open from the card button, and keep the URL shareable
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest ? e.target.closest('.car-details') : null;
+    if (!btn) return;
+    var card = btn.closest('.car-card');
+    if (!card) return;
+    e.preventDefault();
+    var id = card.getAttribute('data-car');
+    if (open(id)) history.replaceState(null, '', '#car/' + id);
+  });
+
+  document.getElementById('cd-close').addEventListener('click', close);
+  modal.addEventListener('click', function(e) { if (e.target === modal) close(); });
+  document.getElementById('cd-prev').addEventListener('click', function() { show(idx - 1); });
+  document.getElementById('cd-next').addEventListener('click', function() { show(idx + 1); });
+
+  document.addEventListener('keydown', function(e) {
+    if (modal.hidden) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowLeft') show(idx - 1);
+    else if (e.key === 'ArrowRight') show(idx + 1);
+  });
+
+  // swipe
+  var x0 = null, y0 = null;
+  track.addEventListener('touchstart', function(e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, {passive:true});
+  track.addEventListener('touchend', function(e) {
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+    if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) show(idx + (dx < 0 ? 1 : -1));
+    x0 = y0 = null;
+  }, {passive:true});
+
+  // relabel in place when the language is switched
+  var origApply = window.applyLang;
+  if (typeof origApply === 'function') {
+    window.applyLang = function(l) {
+      origApply(l);
+      if (!modal.hidden && openCar) {
+        var c = document.querySelector('.car-card[data-car="' + openCar + '"]');
+        if (c) fill(c);
+      }
+    };
+  }
+
+  // deep link, e.g. .../#car/2026-toyota-prius-le
+  function fromHash() {
+    var h = location.hash || '';
+    if (h.indexOf('#car/') === 0) open(h.slice(5));
+  }
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
+})();
 </script>
 </body>
 </html>
